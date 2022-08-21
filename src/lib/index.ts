@@ -30,3 +30,4 @@ export { default as CalendarView } from "./CalendarView/CalendarView.svelte";
 export { default as CalendarDatePicker } from "./CalendarDatePicker/CalendarDatePicker.svelte";
 export { default as NavigationView } from "./NavigationView/NavigationView.svelte";
 export { default as RangeSlider } from "./RangeSlider/RangeSlider.svelte";
+export { default as HorizontalScroll } from "./HorizontalScroll/HorizontalScroll.svelte";

@@ -27,7 +27,8 @@
 		TextBox,
 		ToggleSwitch,
 		Tooltip,
-		RangeSlider
+		RangeSlider,
+		HorizontalScroll
 	} from "$lib";
 
 	import { PageSection } from "$site/lib";
@@ -728,6 +729,12 @@
 	<h3>RangeSlider</h3>
 	<div class="showcase-group">
 			<RangeSlider min={1} max={100} width={"20rem"}></RangeSlider>			
+	</div>
+
+	<h3>Horizontal Scroll</h3>
+	<div class="showcase-group">
+		<HorizontalScroll direction="left"></HorizontalScroll>
+		<HorizontalScroll direction="right"></HorizontalScroll>
 	</div>
 </PageSection>
 
