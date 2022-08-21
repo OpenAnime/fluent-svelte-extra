@@ -2,9 +2,7 @@
  export let direction;
 </script>
 
-
-<div id="horizontalScroll">
-
+<div id="flipper">
  {#if direction === "right"}
  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" viewBox="0 0 16 16" version="1.1">
   <g id="surface1">
@@ -18,14 +16,11 @@
    </g>
    </svg>   
   {/if}
-  
-
 </div>
-
 
 <style>
 
- #horizontalScroll {
+ #flipper {
   display:flex;
   align-items: center;
   justify-content:center;
@@ -36,23 +31,19 @@
   fill: rgb(205, 193, 193);
  }
 
- #horizontalScroll > svg {
+ #flipper > svg {
   transform:scale(0.9);
  }
 
- #horizontalScroll:hover {
+ #flipper:hover {
   fill: currentColor;
  }
 
- #horizontalScroll:hover > svg {
+ #flipper:hover > svg {
   transform:scale(1);
  }
 
- #horizontalScroll:active > svg {
+ #flipper:active > svg {
   transform:scale(0.8);  
  }
-
- 
-
-
 </style>
