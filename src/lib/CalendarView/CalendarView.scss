@@ -1,0 +1,156 @@
+@use "../mixins" as *;
+
+.calendar-view {
+	@include flex($inline: true, $direction: column);
+	text-align: start;
+	inline-size: 300px;
+	block-size: 347px;
+	position: relative;
+	user-select: none;
+	color: var(--text-primary);
+	background-clip: padding-box;
+	background-color: var(--fds-solid-background-quarternary);
+	border-radius: var(--control-corner-radius);
+	border: 1px solid var(--surface-stroke-flyout);
+	font-family: var(--font-family-text);
+	&.floating {
+		border-radius: var(--overlay-corner-radius);
+		box-shadow: var(--flyout-shadow);
+	}
+	&-header,
+	&-pagination-controls {
+		@include flex($align: center);
+	}
+	&-pagination-controls button {
+		padding: 0;
+		inline-size: 30px;
+		margin-inline-start: 4px;
+	}
+	&-header {
+		box-sizing: border-box;
+		border-block-end: 1px solid var(--card-stroke-default);
+		inline-size: 100%;
+		padding: 7px;
+		button {
+			@include flex($align: center, $justify: center);
+			border: none;
+			outline: none;
+			padding: 0;
+			min-block-size: 32px;
+			color: var(--text-primary);
+			background-color: var(--subtle-fill-transparent);
+			border-radius: var(--control-corner-radius);
+			line-height: 20px;
+			font: {
+				size: 14px;
+				weight: 600;
+				family: var(--font-family-text);
+			}
+			&:focus-visible {
+				box-shadow: var(--focus-stroke);
+			}
+			&:hover {
+				background-color: var(--subtle-fill-secondary);
+			}
+			&:active {
+				background-color: var(--subtle-fill-tertiary);
+				color: var(--text-secondary);
+			}
+			&:disabled {
+				background-color: var(--sutble-fill-disabled);
+				color: var(--text-disabled);
+				svg {
+					color: var(--control-strong-fill-disabled);
+				}
+			}
+			svg {
+				@include icon($size: 16px);
+				color: var(--control-strong-fill-default);
+			}
+		}
+		&-text {
+			flex: 1 1 auto;
+			button {
+				inline-size: 100%;
+				padding-inline: 9px;
+				justify-content: flex-start;
+				flex: 1 1 auto;
+			}
+		}
+	}
+	&-table {
+		inset: 0;
+		display: block;
+		overflow: hidden;
+		position: absolute;
+		box-sizing: border-box;
+		inline-size: calc(100% - 6px);
+		block-size: calc(100% - 6px);
+		margin: 3px;
+		font-size: 14px;
+		&-wrapper {
+			inline-size: 298px;
+			block-size: 298px;
+			position: relative;
+			contain: layout;
+			overflow: hidden;
+			background-color: var(--layer-on-acrylic-background-default);
+		}
+		&.view- {
+			&months,
+			&years {
+				margin: 11px;
+				inline-size: calc(100% - 22px);
+				block-size: calc(100% - 22px);
+				tr {
+					grid-template-columns: repeat(4, 1fr);
+					grid-gap: calc(52px / 3);
+					margin-block-end: calc(52px / 3);
+				}
+			}
+		}
+		td,
+		th {
+			padding: 0;
+		}
+		th {
+			@include flex($align: center, $justify: center);
+			block-size: 40px;
+			text-align: center;
+			font: {
+				size: 13px;
+				weight: 600;
+			}
+		}
+		thead,
+		tbody {
+			inline-size: 100%;
+			display: flex;
+			flex-direction: column;
+		}
+		thead tr,
+		tbody {
+			background-color: var(--fds-solid-background-quarternary);
+			box-shadow: inset 0 0 0 100vmax var(--fds-layer-on-acrylic-background-default);
+		}
+		thead {
+			position: relative;
+			z-index: 1;
+		}
+		tbody {
+			position: absolute;
+			inset-inline-start: 0;
+			inset-block-end: 0;
+			tr:last-child {
+				margin-block-end: 0;
+			}
+		}
+		tr {
+			display: grid;
+			inline-size: 100%;
+			grid-template-columns: repeat(7, 1fr);
+			grid-gap: 2px;
+			margin-block-end: 2px;
+		}
+	}
+}

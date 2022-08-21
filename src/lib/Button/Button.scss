@@ -1,0 +1,94 @@
+@use "../mixins" as *;
+
+.button {
+	@include flex($inline: true, $align: center, $justify: center);
+	@include typography-body;
+
+	position: relative;
+	box-sizing: border-box;
+	padding-block: 4px 6px;
+	padding-inline: 11px;
+	text-decoration: none;
+	border: none;
+	outline: none;
+	cursor: default;
+	border-radius: var(--control-corner-radius);
+	transition: var(--control-faster-duration) ease background;
+
+	&:focus-visible {
+		box-shadow: var(--focus-stroke);
+	}
+
+	&.style- {
+		&standard {
+			border: 1px solid;
+			border-color: var(--control-border-default);
+			background-color: var(--control-fill-default);
+			color: var(--text-primary);
+			background-clip: padding-box;
+
+			&:hover {
+				background-color: var(--control-fill-secondary);
+			}
+
+			&:active {
+				border-color: var(--control-stroke-default);
+				background-color: var(--control-fill-tertiary);
+				color: var(--text-secondary);
+			}
+
+			&.disabled {
+				border-color: var(--control-stroke-default);
+				background-color: var(--control-fill-disabled);
+				color: var(--text-disabled);
+			}
+		}
+
+		&accent {
+			border: 1px solid var(--control-stroke-on-accent-default);
+			border-bottom-color: var(--control-stroke-on-accent-secondary);
+			background-color: var(--accent-default);
+			color: var(--text-on-accent-primary);
+			transition: var(--control-faster-duration) ease border-color;
+
+			&:hover {
+				background-color: var(--accent-secondary);
+			}
+
+			&:active {
+				border-color: transparent;
+				background-color: var(--accent-tertiary);
+				color: var(--text-on-accent-secondary);
+			}
+
+			&.disabled {
+				border-color: transparent;
+				background-color: var(--accent-disabled);
+				color: var(--text-on-accent-disabled);
+			}
+		}
+
+		&hyperlink {
+			background-color: var(--subtle-fill-transparent);
+			color: var(--accent-text-primary);
+			cursor: pointer;
+
+			&:hover {
+				background-color: var(--subtle-fill-secondary);
+			}
+
+			&:active {
+				background-color: var(--subtle-fill-tertiary);
+				color: var(--accent-text-tertiary);
+			}
+
+			&.disabled {
+				color: var(--accent-text-disabled);
+			}
+		}
+	}
+
+	&.disabled {
+		pointer-events: none;
+	}
+}

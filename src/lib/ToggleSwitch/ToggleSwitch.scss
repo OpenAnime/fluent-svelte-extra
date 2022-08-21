@@ -1,0 +1,118 @@
+@use "../mixins" as *;
+
+.toggle-switch {
+	@include flex($inline: true, $align: center);
+	@include typography-body;
+
+	position: relative;
+	margin: 0;
+	border: 1px solid var(--control-strong-stroke-default);
+	border-radius: 20px;
+	outline: none;
+	background-color: var(--control-alt-fill-secondary);
+	appearance: none;
+	inline-size: 40px;
+	block-size: 20px;
+
+	&::before {
+		content: "";
+		position: absolute;
+		border-radius: 7px;
+		background-color: var(--text-secondary);
+		transition: var(--control-fast-duration) ease-in-out transform,
+			var(--control-fast-duration) var(--control-fast-out-slow-in-easing) height,
+			var(--control-fast-duration) var(--control-fast-out-slow-in-easing) width,
+			var(--control-fast-duration) var(--control-fast-out-slow-in-easing) margin,
+			var(--control-faster-duration) linear background;
+		inset-inline-start: 3px;
+		inline-size: 12px;
+		block-size: 12px;
+	}
+
+	&:focus-visible {
+		box-shadow: var(--focus-stroke);
+	}
+
+	&:hover {
+		background-color: var(--control-alt-fill-tertiary);
+
+		&::before {
+			inline-size: 14px;
+			block-size: 14px;
+		}
+	}
+
+	&:active {
+		background-color: var(--control-alt-fill-quarternary);
+
+		&::before {
+			inline-size: 17px;
+			block-size: 14px;
+		}
+	}
+
+	&:disabled {
+		border-color: var(--control-strong-stroke-disabled);
+		background-color: var(--control-alt-fill-disabled);
+
+		&::before {
+			margin: 0 !important;
+			background-color: var(--text-disabled);
+			box-shadow: none;
+			inline-size: 12px;
+			block-size: 12px;
+		}
+
+		+ span {
+			color: var(--text-disabled);
+		}
+	}
+
+	&:checked {
+		border: none;
+		background-color: var(--accent-default);
+
+		&::before {
+			background-color: var(--text-on-accent-primary);
+			box-shadow: 0 0 0 1px solid var(--control-stroke-default);
+			transform: translateX(20px);
+		}
+
+		&:hover {
+			background-color: var(--accent-secondary);
+
+			&::before {
+				margin-inline-start: -1px;
+			}
+		}
+
+		&:active {
+			background-color: var(--accent-tertiary);
+
+			&::before {
+				margin-inline-start: -4px;
+			}
+		}
+
+		&:disabled {
+			background-color: var(--accent-disabled);
+			&::before {
+				box-shadow: none;
+				background-color: var(--text-on-accent-disabled);
+			}
+		}
+	}
+
+	&-container {
+		@include flex($inline: true, $align: center);
+		@include typography-body;
+
+		color: var(--text-primary);
+		user-select: none;
+		min-block-size: 32px;
+
+		> span {
+			padding-inline-start: 8px;
+		}
+	}
+}

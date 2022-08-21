@@ -1,0 +1,66 @@
+.tooltip- {
+	&wrapper {
+		position: relative;
+		display: block;
+	}
+	&anchor {
+		pointer-events: none;
+		position: absolute;
+		z-index: 100;
+		&.placement- {
+			&top {
+				bottom: calc(100% + var(--tooltip-offset));
+			}
+			&bottom {
+				top: calc(100% + var(--tooltip-offset));
+			}
+			&left {
+				right: calc(100% + var(--tooltip-offset));
+			}
+			&right {
+				left: calc(100% + var(--tooltip-offset));
+			}
+			&top,
+			&bottom {
+				&.alignment- {
+					&start {
+						inset-inline-start: 0;
+					}
+					&end {
+						inset-inline-end: 0;
+					}
+					&center {
+						inset-inline-start: 50%;
+						transform: translateX(-50%);
+					}
+				}
+			}
+			&left,
+			&right {
+				&.alignment- {
+					&start {
+						inset-block-start: 0;
+					}
+					&end {
+						inset-block-end: 0;
+					}
+					&center {
+						inset-block-start: 50%;
+						transform: translateY(-50%);
+					}
+				}
+			}
+			&auto {
+				transform: translateY(-100%);
+				&.alignment- {
+					&center {
+						transform: translate(-50%, -100%);
+					}
+					&end {
+						transform: translate(-100%, -100%);
+					}
+				}
+			}
+		}
+	}
+}

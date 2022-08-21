@@ -1,0 +1,74 @@
+@use "../markdown";
+@use "src/lib/mixins" as *;
+
+.docs- {
+	&container {
+		background-color: var(--fds-card-background-secondary); // Temporary bodge for mica tinting
+		&::before {
+			transform: scale(2);
+			content: "";
+			position: fixed;
+			z-index: -1;
+			inset: 0;
+			inline-size: 100%;
+			block-size: 100%;
+			background: url("/bloom-mica-light.png") center/cover no-repeat fixed;
+			@media (prefers-color-scheme: dark) {
+				background-image: url("/bloom-mica-dark.png");
+			}
+		}
+		&-inner {
+			min-height: 100vh;
+			max-width: 1440px;
+			margin-inline: auto;
+			@include flex($justify: center);
+		}
+	}
+	&search {
+		margin-inline: 4px;
+		margin-block-end: 12px;
+	}
+}
+
+aside {
+	@include flex($direction: column);
+	overflow: auto;
+	padding-inline: 12px 4px;
+	position: sticky;
+	align-self: start;
+	inset-block-start: 56px;
+	padding-block-start: 12px;
+	flex: 0 0 auto;
+	inline-size: 280px;
+	max-block-size: calc(100vh - 56px);
+	&:last-child {
+		width: 220px;
+		padding-block-start: 44px;
+		padding-inline-end: 12px;
+		:global(.text-block.type-body-strong) {
+			margin-bottom: 12px;
+		}
+		@media only screen and (max-width: 1096px) {
+			display: none;
+		}
+	}
+}
+
+article {
+	max-inline-size: 100%;
+	min-inline-size: 0;
+	margin-block-start: 56px;
+	position: relative;
+	z-index: 1;
+	padding: 44px 56px;
+	flex: 1 1 auto;
+	border-inline-start: 1px solid var(--card-stroke-default);
+	header {
+		@include flex($justify: between, $align: start);
+		h1:first-child {
+			margin-block-start: 0;
+			padding: 0;
+			font-size: 48px;
+		}
+	}
+}

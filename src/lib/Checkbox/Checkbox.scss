@@ -1,0 +1,117 @@
+@use "../mixins" as *;
+
+.checkbox {
+	@include typography-body;
+
+	margin: 0;
+	border: 1px solid var(--control-strong-stroke-default);
+	border-radius: var(--control-corner-radius);
+	outline: none;
+	background-clip: padding-box;
+	background-color: var(--control-alt-fill-secondary);
+	appearance: none;
+	inline-size: 20px;
+	block-size: 20px;
+
+	&:focus-visible {
+		box-shadow: var(--focus-stroke);
+	}
+
+	&:hover {
+		background-color: var(--control-alt-fill-tertiary);
+	}
+
+	&:active {
+		border-color: var(--control-strong-stroke-disabled);
+		background-color: var(--control-alt-fill-quarternary);
+		+ .checkbox-glyph {
+			color: var(--text-on-accent-secondary);
+		}
+	}
+
+	&:disabled {
+		border-color: var(--control-strong-stroke-disabled);
+		background-color: var(--control-alt-fill-disabled);
+		pointer-events: none;
+	}
+
+	&:checked,
+	&:indeterminate {
+		border: none;
+		background-color: var(--accent-default);
+
+		&:hover {
+			background-color: var(--accent-secondary);
+		}
+
+		&:active {
+			background-color: var(--accent-tertiary);
+		}
+
+		&:disabled {
+			border-color: var(--control-strong-stroke-disabled);
+			background-color: var(--accent-disabled);
+			+ .checkbox-glyph {
+				color: var(--text-on-accent-disabled);
+			}
+		}
+
+		+ .checkbox-glyph .path-checkmark {
+			transition: var(--control-normal-duration) cubic-bezier(0.55, 0, 0, 1) stroke-dashoffset;
+			stroke-dashoffset: 0;
+		}
+	}
+
+	&-container {
+		@include flex($inline: true, $align: center);
+		@include typography-body;
+
+		color: var(--text-primary);
+		user-select: none;
+		min-block-size: 32px;
+
+		> span {
+			padding-inline-start: 8px;
+		}
+
+		&.disabled > span {
+			color: var(--text-disabled);
+		}
+	}
+
+	&-inner {
+		@include flex($align: center, $justify: center);
+		position: relative;
+	}
+
+	&-glyph {
+		position: absolute;
+		color: inherit;
+		color: var(--text-on-accent-primary);
+		inline-size: 12px;
+		block-size: 12px;
+
+		path {
+			transform-origin: center;
+		}
+
+		.path- {
+			&checkmark {
+				transform: scale(1.2);
+				stroke: currentColor;
+				stroke: {
+					width: 2;
+					linecap: round;
+					linejoin: round;
+					dasharray: 20.5;
+					dashoffset: 20.5;
+				}
+			}
+
+			&indeterminate {
+				transform: scale(calc(2 / 3)) translateX(80px) translateY(240px);
+				fill: currentColor;
+			}
+		}
+	}
+}
