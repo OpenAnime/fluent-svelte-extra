@@ -42,46 +42,50 @@
 </div>
 
 <style>
- #vals {
-     display: flex;
-     justify-content: space-between;
-     align-items: center;
- }
+    #vals {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
- .handle {
-     width: 0;
-     height: 0;
-     display: flex;
-     justify-content: center;
-     align-items: center;
- }
+    .handle {
+        width: 0;
+        height: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
- .handle:after {
-     background-color: hsl(199, 99%, 69%); /*mavi*/
-     border: solid 5px hsl(0, 0%, 30%);
-     content: ' ';
-     box-sizing: border-box;
-     position: absolute;
-     border-radius: 50%;
-     width: 20px;
-     height: 20px;
-     transition: all 0.1s linear !important;
- }
+    .handle::after {
+        background-color: hsl(199, 99%, 69%); /*mavi*/
+        border: solid 5px hsl(0, 0%, 30%);
+        content: ' ';
+        box-sizing: border-box;
+        position: absolute;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        transition: all 0.1s linear !important;
+    }
 
- .handle:active:after {
-     border: solid 7px hsl(0, 0%, 30%);
-     box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.4);
- }
+    .handle:hover::after {
+        border: solid 4px hsl(0, 0%, 30%);
+    }
 
- #sliderComp {
-     --thumb-bg: transparent;
-     --progress-bg: hsl(199, 99%, 69%);
-     --track-bg: hsl(0, 0%, 27%);
- }
+    .handle:active::after {
+        border: solid 6px hsl(0, 0%, 30%);
+        box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.4);
+    }
 
- #sliderComp {
-     --thumb-bg: transparent;
-     --progress-bg: hsl(199, 99%, 69%);
-     --track-bg: hsl(0, 0%, 27%);
- }
+    #sliderComp {
+        --thumb-bg: transparent;
+        --progress-bg: hsl(199, 99%, 69%);
+        --track-bg: hsl(0, 0%, 27%);
+    }
+
+    #sliderComp {
+        --thumb-bg: transparent;
+        --progress-bg: hsl(199, 99%, 69%);
+        --track-bg: hsl(0, 0%, 27%);
+    }
 </style>
