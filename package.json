@@ -1,12 +1,12 @@
 {
-	"name": "fluent-svelte",
-	"version": "1.6.0",
+	"name": "fluent-svelte-extra",
+	"version": "1.0.0",
 	"description": "A faithful implementation of Microsoft's Fluent Design System in Svelte.",
-	"homepage": "https://github.com/tropix126/fluent-svelte",
+	"homepage": "https://github.com/OpenAnime/fluent-svelte-extra",
 	"license": "MIT",
 	"author": {
-		"name": "tropix126",
-		"url": "https://github.com/tropix126/"
+		"name": "SpongeBed",
+		"url": "https://github.com/SpongeBed81"
 	},
 	"keywords": [
 		"design",
@@ -28,10 +28,10 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/tropix126/fluent-svelte.git"
+		"url": "https://github.com/OpenAnime/fluent-svelte-extra.git"
 	},
 	"bugs": {
-		"url": "https://github.com/tropix126/fluent-svelte/issues"
+		"url": "https://github.com/OpenAnime/fluent-svelte-extra/issues"
 	},
 	"scripts": {
 		"dev": "svelte-kit dev",
