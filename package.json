@@ -1,6 +1,6 @@
 {
 	"name": "fluent-svelte-extra",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "A faithful implementation of Microsoft's Fluent Design System in Svelte.",
 	"homepage": "https://github.com/OpenAnime/fluent-svelte-extra",
 	"license": "MIT",
@@ -37,6 +37,7 @@
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
 		"package": "svelte-kit package",
+		"publish": "npm run package && cd package && npm publish",
 		"preview": "svelte-kit preview",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
