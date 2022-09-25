@@ -77,6 +77,7 @@
 	},
 	"dependencies": {
 		"@bulatdashiev/svelte-slider": "^1.0.3",
+		"fluent-svelte": "^1.6.0",
 		"focus-trap": "^6.7.3",
 		"tabbable": "^5.2.1"
 	},

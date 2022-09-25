@@ -10,6 +10,7 @@ specifiers:
   '@types/prismjs': ^1.26.0
   autoprefixer: ^10.4.4
   cssnano: ^5.1.7
+  fluent-svelte: ^1.6.0
   focus-trap: ^6.7.3
   mdsvex: ^0.9.8
   mdsvexamples: 0.2.3
@@ -36,13 +37,14 @@ specifiers:
 
 dependencies:
   '@bulatdashiev/svelte-slider': 1.0.3
+  fluent-svelte: 1.6.0
   focus-trap: 6.7.3
   tabbable: 5.2.1
 
 devDependencies:
   '@fec/remark-a11y-emoji': 3.1.0
   '@fluentui/svg-icons': 1.1.166
-  '@sveltejs/adapter-vercel': 1.0.0-next.67
+  '@sveltejs/adapter-vercel': 1.0.0-next.69
   '@sveltejs/kit': 1.0.0-next.310_sass@1.50.0+svelte@3.47.0
   '@sveltejs/svelte-repl': 0.2.2
   '@types/prismjs': 1.26.0
@@ -173,10 +175,10 @@ packages:
       picomatch: 2.3.1
     dev: true
 
-  /@sveltejs/adapter-vercel/1.0.0-next.67:
-    resolution: {integrity: sha512-xg85d/vlivbTaZu70zmaPNkrY1YZhDrcxljuwVWO0LCzA4DACIA7CnXI9klUiXM5SPpsB8BhY6dS8sW5cDYWzw==}
+  /@sveltejs/adapter-vercel/1.0.0-next.69:
+    resolution: {integrity: sha512-E5mSkD3x3zYuJU5hPRmoqblrKZtEj2lRwhObnXf4OSFsMej2VUzoogbhaXHcVt57j0Ja5HgO07u7v9VUGOhi+w==}
     dependencies:
-      '@vercel/nft': 0.21.0
+      '@vercel/nft': 0.22.0
       esbuild: 0.14.54
     transitivePeerDependencies:
       - encoding
@@ -284,8 +286,8 @@ packages:
     resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}
     dev: true
 
-  /@vercel/nft/0.21.0:
-    resolution: {integrity: sha512-hFCAETfI5cG8l5iAiLhMC2bReC5K7SIybzrxGorv+eGspIbIFsVw7Vg85GovXm/LxA08pIDrAlrhR6GN36XB/Q==}
+  /@vercel/nft/0.22.0:
+    resolution: {integrity: sha512-hB80/093PPiCefN2gVbqv6J93MH+63Zr7uDCwkiS/U4W07DXkLoftbnkBmZoS0Q84LiTSl9DRVSHU4XYCX+sJA==}
     hasBin: true
     dependencies:
       '@mapbox/node-pre-gyp': 1.0.9
@@ -1013,6 +1015,13 @@ packages:
     resolution: {integrity: sha1-mzERErxsYSehbgFsbF1/GeCAXFs=}
     engines: {node: '>=0.10.0'}
     dev: true
+
+  /fluent-svelte/1.6.0:
+    resolution: {integrity: sha512-z+QUvfAzh3t0bpiURO6f2eciZPnPPwl1pZe+sAYM8A8vUDSAHH8D0U4+VT+OHA16PEAd2DYVdPyJqM27ly5lxQ==}
+    dependencies:
+      focus-trap: 6.7.3
+      tabbable: 5.2.1
+    dev: false
 
   /focus-trap/6.7.3:
     resolution: {integrity: sha512-8xCEKndV4KrseGhFKKKmczVA14yx1/hnmFICPOjcFjToxCJYj/NHH43tPc3YE/PLnLRNZoFug0EcWkGQde/miQ==}

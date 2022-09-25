@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+	import { onMount } from "svelte"
 	import {
 		AutoSuggestBox,
 		Button,
@@ -64,6 +66,17 @@
 	let dialogResult = "";
 
 	let value;
+
+	let sl;
+
+	onMount(() => {
+		setInterval(() => {
+			try{ 
+				sl.stepUp(1)
+			 } catch(e) {}
+	}, 1000)
+	})
+
 
 	let menuGroup = 0;
 
@@ -261,7 +274,7 @@
 
 	<h3>Text Box</h3>
 	<div class="showcase-group">
-		<TextBox bind:value placeholder="TextBox" />
+		<TextBox bind:value placeholder="TextBox"/>
 		<TextBox disabled placeholder="TextBox" />
 		<TextBox type="password" placeholder="TextBox" />
 		<TextBox type="search" placeholder="TextBox" />
@@ -370,7 +383,7 @@
 	<h3>Slider</h3>
 
 	<div class="showcase-group">
-		<Slider on:change={() => console.log("x")} />
+		<Slider on:change={() => console.log("x")} bind:this={sl} max={266} on:userChange={(e) => console.log(e.detail[0], e.detail[1])} on:end={() => console.log("ended")}/>
 		<Slider value={50} max={9000000} step={20} />
 		<Slider value={2500} min={1000} max={5000} />
 	</div>

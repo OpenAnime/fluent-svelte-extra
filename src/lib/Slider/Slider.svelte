@@ -78,6 +78,8 @@
 	const forwardEvents = createEventForwarder(get_current_component(), [
 		"input",
 		"change",
+		"userChange",
+		"end",
 		"beforeinput"
 	]);
 
@@ -125,7 +127,7 @@
 
 		if (nextStep <= min) nextStep = min;
 		else if (nextStep >= max) nextStep = max;
-
+		dispatch("userChange", [value, nextStep])
 		value = nextStep;
 	}
 
@@ -162,16 +164,21 @@
 	}
 
 	export function stepUp() {
+		if(value === max) return;
 		value += step;
 		if (value > max) value = max;
 	}
 
 	export function stepDown() {
+		if(value === min) return;
 		value -= step;
 		if (value < min) value = min;
 	}
 
-	$: dispatch("change", value);
+	$: {
+		dispatch("change", value)
+		if(value === max) dispatch("end", value)
+	}
 	$: percentage = valueToPercentage(value);
 	$: {
 		if (value <= min) value = min;

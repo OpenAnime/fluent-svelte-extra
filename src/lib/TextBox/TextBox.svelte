@@ -126,23 +126,23 @@ The TextBox control lets a user type text into an app. The text displays on the 
 	<!-- Dirty workaround for the fact that svelte can't handle two-way binding when the input type is dynamic. -->
 	<!-- prettier-ignore -->
 	{#if type === "text"}
-		<input type="text" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} />
+		<input type="text" bind:value bind:this={inputElement} use:forwardEvents {...inputProps}/>
 		{:else if type === "number"}
-		<input type="number" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} />
+		<input type="number" bind:value bind:this={inputElement} use:forwardEvents {...inputProps}/>
 		{:else if type === "search"}
-		<input type="search" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} />
+		<input type="search" bind:value bind:this={inputElement} use:forwardEvents {...inputProps}/>
 		{:else if type === "password"}
-		<input type="password" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} />
+		<input type="password" bind:value bind:this={inputElement} use:forwardEvents {...inputProps}/>
 		{:else if type === "email"}
-		<input type="email" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} />
+		<input type="email" bind:value bind:this={inputElement} use:forwardEvents {...inputProps}/>
 		{:else if type === "tel"}
-		<input type="tel" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} />
+		<input type="tel" bind:value bind:this={inputElement} use:forwardEvents {...inputProps}/>
 		{:else if type === "url"}
 		<input type="url" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} />
 		{:else if type === "date"}
-		<input type="date" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} />
+		<input type="date" bind:value bind:this={inputElement} use:forwardEvents {...inputProps}/>
 		{:else if type === "datetime-local"}
-		<input type="datetime-local" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} />
+		<input type="datetime-local" bind:value bind:this={inputElement} use:forwardEvents {...inputProps}/>
 		{:else if type === "month"}
 		<input type="month" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} />
 		{:else if type === "time"}
