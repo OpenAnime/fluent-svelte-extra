@@ -172,7 +172,7 @@
 		--fds-layer-on-accent-background-default: var(--fds-layer-on-acrylic-background-default);
 
 		/* Solid Background */
-		--fds-solid-background-base: hsl(0, 0%, 13%);
+		--fds-solid-background-base: #000;
 		--fds-solid-background-secondary: hsl(0, 0%, 11%);
 		--fds-solid-background-tertiary: hsl(0, 0%, 16%);
 		--fds-solid-background-quarternary: hsl(0, 0%, 17%);
@@ -348,7 +348,7 @@
 		--fds-layer-on-accent-background-default: var(--fds-layer-on-acrylic-background-default);
 
 		/* Solid Background */
-		--fds-solid-background-base: hsl(0, 0%, 13%);
+		--fds-solid-background-base: #000;
 		--fds-solid-background-secondary: hsl(0, 0%, 11%);
 		--fds-solid-background-tertiary: hsl(0, 0%, 16%);
 		--fds-solid-background-quarternary: hsl(0, 0%, 17%);
