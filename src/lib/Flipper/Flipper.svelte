@@ -1,8 +1,11 @@
 <script>
+  import { createEventDispatcher } from "svelte"
+
+  let dispatch = createEventDispatcher()
  export let direction;
 </script>
 
-<div id="flipper">
+<div id="flipper" on:click={() => dispatch("click", null)}>
  {#if direction === "right"}
  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" viewBox="0 0 16 16" version="1.1">
   <g id="surface1">
