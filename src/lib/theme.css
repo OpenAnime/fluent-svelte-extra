@@ -23,7 +23,7 @@
 		var(--fds-font-family-fallback);
 	--fds-font-family-display: "Segoe UI Variable Display", "Seoge UI Variable Static Display",
 		var(--fds-font-family-fallback);
-		--fds-font-family-variable: "Segoe UI"
+		--fds-font-family-variable: "Segoe UI Variable";
 
 	/* Font Size */
 	--fds-caption-font-size: 12px;
