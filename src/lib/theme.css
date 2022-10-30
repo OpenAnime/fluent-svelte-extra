@@ -1,3 +1,8 @@
+@font-face {
+	font-family: "Segoe UI Variable";
+	src: url("/segoeui.ttf");
+}
+
 /* Global Variables */
 :root {
 	/* Accent Colors */
@@ -10,14 +15,10 @@
 	--fds-accent-dark-3: 226, 100%, 20%;
 
 	/* Font Families */
-	--fds-font-family-fallback: "Segoe UI", -apple-system, ui-sans-serif, system-ui,
-		BlinkMacSystemFont, Helvetica, Arial, sans-serif;
-	--fds-font-family-text: "Segoe UI Variable Text", "Seoge UI Variable Static Text",
-		var(--fds-font-family-fallback);
-	--fds-font-family-small: "Segoe UI Variable Small", "Seoge UI Variable Static Small",
-		var(--fds-font-family-fallback);
-	--fds-font-family-display: "Segoe UI Variable Display", "Seoge UI Variable Static Display",
-		var(--fds-font-family-fallback);
+	--fds-font-family-fallback: "Segoe UI Variable";
+	--fds-font-family-text: "Segoe UI Variable";
+	--fds-font-family-small: "Segoe UI Variable";
+	--fds-font-family-display: "Segoe UI Variable";
 
 	/* Font Size */
 	--fds-caption-font-size: 12px;

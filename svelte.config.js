@@ -17,6 +17,11 @@ import { mdsvex } from "mdsvex";
 
 /** @type {import("@sveltejs/kit").Config} */
 const config = {
+	vitePlugin: {
+		experimental: {
+				useVitePreprocess: true
+		}
+	},
 	extensions: [".svelte", ".md", ".svx"],
 	preprocess: [
 		mdsvex({
