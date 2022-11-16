@@ -9,6 +9,8 @@
 	/** The input's current value. */
 	export let value: any = "";
 
+	export let maxSuggestions: number = 99999;
+
 	/** Array of strings that will be suggested to the user as options. */
 	export let items: string[] = [];
 
@@ -48,7 +50,13 @@
 	const dispatch = createEventDispatcher();
 	const flyoutId = uid("fds-auto-suggest-flyout-");
 
-	$: matches = items.filter(item => item.toLowerCase().includes(typedValue.toLowerCase()));
+	$: {
+		const filter = items.filter(item => item.toLowerCase().includes(typedValue.toLowerCase()))
+		if(filter.length > maxSuggestions) {
+			filter.length = maxSuggestions //slice it
+		}
+		matches = filter;
+	}
 	$: selection, dispatchSelect();
 
 	function dispatchSelect() {
