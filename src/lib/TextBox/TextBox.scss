@@ -83,7 +83,7 @@
 			inset-inline-start: 0;
 			inline-size: 100%;
 			block-size: 100%;
-			border-bottom: 1px solid var(--control-strong-stroke-default);
+			border-bottom: var(--bottom-border);
 		}
 	}
 	&-buttons {

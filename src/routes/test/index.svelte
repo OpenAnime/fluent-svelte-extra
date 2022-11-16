@@ -274,7 +274,7 @@
 
 	<h3>Text Box</h3>
 	<div class="showcase-group">
-		<TextBox bind:value placeholder="TextBox"/>
+		<TextBox bind:value placeholder="TextBox" disableBottomBorder={true}/>
 		<TextBox disabled placeholder="TextBox" />
 		<TextBox type="password" placeholder="TextBox" />
 		<TextBox type="search" placeholder="TextBox" />
@@ -696,8 +696,10 @@
 	<h3>Auto Suggest Box</h3>
 	<div class="showcase-group">
 		<AutoSuggestBox
+		disableBottomBorder={true}
 			on:select={() => console.log("hi")}
 			placeholder="Search fruits"
+			maxSuggestions={3}
 			items={[
 				"Apple",
 				"Orange",
