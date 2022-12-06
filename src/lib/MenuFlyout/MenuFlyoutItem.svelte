@@ -37,6 +37,7 @@
 	/** Controls whether the item is intended for user interaction, and styles it accordingly. */
 	export let disabled = false;
 
+
 	/** The current visibility state of a cascading submenu. Only valid is `cascading` is true. */
 	export let open = false;
 
@@ -62,6 +63,7 @@
 	/** Obtains a bound DOM reference to the inner submenumenu element, which is present if the item is cascading and the submenu is visible. */
 	export let subMenuElement: HTMLUListElement = null;
 
+
 	const forwardEvents = createEventForwarder(get_current_component());
 	const dispatch = createEventDispatcher();
 	const closeFlyout = getContext<(event: Event) => void>("closeFlyout");
@@ -76,11 +78,7 @@
 	$: dispatch(open ? "open" : "close");
 	$: if (open && menu && tabbable(subMenuElement).length > 0) tabbable(subMenuElement)[0].focus();
 
-	function close(event) {
-		setTimeout(() => {
-			if (!cascading && closeFlyout) closeFlyout(event);
-		});
-	}
+	
 
 	function handleKeyDown(event) {
 		const { key, target } = event;
@@ -133,7 +131,6 @@
 		class:indented
 		use:forwardEvents
 		bind:this={element}
-		on:click={close}
 		on:mouseenter={handleMouseEnter}
 		on:mouseleave={handleMouseLeave}
 		on:keydown={handleKeyDown}

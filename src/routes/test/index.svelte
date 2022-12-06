@@ -599,8 +599,8 @@
 				Radio Option 1
 			</MenuFlyoutItem>
 			<MenuFlyoutDivider />
-			<MenuFlyoutItem checked variant="toggle">Toggle Option 0</MenuFlyoutItem>
-			<MenuFlyoutItem variant="toggle">Toggle Option 1</MenuFlyoutItem>
+			<MenuFlyoutItem checked variant="toggle" closeOnClick={false}>Toggle Option 0</MenuFlyoutItem>
+			<MenuFlyoutItem variant="toggle" closeOnClick={false}>Toggle Option 1</MenuFlyoutItem>
 			<MenuFlyoutDivider />
 			<MenuFlyoutItem indented cascading hint="hint">
 				cascading
