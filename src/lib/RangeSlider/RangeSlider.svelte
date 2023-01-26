@@ -5,16 +5,23 @@
  import { TextBlock } from 'fluent-svelte'
  export let min: number = 1
  export let max: number = 100
+ export let step: number = 1
  let valuesText = min + ',' + max
  export let values: number[] = [min,max]
+
+
+ function escapeFloatingPoint(number) {
+    return Number(parseFloat(number).toPrecision(12))
+ }
+
  $: {
     if(values.toString() !== valuesText) {
-        valuesText = values[0] + "," + values[1]
+        valuesText = escapeFloatingPoint(values[0]) + "," + escapeFloatingPoint(values[1])
     }
  }
 
  function handleChange(event: CustomEvent<{detail: any}>): void {
-     valuesText = event.detail.toString()
+     valuesText = escapeFloatingPoint(event.detail[0]) + "," + escapeFloatingPoint(event.detail[1])
      dispatch('change', event.detail)
  }
 
@@ -30,6 +37,7 @@
      bind:value={values}
      {min}
      {max}
+     {step}
      range
      order
      on:input={handleChange}
