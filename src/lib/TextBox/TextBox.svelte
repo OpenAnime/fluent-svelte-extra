@@ -128,7 +128,7 @@ The TextBox control lets a user type text into an app. The text displays on the 
 	<!-- Dirty workaround for the fact that svelte can't handle two-way binding when the input type is dynamic. -->
 	<!-- prettier-ignore -->
 	{#if type === "text"}
-		<input type="text" maxlength="1" bind:value bind:this={inputElement} use:forwardEvents {...inputProps}/>
+		<input type="text" bind:value bind:this={inputElement} use:forwardEvents {...inputProps}/>
 		{:else if type === "number"}
 		<input type="number" bind:value bind:this={inputElement} use:forwardEvents {...inputProps}/>
 		{:else if type === "search"}
