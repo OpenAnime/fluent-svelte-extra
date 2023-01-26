@@ -1,29 +1,33 @@
 <script lang="ts">
  import { createEventDispatcher } from 'svelte'
+ const dispatch = createEventDispatcher()
  import Slider from '@bulatdashiev/svelte-slider'
  import { TextBlock } from 'fluent-svelte'
  export let min: number = 1
  export let max: number = 100
- let values = min + ',' + max
- let range = [min, max]
-
- const dispatch = createEventDispatcher()
+ let valuesText = min + ',' + max
+ export let values: number[] = [min,max]
+ $: {
+    if(values.toString() !== valuesText) {
+        valuesText = values[0] + "," + values[1]
+    }
+ }
 
  function handleChange(event: CustomEvent<{detail: any}>): void {
-     values = event.detail.toString()
+     valuesText = event.detail.toString()
      dispatch('change', event.detail)
  }
 
  function handleMouseDown(): void {
     document.addEventListener("mouseup",() => {
-        dispatch('finish', values.toString())
+        dispatch('finish', valuesText.toString())
     }, {once: true});
  }
 </script>
 
 <div id="sliderComp" {...$$restProps}>
  <Slider
-     bind:value={range}
+     bind:value={values}
      {min}
      {max}
      range
@@ -42,8 +46,8 @@
      />
  </Slider>
  <div id="vals">
-     <TextBlock>{values.split(',')[0]}</TextBlock>
-     <TextBlock>{values.split(',')[1]}</TextBlock>
+     <TextBlock>{valuesText.split(',')[0]}</TextBlock>
+     <TextBlock>{valuesText.split(',')[1]}</TextBlock>
  </div>
 </div>
 
