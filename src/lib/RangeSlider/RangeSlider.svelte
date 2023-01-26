@@ -1,38 +1,44 @@
-<script>
+<script lang="ts">
  import { createEventDispatcher } from 'svelte'
  import Slider from '@bulatdashiev/svelte-slider'
  import { TextBlock } from 'fluent-svelte'
- export let min
- export let max
- export let width;
+ export let min: number = 1
+ export let max: number = 100
  let values = min + ',' + max
  let range = [min, max]
 
  const dispatch = createEventDispatcher()
 
- function handleChange(event) {
+ function handleChange(event: CustomEvent<{detail: any}>): void {
      values = event.detail.toString()
      dispatch('change', event.detail)
  }
+
+ function handleMouseDown(): void {
+    document.addEventListener("mouseup",() => {
+        dispatch('finish', values.toString())
+    }, {once: true});
+ }
 </script>
 
-<div id="sliderComp" style="width: {width}">
+<div id="sliderComp" {...$$restProps}>
  <Slider
      bind:value={range}
      {min}
      {max}
      range
-     on:input={(e) => handleChange(e)}
+     order
+     on:input={handleChange}
  >
      <div
          slot="left"
          class="handle"
-         on:mouseup={() => dispatch('finish', values.toString())}
+         on:mousedown={handleMouseDown}
      />
      <div
          slot="right"
          class="handle"
-         on:mouseup={() => dispatch('finish', values.toString())}
+         on:mousedown={handleMouseDown}
      />
  </Slider>
  <div id="vals">

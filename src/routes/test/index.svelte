@@ -743,7 +743,7 @@
 
 	<h3>RangeSlider</h3>
 	<div class="showcase-group">
-			<RangeSlider min={1} max={100} width={"20rem"}></RangeSlider>			
+			<RangeSlider min={1} max={100} style="width:20rem;" on:finish={(e) => console.log(e.detail)} ></RangeSlider>			
 	</div>
 
 	<h3>Flipper</h3>
