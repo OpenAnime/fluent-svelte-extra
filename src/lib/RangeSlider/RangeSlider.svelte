@@ -1,62 +1,54 @@
 <script lang="ts">
- import { createEventDispatcher } from 'svelte'
- const dispatch = createEventDispatcher()
- import Slider from '@bulatdashiev/svelte-slider'
- import { TextBlock } from 'fluent-svelte'
- export let min: number = 1
- export let max: number = 100
- export let step: number = 1
- let valuesText = min + ',' + max
- export let values: number[] = [min,max]
+    import {
+        createEventDispatcher
+    } from 'svelte'
+    const dispatch = createEventDispatcher()
+    import Slider from '@bulatdashiev/svelte-slider'
+    import {
+        TextBlock
+    } from 'fluent-svelte'
+    export let min: number = 1
+    export let max: number = 100
+    export let step: number = 1
+    let valuesText = min + ',' + max
+    export let values: number[] = [min, max]
 
 
- function escapeFloatingPoint(number) {
-    return Number(parseFloat(number).toPrecision(12))
- }
-
- $: {
-    if(values.toString() !== valuesText) {
-        valuesText = escapeFloatingPoint(values[0]) + "," + escapeFloatingPoint(values[1])
+    function escapeFloatingPoint(number) {
+        return Number(parseFloat(number).toPrecision(12))
     }
- }
 
- function handleChange(event: CustomEvent<{detail: any}>): void {
-     valuesText = escapeFloatingPoint(event.detail[0]) + "," + escapeFloatingPoint(event.detail[1])
-     dispatch('change', event.detail)
- }
+    $: {
+        if (values.toString() !== valuesText) {
+            valuesText = escapeFloatingPoint(values[0]) + "," + escapeFloatingPoint(values[1])
+        }
+    }
 
- function handleMouseDown(): void {
-    document.addEventListener("mouseup",() => {
-        dispatch('finish', valuesText.toString())
-    }, {once: true});
- }
+    function handleChange(event: CustomEvent < {
+        detail: any
+    } > ): void {
+        valuesText = escapeFloatingPoint(event.detail[0]) + "," + escapeFloatingPoint(event.detail[1])
+        dispatch('change', event.detail)
+    }
+
+    function handleMouseDown(): void {
+        document.addEventListener("mouseup", () => {
+            dispatch('finish', valuesText.toString())
+        }, {
+            once: true
+        });
+    }
 </script>
 
 <div id="sliderComp" {...$$restProps}>
- <Slider
-     bind:value={values}
-     {min}
-     {max}
-     {step}
-     range
-     order
-     on:input={handleChange}
- >
-     <div
-         slot="left"
-         class="handle"
-         on:mousedown={handleMouseDown}
-     />
-     <div
-         slot="right"
-         class="handle"
-         on:mousedown={handleMouseDown}
-     />
- </Slider>
- <div id="vals">
-     <TextBlock>{valuesText.split(',')[0]}</TextBlock>
-     <TextBlock>{valuesText.split(',')[1]}</TextBlock>
- </div>
+    <Slider bind:value={values} {min} {max} {step} range order on:input={handleChange}>
+        <div slot="left" class="handle" on:mousedown={handleMouseDown} />
+        <div slot="right" class="handle" on:mousedown={handleMouseDown} />
+    </Slider>
+    <div id="vals">
+        <TextBlock>{valuesText.split(',')[0]}</TextBlock>
+        <TextBlock>{valuesText.split(',')[1]}</TextBlock>
+    </div>
 </div>
 
 <style>
@@ -67,43 +59,42 @@
     }
 
     .handle {
-        width: 0;
-        height: 0;
-        display: flex;
-        justify-content: center;
         align-items: center;
+        background-color: var(--fds-control-solid-fill-default);
+        block-size: 20px;
+        box-shadow: 0 0 0 1px var(--fds-control-stroke-default);
+        display: flex;
+        inline-size: 20px;
+        justify-content: center;
+        z-index: 10;
+        border-radius: 100%;
     }
 
-    .handle::after {
-        background-color: hsl(199, 99%, 69%); /*mavi*/
-        border: solid 5px hsl(0, 0%, 30%);
-        content: ' ';
-        box-sizing: border-box;
-        position: absolute;
-        border-radius: 50%;
-        width: 20px;
-        height: 20px;
-        transition: all 0.1s linear !important;
+    .handle::before {
+        border-radius: 100%;
+        background-color: var(--fds-accent-default);
+        block-size: 12px;
+        content: "";
+        inline-size: 12px;
+        transition: var(--fds-control-fast-duration) var(--fds-control-fast-out-slow-in-easing) transform;
     }
 
-    .handle:hover::after {
-        border: solid 4px hsl(0, 0%, 30%);
+    .handle:hover:before {
+        transform: scale(1.167);
     }
 
-    .handle:active::after {
-        border: solid 6px hsl(0, 0%, 30%);
-        box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.4);
+    .handle:active:before {
+        background-color: var(--fds-accent-tertiary);
+        transform: scale(.833);
     }
+
+
 
     #sliderComp {
         --thumb-bg: transparent;
-        --progress-bg: hsl(199, 99%, 69%);
-        --track-bg: hsl(0, 0%, 27%);
-    }
-
-    #sliderComp {
-        --thumb-bg: transparent;
-        --progress-bg: hsl(199, 99%, 69%);
-        --track-bg: hsl(0, 0%, 27%);
+        --progress-bg: var(--fds-accent-text-primary);
+        --fds-progress-bg: var(--fds-accent-text-primary);
+        --track-bg: var(--fds-control-strong-fill-default);
+        --fds-track-bg: var(--fds-control-strong-fill-default);
     }
 </style>
