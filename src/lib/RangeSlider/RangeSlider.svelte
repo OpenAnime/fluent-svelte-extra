@@ -40,14 +40,16 @@
     }
 </script>
 
-<div id="sliderComp" {...$$restProps}>
-    <Slider bind:value={values} {min} {max} {step} range order on:input={handleChange}>
-        <div slot="left" class="handle" on:mousedown={handleMouseDown} />
-        <div slot="right" class="handle" on:mousedown={handleMouseDown} />
-    </Slider>
-    <div id="vals">
-        <TextBlock>{valuesText.split(',')[0]}</TextBlock>
-        <TextBlock>{valuesText.split(',')[1]}</TextBlock>
+<div id="sliderHolder">
+    <div id="sliderComp" {...$$restProps}>
+        <Slider bind:value={values} {min} {max} {step} range order on:input={handleChange}>
+            <div slot="left" class="handle" on:mousedown={handleMouseDown} />
+            <div slot="right" class="handle" on:mousedown={handleMouseDown} />
+        </Slider>
+        <div id="vals">
+            <TextBlock>{valuesText.split(',')[0]}</TextBlock>
+            <TextBlock>{valuesText.split(',')[1]}</TextBlock>
+        </div>
     </div>
 </div>
 
@@ -88,16 +90,15 @@
         transform: scale(.833);
     }
 
-
-
-    #sliderComp {
-        --thumb-bg: transparent;
-        --progress-bg: var(--fds-accent-text-primary);
-        --track-bg: var(--fds-control-strong-fill-default);
+    #sliderHolder :global(.thumb-content::before) {
+        background: none !important;
     }
-    #sliderComp {
-        --thumb-bg: transparent;
-        --progress-bg: var(--fds-accent-text-primary);
-        --track-bg: var(--fds-control-strong-fill-default);
+
+    #sliderHolder :global(.track) {
+        background: var(--fds-control-strong-fill-default) !important;
+    }
+
+    #sliderHolder :global(.progress) {
+        background: var(--fds-accent-text-primary) !important;
     }
 </style>
