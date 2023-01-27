@@ -92,6 +92,7 @@
 
     #sliderComp {
         --thumb-bg: transparent;
+        --fds-thumb-bg: transparent;
         --progress-bg: var(--fds-accent-text-primary);
         --fds-progress-bg: var(--fds-accent-text-primary);
         --track-bg: var(--fds-control-strong-fill-default);
