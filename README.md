@@ -1,7 +1,11 @@
 # fluent-svelte-extra
 
-like fluent-svelte but with more components lol.
+A fork of fluent-svelte which is in active development.
+
+# Undocumented Components
+
+Components that we develop won't be in docs. But you can view the detailed usage [here](https://github.com/OpenAnime/fluent-svelte-extra/blob/main/src/routes/test/index.svelte)
 
 # Note
 
-this is a fork of the fluent-svelte package. The difference between is this package has more components. Thanks to the creator of fluent-svelte package.
+Thanks to the [creator](https://github.com/Tropix126) of [fluent-svelte](https://github.com/tropix126/fluent-svelte) library for making such an awesome library!
