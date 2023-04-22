@@ -3,7 +3,7 @@
 	import { externalMouseEvents, createEventForwarder } from "$lib/internal";
 
  /** The input's current value. */
-	export let value: any = "dsads";
+	export let value: any = "";
 
 	export let disableBottomBorder: boolean = false;
 
