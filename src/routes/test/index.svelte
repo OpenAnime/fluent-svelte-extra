@@ -31,7 +31,8 @@
 		ToggleSwitch,
 		Tooltip,
 		RangeSlider,
-		Flipper
+		Flipper,
+		TextArea
 	} from "$lib";
 
 	import { PageSection } from "$site/lib";
@@ -75,6 +76,10 @@
 	let mx = 120;
 
 	let expandmenubind;
+
+	let textareaval = "Test!"
+
+	$: console.log(textareaval)
 
 	function expandMenuBar() {
 		expandmenubind.toggleMenu()
@@ -793,6 +798,11 @@
 				DSGYUDSASADVGSADVVSGDAVADGSDASJVG
 			</ListItem>
 		</ExpandMenu>
+	</div>
+
+	<h3>TextArea</h3>
+	<div class="showcase-group">
+		<TextArea disableBottomBorder={true} bind:value={textareaval} style="max-height:20rem; min-height:5rem;"></TextArea>
 	</div>
 </PageSection>
 

@@ -32,3 +32,4 @@ export { default as NavigationView } from "./NavigationView/NavigationView.svelt
 export { default as RangeSlider } from "./RangeSlider/RangeSlider.svelte";
 export { default as Flipper } from "./Flipper/Flipper.svelte";
 export { default as ExpandMenu } from "./ExpandMenu/ExpandMenu.svelte"
+export { default as TextArea } from "./TextArea/TextArea.svelte";
