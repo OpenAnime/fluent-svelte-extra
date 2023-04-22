@@ -52,7 +52,7 @@
 </script>
 
 <div class="glob">
- <div class="expand-menu" bind:this={root}  use:forwardEvents>
+ <div role="list" class="expand-menu" bind:this={root}  use:forwardEvents>
   <slot></slot>
  </div>
 </div>
