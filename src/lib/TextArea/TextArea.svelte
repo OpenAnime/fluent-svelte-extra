@@ -1,5 +1,4 @@
 <script lang="ts">
- import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";
 	import { externalMouseEvents, createEventForwarder } from "$lib/internal";
 
@@ -32,10 +31,7 @@
 	export let containerElement: HTMLDivElement = null;
 
 
- const dispatch = createEventDispatcher();
-	const forwardEvents = createEventForwarder(get_current_component(), [
-  "lineBreak"
- ]);
+	const forwardEvents = createEventForwarder(get_current_component());
 
 	const inputProps = {
 		class: "text-area",
