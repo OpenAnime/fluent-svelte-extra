@@ -79,6 +79,7 @@
 	/** Pushes the specified item to the matches array */
 	export function addMatch(match: string) {
 		matches.push(match)
+		matches.length > maxSuggestions ? matches.length = maxSuggestions : null
 	}
 
 	/** Removes the specified item from the matches array */
@@ -95,6 +96,7 @@
 	/* Sets the matches array to the specified array */
 	export function setMatches(argMatches: string[]) {
 		matches = argMatches
+		matches.length > maxSuggestions ? matches.length = maxSuggestions : null
 	}
 
 

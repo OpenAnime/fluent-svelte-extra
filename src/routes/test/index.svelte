@@ -95,7 +95,18 @@
 	}, 1000)
 
 	setTimeout(() => {
-		autoSuggestComp.setMatches(["Apple", "Orange", "Grape"])
+		autoSuggestComp.setItems([
+				"Apple",
+				"Orange",
+				"Grape",
+				"Mango",
+				"Pear",
+				"Banana",
+				"Strawberry",
+				"Watermelon",
+				"Cherry"
+			])
+		autoSuggestComp.setMatches(["Apple", "Orange", "Grape", "Cherry"])
 	}, 5000)
 	})
 
@@ -723,18 +734,8 @@
 		disableBottomBorder={true}
 			on:select={() => console.log("hi")}
 			placeholder="Search fruits"
-			maxSuggestions={3}
-			items={[
-				"Apple",
-				"Orange",
-				"Grape",
-				"Mango",
-				"Pear",
-				"Banana",
-				"Strawberry",
-				"Watermelon",
-				"Cherry"
-			]}
+			maxSuggestions={4}
+			items={[]}
 			matches={[]}
 		/>
 
