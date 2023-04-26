@@ -11,11 +11,16 @@
 
 	export let maxSuggestions: number = 99999;
 
-	/** Array of strings that will be suggested to the user as options. */
+	/** Array of strings will be suggested to the user as options. */
 	export let items: string[] = [];
 
 	/** The current visibility state of the suggestion flyout. */
 	export let open = false;
+
+
+	/** Disables or enables AutoSuggest mode */
+	export let autoSuggest = true;
+
 
 	/** Bindable index of the currently selected item. */
 	export let selection = 0;
@@ -50,12 +55,57 @@
 	const dispatch = createEventDispatcher();
 	const flyoutId = uid("fds-auto-suggest-flyout-");
 
+	/** Pushes the specified item to the items array */
+	export function addItem(item: string) {
+		items.push(item)
+	}
+
+	/** Removes the specified item from the items array */
+	export function removeItem(item: string) {
+		items.splice(items.indexOf(item), 1)
+	}
+
+	/** Removes all of the items from the items array */
+	export function removeAllItems() {
+		items = []
+	}
+
+	/* Sets the items array to the specified array */
+	export function setItems(argItems: string[]) {
+		items = argItems
+	}
+
+
+	/** Pushes the specified item to the matches array */
+	export function addMatch(match: string) {
+		matches.push(match)
+	}
+
+	/** Removes the specified item from the matches array */
+	export function removeMatch(match: string) {
+		matches.splice(matches.indexOf(match), 1)
+	}
+
+	/** Removes all of the items from the matches array */
+	export function removeAllMatches() {
+		matches = []
+	}
+
+	
+	/* Sets the matches array to the specified array */
+	export function setMatches(argMatches: string[]) {
+		matches = argMatches
+	}
+
+
 	$: {
-		const filter = items.filter(item => item.toLowerCase().includes(typedValue.toLowerCase()))
+		if(autoSuggest) {
+			const filter = items.filter(item => item.toLowerCase().includes(typedValue.toLowerCase()))
 		if(filter.length > maxSuggestions) {
 			filter.length = maxSuggestions //slice it
 		}
 		matches = filter;
+		}
 	}
 	$: selection, dispatchSelect();
 

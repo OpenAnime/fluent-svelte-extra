@@ -58,6 +58,8 @@
 	let normalRadioGroup = 0;
 	let disabledRadioGroup = 0;
 
+	let autoSuggestComp;
+
 	let nonClosableFlyoutOpen = false;
 	let flyoutTopOpen = false;
 	let flyoutBottomOpen = false;
@@ -91,6 +93,10 @@
 				vl++
 			 } catch(e) {}
 	}, 1000)
+
+	setTimeout(() => {
+		autoSuggestComp.setMatches(["Apple", "Orange", "Grape"])
+	}, 5000)
 	})
 
 
@@ -712,6 +718,8 @@
 	<h3>Auto Suggest Box</h3>
 	<div class="showcase-group">
 		<AutoSuggestBox
+		autoSuggest={false}
+		bind:this={autoSuggestComp}
 		disableBottomBorder={true}
 			on:select={() => console.log("hi")}
 			placeholder="Search fruits"
@@ -727,6 +735,7 @@
 				"Watermelon",
 				"Cherry"
 			]}
+			matches={[]}
 		/>
 
 		<AutoSuggestBox
