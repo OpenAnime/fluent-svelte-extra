@@ -62,7 +62,8 @@ textarea.
 	on:outermousedown
 >
 
- <div role="textbox" spellcheck={spellcheck} contenteditable="true" bind:this={textAreaElement} use:forwardEvents {...inputProps} bind:textContent={value}></div>
+ <div role="textbox" spellcheck={spellcheck} contenteditable="true" bind:this={textAreaElement} use:forwardEvents {...inputProps} bind:textContent={value}/>
+	<slot></slot>
 	<div class="text-area-underline" 	style={disableBottomBorder ? "--fds-bottom-border: none;" : "--fds-bottom-border: 1px solid var(--fds-control-strong-stroke-default);"} />
 </div>
 
