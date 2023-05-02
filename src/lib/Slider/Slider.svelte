@@ -79,6 +79,7 @@
 		"input",
 		"change",
 		"userChange",
+		"userUpdate",
 		"end",
 		"beforeinput"
 	]);
@@ -212,6 +213,18 @@ A slider is a control that lets the user select from a range of values by moving
 	on:mousedown|preventDefault={() => {
 		holding = true;
 		dragging = true;
+	}}
+
+	on:mouseup|preventDefault={() => {
+		dispatch('userUpdate', value)
+	}}
+
+	on:touchend|preventDefault={() => {
+		dispatch('userUpdate', value)
+	}}
+
+	on:touchcancel|preventDefault={() => {
+		dispatch('userUpdate', value)
 	}}
 	on:touchstart={handleTouchStart}
 	on:keydown={handleArrowKeys}

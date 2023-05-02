@@ -417,7 +417,7 @@
 
 	<div class="showcase-group">
 		<Slider min={1}  on:change={() => console.log("x")} bind:this={sl} bind:value={vl} ticks={[20, 40, 60]} bind:max={mx} on:userChange={(e) => console.log(e.detail[0], e.detail[1])} on:end={() => console.log("ended")}/>
-		<Slider value={50} max={9000000} step={20} />
+		<Slider value={50} max={9000000} step={20} on:userUpdate={(e) => console.log(e.detail)} />
 		<Slider value={2500} min={1000} max={5000} />
 	</div>
 
