@@ -49,7 +49,6 @@ List Items display data stacked vertically in a single column. List Items work b
 		on:keydown={handleKeyDown}
 		bind:this={element}
 		tabindex={disabled ? -1 : 0}
-		aria-selected={selected}
 		class="list-item {className}"
 		class:selected
 		class:disabled
@@ -68,7 +67,6 @@ List Items display data stacked vertically in a single column. List Items work b
 		on:keydown={handleKeyDown}
 		bind:this={element}
 		tabindex={disabled ? -1 : 0}
-		aria-selected={selected}
 		class="list-item {className}"
 		class:selected
 		class:disabled

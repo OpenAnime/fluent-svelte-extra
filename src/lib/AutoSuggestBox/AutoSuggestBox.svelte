@@ -153,7 +153,6 @@
 	aria-activedescendant={open && matches.length > 0
 		? `${flyoutId}-item-${items.indexOf(matches[selection])}`
 		: ""}
-	aria-expanded={open && matches.length > 0}
 	aria-controls={flyoutId}
 	on:search={() => {
 		if (open && matches.length > 0) value = matches[selection];
