@@ -1,3 +1,5 @@
+<svelte:options accessors/>
+
 <script lang="ts">
 	import { createEventDispatcher, setContext } from "svelte";
 	import { externalMouseEvents, arrowNavigation } from "$lib/internal";
@@ -19,6 +21,12 @@
 
 	/** Obtains a bound DOM reference to the inner menu element. */
 	export let menuElement: HTMLUListElement = null;
+
+	type ClickTypes = "rightClick" | "leftClick";
+	type ClickTypesArray = Array<ClickTypes>;
+
+	/** Controls whether ContextMenu can be opened with right or left click */
+	export let openBy: ClickTypesArray = ["rightClick"]
 
 	const dispatch = createEventDispatcher();
 
@@ -76,8 +84,9 @@
 
 <div
 	class="context-menu-wrapper"
-	on:contextmenu|preventDefault|stopPropagation={handleContextMenu}
-	on:contextmenu
+	on:contextmenu|preventDefault|stopPropagation={openBy.includes("rightClick") ? handleContextMenu : undefined}
+	on:click|preventDefault|stopPropagation={openBy.includes("leftClick") ? handleContextMenu : undefined}
+	on:contextmenu={openBy.includes("rightClick") ? handleContextMenu : undefined}
 	bind:this={wrapperElement}
 >
 	<slot />

@@ -647,7 +647,7 @@
 	</MenuFlyout>
 
 	<h3>Context Menu</h3>
-	<ContextMenu>
+	<ContextMenu openBy={["rightClick", "leftClick"]}>
 		<div
 			style="background-color: var(--fds-solid-background-secondary); width: 200px; height: 200px;"
 		/>
