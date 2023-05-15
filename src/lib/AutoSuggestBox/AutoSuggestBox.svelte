@@ -149,11 +149,6 @@
 <TextBox
 	type="search"
 	class="auto-suggest-box {open && matches.length > 0 ? 'open' : ''} {className}"
-	aria-autocomplete="list"
-	aria-activedescendant={open && matches.length > 0
-		? `${flyoutId}-item-${items.indexOf(matches[selection])}`
-		: ""}
-	aria-controls={flyoutId}
 	on:search={() => {
 		if (open && matches.length > 0) value = matches[selection];
 	}}
