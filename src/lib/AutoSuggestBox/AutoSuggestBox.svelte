@@ -17,10 +17,8 @@
 	/** The current visibility state of the suggestion flyout. */
 	export let open = false;
 
-
 	/** Disables or enables AutoSuggest mode */
 	export let autoSuggest = true;
-
 
 	/** Bindable index of the currently selected item. */
 	export let selection = 0;
@@ -57,56 +55,55 @@
 
 	/** Pushes the specified item to the items array */
 	export function addItem(item: string) {
-		items.push(item)
+		items.push(item);
 	}
 
 	/** Removes the specified item from the items array */
 	export function removeItem(item: string) {
-		items.splice(items.indexOf(item), 1)
+		items.splice(items.indexOf(item), 1);
 	}
 
 	/** Removes all of the items from the items array */
 	export function removeAllItems() {
-		items = []
+		items = [];
 	}
 
 	/* Sets the items array to the specified array */
 	export function setItems(argItems: string[]) {
-		items = argItems
+		items = argItems;
 	}
-
 
 	/** Pushes the specified item to the matches array */
 	export function addMatch(match: string) {
-		matches.push(match)
-		matches.length > maxSuggestions ? matches.length = maxSuggestions : null
+		matches.push(match);
+		matches.length > maxSuggestions ? (matches.length = maxSuggestions) : null;
 	}
 
 	/** Removes the specified item from the matches array */
 	export function removeMatch(match: string) {
-		matches.splice(matches.indexOf(match), 1)
+		matches.splice(matches.indexOf(match), 1);
 	}
 
 	/** Removes all of the items from the matches array */
 	export function removeAllMatches() {
-		matches = []
+		matches = [];
 	}
 
-	
 	/* Sets the matches array to the specified array */
 	export function setMatches(argMatches: string[]) {
-		matches = argMatches
-		matches.length > maxSuggestions ? matches.length = maxSuggestions : null
+		matches = argMatches;
+		matches.length > maxSuggestions ? (matches.length = maxSuggestions) : null;
 	}
 
-
 	$: {
-		if(autoSuggest) {
-			const filter = items.filter(item => item.toLowerCase().includes(typedValue.toLowerCase()))
-		if(filter.length > maxSuggestions) {
-			filter.length = maxSuggestions //slice it
-		}
-		matches = filter;
+		if (autoSuggest) {
+			const filter = items.filter(item =>
+				item.toLowerCase().includes(typedValue.toLowerCase())
+			);
+			if (filter.length > maxSuggestions) {
+				filter.length = maxSuggestions; //slice it
+			}
+			matches = filter;
 		}
 	}
 	$: selection, dispatchSelect();
@@ -133,6 +130,12 @@
 				selection--;
 				if (selection < 0) selection = matches.length - 1;
 			} else if (key === "Enter" || key === "Escape") {
+				if (key == "Enter") {
+					dispatch("itemSelectedOnPurpose", {
+						item: matches[selection],
+						index: selection
+					});
+				}
 				open = false;
 			}
 			if (key === "Enter" || key === "ArrowDown" || key === "ArrowUp") {
@@ -208,6 +211,10 @@
 							on:click={() => {
 								value = matches[selection];
 								selection = index;
+								dispatch("itemSelectedOnPurpose", {
+									item: matches[selection],
+									index: selection
+								});
 								open = false;
 							}}
 							selected={selection === index}>{item}</ListItem
