@@ -1,3 +1,5 @@
+<svelte:options accessors />
+
 <script lang="ts">
 	import { createEventDispatcher } from "svelte";
 	import { uid } from "$lib/internal";
