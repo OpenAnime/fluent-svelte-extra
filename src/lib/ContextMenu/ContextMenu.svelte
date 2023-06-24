@@ -1,4 +1,4 @@
-<svelte:options accessors/>
+<svelte:options accessors />
 
 <script lang="ts">
 	import { createEventDispatcher, setContext } from "svelte";
@@ -22,11 +22,14 @@
 	/** Obtains a bound DOM reference to the inner menu element. */
 	export let menuElement: HTMLUListElement = null;
 
+	/** The parent element of ContextMenu */
+	export let targetParent: HTMLElement = document.body;
+
 	type ClickTypes = "rightClick" | "leftClick";
 	type ClickTypesArray = Array<ClickTypes>;
 
 	/** Controls whether ContextMenu can be opened with right or left click */
-	export let openBy: ClickTypesArray = ["rightClick"]
+	export let openBy: ClickTypesArray = ["rightClick"];
 
 	const dispatch = createEventDispatcher();
 
@@ -68,7 +71,7 @@
 	}
 
 	function mountMenu(node: HTMLDivElement) {
-		document.body.appendChild(node);
+		targetParent.appendChild(node);
 		return {
 			destroy: () => node.remove()
 		};
@@ -84,8 +87,12 @@
 
 <div
 	class="context-menu-wrapper"
-	on:contextmenu|preventDefault|stopPropagation={openBy.includes("rightClick") ? handleContextMenu : undefined}
-	on:click|preventDefault|stopPropagation={openBy.includes("leftClick") ? handleContextMenu : undefined}
+	on:contextmenu|preventDefault|stopPropagation={openBy.includes("rightClick")
+		? handleContextMenu
+		: undefined}
+	on:click|preventDefault|stopPropagation={openBy.includes("leftClick")
+		? handleContextMenu
+		: undefined}
 	on:contextmenu={openBy.includes("rightClick") ? handleContextMenu : undefined}
 	bind:this={wrapperElement}
 >

@@ -87,7 +87,10 @@
 		expandmenubind.toggleMenu();
 	}
 
+	let trgt = null;
+
 	onMount(() => {
+		trgt = document.querySelector(".page-section");
 		setInterval(() => {
 			try {
 				vl++;
@@ -657,7 +660,7 @@
 	</MenuFlyout>
 
 	<h3>Context Menu</h3>
-	<ContextMenu openBy={["rightClick", "leftClick"]}>
+	<ContextMenu openBy={["rightClick", "leftClick"]} targetParent={trgt}>
 		<div
 			style="background-color: var(--fds-solid-background-secondary); width: 200px; height: 200px;"
 		/>
