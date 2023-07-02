@@ -14,13 +14,15 @@
 	flex: 1 1 auto;
 	inline-size: 100%;
 	min-block-size: 30px;
- padding: 6px 12px;
+	padding: 6px 12px;
 	border-radius: var(--control-corner-radius);
 	color: var(--text-primary);
 	background-color: transparent;
-	&::placeholder {
-		user-select: none;
-		color: var(--text-secondary);
+	&:empty:before {
+		content: attr(placeholder);
+		pointer-events: none;
+		display: block;
+		opacity: 0.5;
 	}
 	&::-webkit-search-decoration,
 	&::-webkit-search-cancel-button,
