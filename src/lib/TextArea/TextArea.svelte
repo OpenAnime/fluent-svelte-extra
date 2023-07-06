@@ -64,7 +64,7 @@ textarea.
 		bind:this={textAreaElement}
 		use:forwardEvents
 		use:conditionalEvent={{
-			condition: maxLength != Infinity,
+			condition: maxLength != undefined,
 			event: "keypress",
 			callback: function (e) {
 				if (this.innerText.length + 1 > maxLength) e.preventDefault();
