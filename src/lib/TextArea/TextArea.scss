@@ -22,7 +22,7 @@
 		content: attr(placeholder);
 		pointer-events: none;
 		display: block;
-		opacity: 0.5;
+		color: var(--text-secondary);
 	}
 	&::-webkit-search-decoration,
 	&::-webkit-search-cancel-button,

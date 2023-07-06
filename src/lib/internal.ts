@@ -127,6 +127,18 @@ export function getCSSDuration(property) {
 	return parseFloat(duration) * (/\ds$/.test(duration) ? 1000 : 1) || 0;
 }
 
+export function conditionalEvent(node, { condition, event, callback }) {
+	if (condition) {
+		node.addEventListener(event, callback);
+	}
+
+	return {
+		destroy() {
+			node.removeEventListener(event, callback);
+		}
+	};
+}
+
 // Function for forwarding DOM events to the component's declaration
 // Adapted from rgossiaux/svelte-headlessui which is modified from hperrin/svelte-material-ui
 export function createEventForwarder(component: SvelteComponent, exclude: string[] = []) {

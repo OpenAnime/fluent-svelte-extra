@@ -1,9 +1,12 @@
 <script lang="ts">
 	import { get_current_component } from "svelte/internal";
-	import { externalMouseEvents, createEventForwarder } from "$lib/internal";
+	import { externalMouseEvents, createEventForwarder, conditionalEvent } from "$lib/internal";
 
 	/** The input's current value. */
 	export let value: any = "";
+
+	/** Determines the maximum length of the TextArea */
+	export let maxLength: number = undefined;
 
 	export let disableBottomBorder: boolean = false;
 
@@ -60,6 +63,13 @@ textarea.
 		contenteditable="true"
 		bind:this={textAreaElement}
 		use:forwardEvents
+		use:conditionalEvent={{
+			condition: maxLength != Infinity,
+			event: "keypress",
+			callback: function (e) {
+				if (this.innerText.length + 1 > maxLength) e.preventDefault();
+			}
+		}}
 		{...inputProps}
 		bind:textContent={value}
 	/>

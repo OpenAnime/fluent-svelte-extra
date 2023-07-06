@@ -155,7 +155,12 @@ The TextBox control lets a user type text into an app. The text displays on the 
 		{:else if type === "week"}
 		<input type="week" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} />
 	{/if}
-	<div class="text-box-underline" 	style={disableBottomBorder ? "--fds-bottom-border: none;" : "--fds-bottom-border: 1px solid var(--fds-control-strong-stroke-default);"} />
+	<div
+		class="text-box-underline"
+		style={disableBottomBorder
+			? "--fds-bottom-border: none;"
+			: "--fds-bottom-border: 1px solid var(--fds-control-strong-stroke-default);"}
+	/>
 	<div class="text-box-buttons" bind:this={buttonsContainerElement}>
 		{#if !disabled}
 			{#if clearButton && value && !readonly}
