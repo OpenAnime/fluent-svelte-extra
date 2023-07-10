@@ -135,15 +135,15 @@ The TextBox control lets a user type text into an app. The text displays on the 
 		{:else if type === "number"}
 		<input type="number" bind:value bind:this={inputElement} use:forwardEvents {...inputProps}/>
 		{:else if type === "search"}
-		<input type="search" bind:value bind:this={inputElement} use:forwardEvents {...inputProps}/>
+		<input type="search" maxlength={maxLength} bind:value bind:this={inputElement} use:forwardEvents {...inputProps}/>
 		{:else if type === "password"}
-		<input type="password" bind:value bind:this={inputElement} use:forwardEvents {...inputProps}/>
+		<input type="password" maxlength={maxLength} bind:value bind:this={inputElement} use:forwardEvents {...inputProps}/>
 		{:else if type === "email"}
-		<input type="email" bind:value bind:this={inputElement} use:forwardEvents {...inputProps}/>
+		<input type="email" maxlength={maxLength} bind:value bind:this={inputElement} use:forwardEvents {...inputProps}/>
 		{:else if type === "tel"}
-		<input type="tel" bind:value bind:this={inputElement} use:forwardEvents {...inputProps}/>
+		<input type="tel" maxlength={maxLength} bind:value bind:this={inputElement} use:forwardEvents {...inputProps}/>
 		{:else if type === "url"}
-		<input type="url" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} />
+		<input type="url" maxlength={maxLength} bind:value bind:this={inputElement} use:forwardEvents {...inputProps} />
 		{:else if type === "date"}
 		<input type="date" bind:value bind:this={inputElement} use:forwardEvents {...inputProps}/>
 		{:else if type === "datetime-local"}
