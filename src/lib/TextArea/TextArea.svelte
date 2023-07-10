@@ -83,6 +83,8 @@ textarea.
 				if (regex.test(pastedData) !== true) {
 					e.preventDefault();
 				}
+
+				if (this.innerText.length + pastedData.length > maxLength) e.preventDefault();
 			}
 		}}
 		{...inputProps}
