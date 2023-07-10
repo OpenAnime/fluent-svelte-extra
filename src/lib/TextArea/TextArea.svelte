@@ -5,6 +5,9 @@
 	/** The input's current value. */
 	export let value: any = "";
 
+	/** Specifies whether the user can paste an image into TextArea */
+	export let includeImages = false;
+
 	/** Determines the maximum length of the TextArea */
 	export let maxLength: number = undefined;
 
@@ -68,6 +71,18 @@ textarea.
 			event: "keypress",
 			callback: function (e) {
 				if (this.innerText.length + 1 > maxLength) e.preventDefault();
+			}
+		}}
+		use:conditionalEvent={{
+			condition: includeImages == false,
+			event: "paste",
+			callback: function (e) {
+				const pastedData = e.clipboardData.getData("text");
+				const regex = /^[a-zA-Z0-9@  `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]+$/;
+
+				if (regex.test(pastedData) !== true) {
+					e.preventDefault();
+				}
 			}
 		}}
 		{...inputProps}
