@@ -12,6 +12,9 @@
 	/** The maximum value of the slider. */
 	export let max = 100;
 
+	/** The buffer value */
+	export let bufferValue = 0;
+
 	/** Determines how much the slider's value should increase per step. */
 	export let step: number = 1;
 
@@ -64,6 +67,9 @@
 	/** Obtains a bound DOM reference to the slider's track (fill) element. */
 	export let trackElement: HTMLDivElement = null;
 
+	/** Obtains a bound DOM reference to the slider's buffer track element. */
+	export let bufferElement: HTMLDivElement = null;
+
 	let dragging = false;
 	let holding = false;
 	let directionAwareReverse = false;
@@ -88,6 +94,19 @@
 	// by the difference between the max and min values,
 	// and multiplies by 100 to get a percentage.
 	const valueToPercentage = v => ((v - min) / (max - min)) * 100;
+
+	const bufferValueToPercentage = v => (v * 100) / max;
+
+	/*
+	
+	5000   100
+						x
+	3000    ? = 60
+---------------
+
+	(3000 * 100) / 5000
+
+	*/
 
 	function cancelMove() {
 		holding = false;
@@ -128,7 +147,7 @@
 
 		if (nextStep <= min) nextStep = min;
 		else if (nextStep >= max) nextStep = max;
-		dispatch("userChange", [value, nextStep])
+		dispatch("userChange", [value, nextStep]);
 		value = nextStep;
 	}
 
@@ -165,22 +184,23 @@
 	}
 
 	export function stepUp() {
-		if(value === max) return;
+		if (value === max) return;
 		value += step;
 		if (value > max) value = max;
 	}
 
 	export function stepDown() {
-		if(value === min) return;
+		if (value === min) return;
 		value -= step;
 		if (value < min) value = min;
 	}
 
 	$: {
-		dispatch("change", value)
-		if(value === max) dispatch("end", value)
+		dispatch("change", value);
+		if (value === max) dispatch("end", value);
 	}
 	$: percentage = valueToPercentage(value);
+	$: bufferPercentage = bufferValueToPercentage(bufferValue);
 	$: {
 		if (value <= min) value = min;
 		else if (value >= max) value = max;
@@ -214,24 +234,24 @@ A slider is a control that lets the user select from a range of values by moving
 		holding = true;
 		dragging = true;
 	}}
-
 	on:mouseup|preventDefault={() => {
-		dispatch('userUpdate', value)
+		dispatch("userUpdate", value);
 	}}
-
 	on:touchend|preventDefault={() => {
-		dispatch('userUpdate', value)
+		dispatch("userUpdate", value);
 	}}
-
 	on:touchcancel|preventDefault={() => {
-		dispatch('userUpdate', value)
+		dispatch("userUpdate", value);
 	}}
 	on:touchstart={handleTouchStart}
 	on:keydown={handleArrowKeys}
 	tabindex={disabled ? -1 : 0}
 	style="--fds-slider-percentage: {percentage}%; --fds-slider-thumb-offset: {thumbClientWidth /
 		2 -
-		linearScale([0, 50], [0, thumbClientWidth / 2])(percentage)}px;"
+		linearScale(
+			[0, 50],
+			[0, thumbClientWidth / 2]
+		)(percentage)}px; --fds-buffer-percentage: {bufferPercentage}%"
 	class="slider orientation-{orientation} {className}"
 	class:disabled
 	class:reverse={directionAwareReverse}
@@ -259,6 +279,10 @@ A slider is a control that lets the user select from a range of values by moving
 	<div class="slider-rail" bind:this={railElement}>
 		{#if track}
 			<div class="slider-track" bind:this={trackElement} />
+		{/if}
+
+		{#if bufferValue > 0}
+			<div class="slider-buffer-track" bind:this={bufferElement} />
 		{/if}
 	</div>
 

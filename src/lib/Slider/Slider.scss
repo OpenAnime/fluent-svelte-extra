@@ -31,13 +31,22 @@
 
 			.slider- {
 				&rail {
+					position: relative;
 					justify-content: flex-start;
 					inline-size: 100%;
 					block-size: 4px;
 				}
 
 				&track {
+					position: absolute;
+					z-index: 1;
 					inline-size: var(--slider-percentage);
+					block-size: 100%;
+				}
+
+				&buffer-track {
+					position: absolute;
+					inline-size: var(--buffer-percentage);
 					block-size: 100%;
 				}
 
@@ -174,6 +183,10 @@
 
 	&-track {
 		background-color: var(--accent-default);
+	}
+
+	&-buffer-track {
+		background-color: var(--control-strong-stroke-default);
 	}
 
 	&-tick-bar {
