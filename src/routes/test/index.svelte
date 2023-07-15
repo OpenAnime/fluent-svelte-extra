@@ -856,10 +856,10 @@
 	<h3>TextArea</h3>
 	<div class="showcase-group">
 		<TextArea
-			maxLength={250}
+			disabled
+			placeholder="test"
 			disableBottomBorder={true}
-			placeholder="deneme dsadasdasdad dsad"
-			style="max-height:10rem; min-height:3rem;"
+			style="max-height:10rem; min-height:3rem; pointer-events:all;"
 		/>
 	</div>
 </PageSection>

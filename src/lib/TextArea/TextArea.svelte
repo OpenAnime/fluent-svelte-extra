@@ -64,6 +64,7 @@ textarea.
 		role="textbox"
 		{spellcheck}
 		contenteditable="true"
+		tabindex={disabled ? -1 : 1}
 		bind:this={textAreaElement}
 		use:forwardEvents
 		use:conditionalEvent={{
@@ -85,6 +86,13 @@ textarea.
 				}
 
 				if (this.innerText.length + pastedData.length > maxLength) e.preventDefault();
+			}
+		}}
+		use:conditionalEvent={{
+			condition: disabled,
+			event: "focus",
+			callback: function (e) {
+				e.target.blur();
 			}
 		}}
 		{...inputProps}
