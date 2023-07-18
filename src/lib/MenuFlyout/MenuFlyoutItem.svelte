@@ -17,7 +17,7 @@
 	export let cascading = false;
 
 	/** Direction that the cascading submenu will be opened from. */
-	export let cascadingPlacement: "start" | "end";
+	export let cascadingPlacement: "start" | "end" = "start";
 
 	/** Secondary hint text displayed to the right of the item. Useful for displaying keyboard accelerators. */
 	export let hint: string = undefined;
