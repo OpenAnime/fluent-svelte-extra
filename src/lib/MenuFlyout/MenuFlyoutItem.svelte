@@ -16,6 +16,9 @@
 	/** Marks the item as having a cascading submenu attached to it, and makes the `flyout` slot available. */
 	export let cascading = false;
 
+	/** Direction that the cascading submenu will be opened from. */
+	export let cascadingPlacement: "start" | "end";
+
 	/** Secondary hint text displayed to the right of the item. Useful for displaying keyboard accelerators. */
 	export let hint: string = undefined;
 
@@ -36,7 +39,6 @@
 
 	/** Controls whether the item is intended for user interaction, and styles it accordingly. */
 	export let disabled = false;
-
 
 	/** The current visibility state of a cascading submenu. Only valid is `cascading` is true. */
 	export let open = false;
@@ -63,7 +65,6 @@
 	/** Obtains a bound DOM reference to the inner submenumenu element, which is present if the item is cascading and the submenu is visible. */
 	export let subMenuElement: HTMLUListElement = null;
 
-
 	const forwardEvents = createEventForwarder(get_current_component());
 	const dispatch = createEventDispatcher();
 	const closeFlyout = getContext<(event: Event) => void>("closeFlyout");
@@ -77,8 +78,6 @@
 
 	$: dispatch(open ? "open" : "close");
 	$: if (open && menu && tabbable(subMenuElement).length > 0) tabbable(subMenuElement)[0].focus();
-
-	
 
 	function handleKeyDown(event) {
 		const { key, target } = event;
@@ -160,6 +159,9 @@
 					use:arrowNavigation={{ preventTab: true, stopPropagation: true }}
 					bind:this={subMenuAnchorElement}
 					id={menuId}
+					style={cascading && cascadingPlacement == "end"
+						? "bottom: 0px; inset-block-start:unset;"
+						: "	--fds-menu-flyout-transition-offset: -50%;"}
 					class="menu-flyout-submenu-anchor"
 				>
 					<MenuFlyoutSurface bind:element={subMenuElement} bind:this={menu}>
