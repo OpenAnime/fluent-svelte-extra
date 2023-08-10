@@ -111,9 +111,11 @@
 	*/
 
 	function cancelMove() {
+		if (holding) {
+			dispatch("userHoldEnd");
+		}
 		holding = false;
 		dragging = false;
-		dispatch("userHoldEnd");
 	}
 
 	function handleMove() {
