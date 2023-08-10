@@ -427,7 +427,7 @@
 			bind:value={vl}
 			ticks={[20, 40, 60]}
 			bind:max={mx}
-			on:userChange={e => console.log(e.detail[0], e.detail[1])}
+			on:userUpdate={e => console.log(e.detail)}
 			on:userHoldStart={() => console.log("user is currently holding")}
 			on:userHoldEnd={() => console.log("user is not holding")}
 			on:end={() => console.log("ended")}

@@ -111,9 +111,6 @@
 	*/
 
 	function cancelMove() {
-		if (holding) {
-			dispatch("userHoldEnd");
-		}
 		holding = false;
 		dragging = false;
 	}
@@ -215,6 +212,8 @@
 			dragging = false;
 		}
 	}
+
+	let sliderThumbHolding = false;
 </script>
 
 <svelte:window
@@ -238,7 +237,6 @@ A slider is a control that lets the user select from a range of values by moving
 	on:mousedown|preventDefault={() => {
 		holding = true;
 		dragging = true;
-		dispatch("userHoldStart");
 	}}
 	on:mouseup|preventDefault={() => {
 		dispatch("userUpdate", value);
@@ -272,6 +270,30 @@ A slider is a control that lets the user select from a range of values by moving
 		aria-valuenow={value}
 		bind:this={thumbElement}
 		bind:clientWidth={thumbClientWidth}
+		on:mousedown|preventDefault={() => {
+			sliderThumbHolding = true;
+			dispatch("userHoldStart");
+		}}
+		on:mouseup|preventDefault={() => {
+			if (sliderThumbHolding) {
+				dispatch("userHoldEnd");
+			}
+			sliderThumbHolding = false;
+		}}
+		on:touchend|preventDefault={() => {
+			if (sliderThumbHolding) {
+				dispatch("userHoldEnd");
+			}
+			sliderThumbHolding = false;
+		}}
+		on:touchcancel|preventDefault={() => {
+			if (sliderThumbHolding) {
+				dispatch("userHoldEnd");
+			}
+			sliderThumbHolding = false;
+		}}
+		on:touchstart={handleTouchStart}
+		on:keydown={handleArrowKeys}
 	>
 		{#if tooltip && !disabled}
 			<TooltipSurface class="slider-tooltip">
