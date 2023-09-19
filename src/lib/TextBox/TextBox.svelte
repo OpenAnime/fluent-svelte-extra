@@ -100,8 +100,13 @@
 			revealButtonMouseDown = false;
 			inputElement.setAttribute("type", "password");
 			window.removeEventListener("mouseup", hidePassword);
+			window.removeEventListener("touchend", hidePassword);
+			window.removeEventListener("touchcancel", hidePassword);
 		};
+
 		window.addEventListener("mouseup", hidePassword);
+		window.addEventListener("touchend", hidePassword);
+		window.addEventListener("touchcancel", hidePassword);
 	}
 
 	const inputProps = {
@@ -208,6 +213,7 @@ The TextBox control lets a user type text into an app. The text displays on the 
 				<TextBoxButton
 					aria-label="Reveal password"
 					on:mousedown={handleReveal}
+					on:touchstart={handleReveal}
 					bind:element={revealButtonElement}
 				>
 					<svg
