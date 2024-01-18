@@ -111,7 +111,6 @@
 
 	const inputProps = {
 		class: "text-box",
-		disabled: disabled || undefined,
 		readonly: readonly || undefined,
 		placeholder: placeholder || undefined,
 		...$$restProps
@@ -136,29 +135,29 @@ The TextBox control lets a user type text into an app. The text displays on the 
 	<!-- Dirty workaround for the fact that svelte can't handle two-way binding when the input type is dynamic. -->
 	<!-- prettier-ignore -->
 	{#if type === "text"}
-		<input type="text" maxlength={maxLength} bind:value bind:this={inputElement} use:forwardEvents {...inputProps}/>
+		<input type="text" maxlength={maxLength} bind:value bind:this={inputElement} use:forwardEvents {...inputProps} {disabled} />
 		{:else if type === "number"}
-		<input type="number" bind:value bind:this={inputElement} use:forwardEvents {...inputProps}/>
+		<input type="number" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} {disabled}/>
 		{:else if type === "search"}
-		<input type="search" maxlength={maxLength} bind:value bind:this={inputElement} use:forwardEvents {...inputProps}/>
+		<input type="search" maxlength={maxLength} bind:value bind:this={inputElement} use:forwardEvents {...inputProps} {disabled}/>
 		{:else if type === "password"}
-		<input type="password" maxlength={maxLength} bind:value bind:this={inputElement} use:forwardEvents {...inputProps}/>
+		<input type="password" maxlength={maxLength} bind:value bind:this={inputElement} use:forwardEvents {...inputProps} {disabled}/>
 		{:else if type === "email"}
-		<input type="email" maxlength={maxLength} bind:value bind:this={inputElement} use:forwardEvents {...inputProps}/>
+		<input type="email" maxlength={maxLength} bind:value bind:this={inputElement} use:forwardEvents {...inputProps} {disabled}/>
 		{:else if type === "tel"}
-		<input type="tel" maxlength={maxLength} bind:value bind:this={inputElement} use:forwardEvents {...inputProps}/>
+		<input type="tel" maxlength={maxLength} bind:value bind:this={inputElement} use:forwardEvents {...inputProps} {disabled}/>
 		{:else if type === "url"}
-		<input type="url" maxlength={maxLength} bind:value bind:this={inputElement} use:forwardEvents {...inputProps} />
+		<input type="url" maxlength={maxLength} bind:value bind:this={inputElement} use:forwardEvents {...inputProps} {disabled} />
 		{:else if type === "date"}
-		<input type="date" bind:value bind:this={inputElement} use:forwardEvents {...inputProps}/>
+		<input type="date" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} {disabled}/>
 		{:else if type === "datetime-local"}
-		<input type="datetime-local" bind:value bind:this={inputElement} use:forwardEvents {...inputProps}/>
+		<input type="datetime-local" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} {disabled}/>
 		{:else if type === "month"}
-		<input type="month" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} />
+		<input type="month" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} {disabled} />
 		{:else if type === "time"}
-		<input type="time" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} />
+		<input type="time" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} {disabled} />
 		{:else if type === "week"}
-		<input type="week" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} />
+		<input type="week" bind:value bind:this={inputElement} use:forwardEvents {...inputProps} {disabled} />
 	{/if}
 	<div
 		class="text-box-underline"
