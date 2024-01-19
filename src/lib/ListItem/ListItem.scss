@@ -3,6 +3,7 @@
 .list-item {
 	@include flex($align: center);
 
+	white-space: nowrap;
 	inline-size: calc(100% - 10px);
 	position: relative;
 	box-sizing: border-box;
