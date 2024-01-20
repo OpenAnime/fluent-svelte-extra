@@ -133,6 +133,7 @@
 		on:mouseenter={handleMouseEnter}
 		on:mouseleave={handleMouseLeave}
 		on:keydown={handleKeyDown}
+		on:click
 		{...$$restProps}
 	>
 		<slot name="icon" />
