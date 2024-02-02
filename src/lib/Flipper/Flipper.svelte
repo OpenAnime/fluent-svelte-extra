@@ -1,8 +1,11 @@
 <script lang="ts">
 	export let direction: "left" | "right";
+	let className = "";
+	export { className as class };
 </script>
 
-<div class="flipper" on:click>
+
+<button class="flipper {className}" on:click {...$$restProps}>
 	{#if direction === "right"}
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -34,20 +37,23 @@
 			</g>
 		</svg>
 	{/if}
-</div>
+</button>
 
 <style>
 	.flipper {
+		color: var(--fds-control-strong-fill-default);
 		width: fit-content;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		height: 35px;
-		border-radius: 3px;
+		padding: 0;
+		border-radius: var(--fds-control-corner-radius);
 		border: 1px solid var(--fds-control-border-default);
 		background-color: var(--fds-control-fill-default);
-		backdrop-filter: blur(30px) saturate(125%);
+		backdrop-filter: var(--fds-acrylic-blur-factor);
 		fill: currentColor;
+		box-shadow: var(--fds-flyout-shadow);
 	}
 
 	.flipper > svg {
@@ -55,7 +61,7 @@
 	}
 
 	.flipper:hover {
-		fill: currentColor;
+        color: var(--fds-text-primary);
 	}
 
 	.flipper:hover > svg {

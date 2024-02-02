@@ -101,7 +101,7 @@
 	}
 
 	.handle:active:before {
-		background-color: var(--fds-accent-tertiary);
+		background-color: var(--fds-accent-default);
 		transform: scale(0.833);
 	}
 
@@ -114,6 +114,6 @@
 	}
 
 	#sliderHolder :global(.progress) {
-		background: var(--fds-accent-text-primary) !important;
+		background: var(--fds-accent-default) !important;
 	}
 </style>
