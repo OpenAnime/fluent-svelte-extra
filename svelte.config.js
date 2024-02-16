@@ -1,6 +1,6 @@
 import path from "path";
 import preprocess from "svelte-preprocess";
-import vercel from "@sveltejs/adapter-vercel";
+import adapter from "@sveltejs/adapter-auto";
 import cssnano from "cssnano";
 import autoprefixer from "autoprefixer";
 import prefixer from "postcss-variables-prefixer";
@@ -19,7 +19,7 @@ import { mdsvex } from "mdsvex";
 const config = {
 	vitePlugin: {
 		experimental: {
-				useVitePreprocess: true
+			useVitePreprocess: true
 		}
 	},
 	extensions: [".svelte", ".md", ".svx"],
@@ -45,7 +45,7 @@ const config = {
 		})
 	],
 	kit: {
-		adapter: vercel(),
+		adapter: adapter(),
 		vite: {
 			plugins: [sveld(), examplesVite],
 			resolve: {
