@@ -19,6 +19,7 @@
 	user-select: none;
 	block-size: 34px;
 	text-decoration: none;
+	transition: var(--fds-control-faster-duration) ease background;
 
 	&::before {
 		content: "";
