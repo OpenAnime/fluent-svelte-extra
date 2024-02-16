@@ -3,13 +3,16 @@
 
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";
+	import { slide } from "svelte/transition";
 	import { createEventForwarder, uid } from "$lib/internal";
+	import { expoOut } from "svelte/easing";
 
 	/** Determines whether the expander is expanded (open) or not. */
 	export let expanded = false;
 
 	/** Determines whether the expander is expandable or not. */
 	export let expandable = true;
+
 
 	/** Determines the direction that the expander will extend to. */
 	export let direction: "down" | "up" = "down";
@@ -48,6 +51,19 @@
 			expanded = !expanded;
 		}
 	}
+
+	function fadeSlide(node : HTMLElement, options) {
+		const slideTrans = slide(node, options)
+		return {
+			duration: options.duration,
+			easing: options.easing,
+			css: t => `
+				${slideTrans.css(t, options.duration)}
+				opacity: ${t};
+			`
+		};
+	}
+
 </script>
 
 <!--
@@ -67,8 +83,8 @@ Expanders are controls that display a header and a collapsable content area. The
 	use:forwardEvents
 	class="expander direction-{direction} {className}"
 	role="region"
-	class:expanded
 	bind:this={containerElement}
+	class:expanded
 	{...$$restProps}
 >
 	<svelte:element this="h">
@@ -126,11 +142,13 @@ Expanders are controls that display a header and a collapsable content area. The
 			{/if}
 		</div>
 	</svelte:element>
-	<div class="expander-content-anchor">
-		<div class="expander-content" bind:this={contentElement}>
-			<slot name="content" />
+	{#if expanded}
+		<div class="expander-content-anchor" transition:fadeSlide={{ duration: 500, easing: expoOut }}>
+			<div class="expander-content" bind:this={contentElement}>
+				<slot name="content" />
+			</div>
 		</div>
-	</div>
+	{/if}
 </div>
 
 <style lang="scss">

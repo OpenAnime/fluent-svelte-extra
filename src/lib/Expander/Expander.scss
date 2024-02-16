@@ -6,36 +6,45 @@
 	border-radius: var(--control-corner-radius);
 	inline-size: 100%;
 	user-select: none;
+	.expander-header {
+		transition: var(--fds-control-faster-duration) ease background;
+		&:hover {
+			background-color: var(--control-fill-secondary);
+			border: 1px solid var(--fds-control-stroke-default);
+		}
+		&:active {
+			background-color: var(--control-fill-tertiary);
+			border: 1px solid var(--fds-control-stroke-default);
+		}
+	}
 	&.direction- {
 		&down {
 			.expander-content {
 				border-block-start: none;
 				border-radius: var(--control-corner-radius);
-				border-start-start-radius: 0;
-				border-start-end-radius: 0;
-				transform: translateY(-100%);
+				border-start-start-radius: 0 !important;
+				border-start-end-radius: 0 !important;
 			}
 			&.expanded .expander-header {
 				border-radius: var(--control-corner-radius);
-				border-end-start-radius: 0;
-				border-end-end-radius: 0;
+				border-end-start-radius: 0 !important;
+				border-end-end-radius: 0 !important;
 			}
 		}
 		&up {
 			.expander-content {
 				border-bottom: none;
 				border-radius: var(--control-corner-radius);
-				border-end-start-radius: 0;
-				border-end-end-radius: 0;
-				transform: translateY(100%);
+				border-end-start-radius: 0 !important;
+				border-end-end-radius: 0 !important;
 				&-anchor {
 					order: -1;
 				}
 			}
 			&.expanded .expander-header {
 				border-radius: var(--control-corner-radius);
-				border-start-start-radius: 0;
-				border-start-end-radius: 0;
+				border-start-start-radius: 0 !important;
+				border-start-end-radius: 0 !important;
 			}
 		}
 	}
@@ -45,10 +54,6 @@
 				transform: none;
 				transition: var(--control-slow-duration) var(--control-fast-out-slow-in-easing)
 					transform;
-				&-anchor {
-					max-block-size: 6.02e23vmax;
-					transition: none;
-				}
 			}
 			&-chevron svg {
 				transform: rotate(180deg);
@@ -78,7 +83,7 @@
 		padding-inline-start: 16px;
 		padding: 8px;
 		background-clip: padding-box;
-		background-color: var(--card-background-default);
+		background-color: var(--fds-control-fill-default);
 		border: 1px solid var(--card-stroke-default);
 		border-radius: var(--control-corner-radius);
 		&-title {
@@ -87,12 +92,8 @@
 		&:focus-visible {
 			box-shadow: var(--focus-stroke);
 		}
-		&:hover .expander-chevron {
-			background-color: var(--subtle-fill-secondary);
-		}
 		&:active .expander-chevron {
 			color: var(--text-secondary);
-			background-color: var(--subtle-fill-tertiary);
 		}
 	}
 	&-chevron {
@@ -126,10 +127,8 @@
 		padding: 16px;
 		transition: var(--control-fast-duration) cubic-bezier(1, 1, 0, 1) transform;
 		&-anchor {
-			max-height: 0;
 			position: relative;
-			overflow: hidden;
-			transition: 0ms linear var(--control-slow-duration) max-height;
+			max-block-size: 6.02e23vmax;
 		}
 	}
 }
