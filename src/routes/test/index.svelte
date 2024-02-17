@@ -481,19 +481,21 @@
 					/>
 				</svg>
 			</svelte:fragment>
-			<svelte:fragment slot="content"><ComboBox
-				placeholder="ComboBox"
-				items={[
-			{ name: "Item 0", value: 0 },
-			{ name: "Item 1", value: 1 },
-			{
-				name: "Item 2",
-				value: 2,
-				disabled: true
-			},
-			{ name: "Item 3", value: 3 }
-		]}
-			/></svelte:fragment>
+			<svelte:fragment slot="content"
+				><ComboBox
+					placeholder="ComboBox"
+					items={[
+						{ name: "Item 0", value: 0 },
+						{ name: "Item 1", value: 1 },
+						{
+							name: "Item 2",
+							value: 2,
+							disabled: true
+						},
+						{ name: "Item 3", value: 3 }
+					]}
+				/></svelte:fragment
+			>
 		</Expander>
 		<Expander direction="up">
 			Expander Up

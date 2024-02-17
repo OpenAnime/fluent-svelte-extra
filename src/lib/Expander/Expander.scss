@@ -8,6 +8,9 @@
 	user-select: none;
 	.expander-header {
 		transition: var(--fds-control-faster-duration) ease background;
+	}
+
+	&.expandable .expander-header {
 		&:hover {
 			background-color: var(--control-fill-secondary);
 			border: 1px solid var(--fds-control-stroke-default);
@@ -17,6 +20,7 @@
 			border: 1px solid var(--fds-control-stroke-default);
 		}
 	}
+
 	&.direction- {
 		&down {
 			.expander-content {

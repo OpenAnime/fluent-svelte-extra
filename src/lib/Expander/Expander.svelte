@@ -13,7 +13,6 @@
 	/** Determines whether the expander is expandable or not. */
 	export let expandable = true;
 
-
 	/** Determines the direction that the expander will extend to. */
 	export let direction: "down" | "up" = "down";
 
@@ -52,8 +51,8 @@
 		}
 	}
 
-	function fadeSlide(node : HTMLElement, options) {
-		const slideTrans = slide(node, options)
+	function fadeSlide(node: HTMLElement, options) {
+		const slideTrans = slide(node, options);
 		return {
 			duration: options.duration,
 			easing: options.easing,
@@ -63,7 +62,6 @@
 			`
 		};
 	}
-
 </script>
 
 <!--
@@ -85,6 +83,7 @@ Expanders are controls that display a header and a collapsable content area. The
 	role="region"
 	bind:this={containerElement}
 	class:expanded
+	class:expandable
 	{...$$restProps}
 >
 	<svelte:element this="h">
@@ -143,7 +142,10 @@ Expanders are controls that display a header and a collapsable content area. The
 		</div>
 	</svelte:element>
 	{#if expanded}
-		<div class="expander-content-anchor" transition:fadeSlide={{ duration: 500, easing: expoOut }}>
+		<div
+			class="expander-content-anchor"
+			transition:fadeSlide={{ duration: 500, easing: expoOut }}
+		>
 			<div class="expander-content" bind:this={contentElement}>
 				<slot name="content" />
 			</div>
