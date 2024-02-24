@@ -5,6 +5,7 @@
 		| "body"
 		| "bodyStrong"
 		| "bodyLarge"
+		| "bodyLargeStrong"
 		| "subtitle"
 		| "title"
 		| "titleLarge"
@@ -36,6 +37,10 @@
 		bodyLarge: {
 			tag: "h5",
 			name: "body-large"
+		},
+		bodyLargeStrong: {
+			tag: "h5",
+			name: "body-large-strong"
 		},
 		subtitle: {
 			tag: "h4",

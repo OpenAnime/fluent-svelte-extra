@@ -509,6 +509,7 @@
 		<TextBlock variant="body">Body</TextBlock>
 		<TextBlock variant="bodyStrong">Body Strong</TextBlock>
 		<TextBlock variant="bodyLarge">Body Large</TextBlock>
+		<TextBlock variant="bodyLargeStrong">Body Large Strong</TextBlock>
 		<TextBlock variant="subtitle">Subtitle</TextBlock>
 		<TextBlock variant="title">Title</TextBlock>
 		<TextBlock variant="titleLarge">Title Large</TextBlock>

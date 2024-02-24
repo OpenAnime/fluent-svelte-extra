@@ -15,7 +15,8 @@
 		}
 		&body,
 		&body-strong,
-		&body-large {
+		&body-large,
+		&body-large-strong {
 			font-family: var(--font-family-text);
 		}
 		&caption {
@@ -28,17 +29,20 @@
 		}
 		&body,
 		&body-strong,
-		&body-large {
+		&body-large,
+		&body-large-strong {
 			line-height: 20px;
 			font: {
 				weight: 400;
 				size: var(--body-font-size);
 			}
 		}
-		&body-strong {
+		&body-strong,
+		&body-large-strong {
 			font-weight: 600;
 		}
-		&body-large {
+		&body-large,
+		&body-large-strong {
 			font-size: var(--body-large-font-size);
 			line-height: 24px;
 		}
