@@ -15,7 +15,7 @@
 	}
 </script>
 
-<div class="grid-view-item" class:selected>
+<div class="grid-view-item" class:selected {...$$restProps}>
 	{#if !singleSelect}
 		<div class="item-checkbox">
 			<Checkbox bind:checked={selected}></Checkbox>
