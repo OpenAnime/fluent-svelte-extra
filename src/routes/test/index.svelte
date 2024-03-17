@@ -32,7 +32,8 @@
 		Tooltip,
 		RangeSlider,
 		Flipper,
-		TextArea
+		TextArea,
+		GridViewItem
 	} from "$lib";
 
 	import { PageSection } from "$site/lib";
@@ -880,6 +881,17 @@
 			disableBottomBorder={true}
 			style="max-height:10rem; min-height:3rem; pointer-events:all;"
 		/>
+	</div>
+
+	<h3>GridViewItem</h3>
+	<div class="showcase-group">
+		<GridViewItem selected>
+			<img src="/logo.svg" height="120" width="120" alt="" />
+		</GridViewItem>
+
+		<GridViewItem singleSelect selected>
+			<img src="/logo.svg" height="120" width="120" alt="" />
+		</GridViewItem>
 	</div>
 </PageSection>
 
