@@ -7,6 +7,7 @@
 	min-height: 120px;
 	min-width: 120px;
 	transition: outline var(--fds-control-fast-duration);
+	width: fit-content;
 
 	&.selected {
 		outline: var(--fds-accent-default) solid;
@@ -32,5 +33,7 @@
 		border-radius: var(--fds-control-corner-radius);
 		outline: transparent solid 2px;
 		transition: outline var(--fds-control-fast-duration);
+		height: 100%;
+		width: 100%;
 	}
 }
