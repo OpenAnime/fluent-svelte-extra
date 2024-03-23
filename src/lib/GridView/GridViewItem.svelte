@@ -15,7 +15,7 @@
 	}
 </script>
 
-<div class="grid-view-item" class:selected {...$$restProps} on:click={() => setSelected(!selected)}>
+<div class="grid-view-item" class:selected {...$$restProps} on:click={() => setSelected(!selected)} tabindex="0" on:keydown={(e) => e.key === "Enter" && setSelected(!selected)}>
 	{#if !singleSelect}
 		<div class="item-checkbox">
 			<Checkbox bind:checked={selected} on:click={() => setSelected(!selected)} />
