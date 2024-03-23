@@ -14,8 +14,8 @@
 	/** Determines if the flyout can be closed using conventional user interaction. */
 	export let closable = true;
 
-	/** Controls if the flyout will be closed when clicking a standard variant item. Only applies if `closable` is set to `true`. */
-	export let closeOnSelect = true;
+	/** Controls if the flyout will be closed when clicking a standard variant item. Only applies if `closable` is set to `false`. */
+	export let closeOnSelect = false;
 
 	/** Direction that the flyout will be opened from. */
 	export let placement: "top" | "bottom" | "left" | "right" = "top";

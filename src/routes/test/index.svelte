@@ -616,7 +616,7 @@
 	</MenuBar>
 
 	<h3>MenuFlyout</h3>
-	<MenuFlyout alignment="start">
+	<MenuFlyout alignment="start" closeOnSelect={true}>
 		<Button>Open</Button>
 		<svelte:fragment slot="flyout">
 			<MenuFlyoutItem>

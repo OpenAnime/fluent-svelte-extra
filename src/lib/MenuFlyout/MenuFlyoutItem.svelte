@@ -4,7 +4,7 @@
 	import { createEventDispatcher, getContext } from "svelte";
 	import { get_current_component } from "svelte/internal";
 
-	import { arrowNavigation, uid, createEventForwarder } from "$lib/internal";
+	import { arrowNavigation, uid, createEventForwarder, conditionalEvent } from "$lib/internal";
 	import { tabbable } from "tabbable";
 
 	import MenuFlyoutSurface from "../MenuFlyout/MenuFlyoutSurface.svelte";
@@ -92,6 +92,7 @@
 			} else if (open && key === "ArrowLeft") {
 				event.stopPropagation();
 				open = false;
+				if (closeFlyout && !cascading && variant == "standard") closeFlyout(event);
 				element.focus();
 			}
 		}
@@ -105,7 +106,7 @@
 		}, 500);
 	}
 
-	function handleMouseLeave() {
+	function handleMouseLeave(e) {
 		subMenuQueue.close = true;
 		subMenuQueue.open = false;
 		setTimeout(() => {
@@ -134,6 +135,13 @@
 		on:mouseleave={handleMouseLeave}
 		on:keydown={handleKeyDown}
 		on:click
+		use:conditionalEvent={{
+			condition: closeFlyout,
+			event: "click",
+			callback: e => {
+				if (!cascading && variant == "standard") closeFlyout(e);
+			}
+		}}
 		{...$$restProps}
 	>
 		<slot name="icon" />

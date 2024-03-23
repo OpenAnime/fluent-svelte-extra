@@ -7,8 +7,8 @@
 
 	import MenuFlyoutSurface from "../MenuFlyout/MenuFlyoutSurface.svelte";
 
-	/** Controls if the flyout will be closed when clicking a standard variant item. Only applies if `closable` is set to `true`. */
-	export let closeOnSelect = true;
+	/** Controls if the flyout will be closed when clicking a standard variant item. Set to `false` by default. */
+	export let closeOnSelect = false;
 
 	/** The current visibility state of the context menu. */
 	export let open = false;
@@ -77,10 +77,12 @@
 		};
 	}
 
-	setContext("closeFlyout", event => {
-		dispatch("select");
-		if (closeOnSelect) open = false;
-	});
+	if (closeOnSelect) {
+		setContext("closeFlyout", () => {
+			dispatch("select");
+			if (closeOnSelect) open = false;
+		});
+	}
 </script>
 
 <svelte:window on:keydown={handleEscapeKey} />
