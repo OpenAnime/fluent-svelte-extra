@@ -1,5 +1,8 @@
 <script lang="ts">
 	import Checkbox from "../Checkbox/Checkbox.svelte";
+	import { createEventDispatcher } from "svelte";
+
+	const dispatch = createEventDispatcher();
 
 	/** Indicates the selected state of the grid view item. */
 	export let selected = false;
@@ -15,13 +18,25 @@
 	}
 </script>
 
-<div class="grid-view-item" class:selected {...$$restProps} on:click={() => setSelected(!selected)} tabindex="0" on:keydown={(e) => e.key === "Enter" && setSelected(!selected)}>
+<div
+	class="grid-view-item"
+	class:selected
+	{...$$restProps}
+	on:click={() => singleSelect && setSelected(!selected)}
+	tabindex="0"
+	on:keydown={e => e.key === "Enter" && singleSelect && setSelected(!selected)}
+>
 	{#if !singleSelect}
 		<div class="item-checkbox">
-			<Checkbox bind:checked={selected} on:click={() => setSelected(!selected)} />
+			<Checkbox
+				bind:checked={selected}
+				on:change={() => {
+					dispatch("change", { selected: !selected });
+				}}
+			/>
 		</div>
 	{/if}
-		<slot {setSelected} />
+	<slot {setSelected} />
 </div>
 
 <style lang="scss">

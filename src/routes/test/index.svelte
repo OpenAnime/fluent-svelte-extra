@@ -885,7 +885,7 @@
 
 	<h3>GridViewItem</h3>
 	<div class="showcase-group">
-		<GridViewItem selected>
+		<GridViewItem selected on:change={console.log}>
 			<img src="/logo.svg" height="120" width="120" alt="" />
 		</GridViewItem>
 
