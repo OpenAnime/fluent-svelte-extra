@@ -56,8 +56,7 @@
 		.expander {
 			&-content {
 				transform: none;
-				transition: var(--control-slow-duration) var(--control-fast-out-slow-in-easing)
-					transform;
+				
 			}
 			&-chevron svg {
 				transform: rotate(180deg);
@@ -119,8 +118,8 @@
 			inline-size: 12px;
 			block-size: 12px;
 			fill: currentColor;
-			transition: calc(var(--control-faster-duration) * 1.2) linear transform
-				var(--control-faster-duration);
+			transition: calc(var(--control-fast-duration)) var(--control-fast-out-slow-in-easing) transform
+				var(--control-fast-duration);
 		}
 	}
 	&-content {

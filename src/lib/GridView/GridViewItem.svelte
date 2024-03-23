@@ -15,23 +15,13 @@
 	}
 </script>
 
-<div class="grid-view-item" class:selected {...$$restProps}>
+<div class="grid-view-item" class:selected {...$$restProps} on:click={() => setSelected(!selected)}>
 	{#if !singleSelect}
 		<div class="item-checkbox">
-			<Checkbox bind:checked={selected}></Checkbox>
+			<Checkbox bind:checked={selected} on:click={() => setSelected(!selected)} />
 		</div>
 	{/if}
-
-	<div
-		class="inner-grid-item"
-		on:click={() => {
-			if (singleSelect) {
-				setSelected(!selected);
-			}
-		}}
-	>
 		<slot {setSelected} />
-	</div>
 </div>
 
 <style lang="scss">

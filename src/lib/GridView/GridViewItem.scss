@@ -1,39 +1,21 @@
 .grid-view-item {
-	outline: transparent solid;
-	outline-offset: 2px;
-	outline-width: 2px;
 	position: relative;
-	border-radius: var(--fds-control-corner-radius);
-	min-height: 120px;
-	min-width: 120px;
-	transition: outline var(--fds-control-fast-duration);
+	border-radius: var(--control-corner-radius);
+	transition: box-shadow var(--control-fast-duration);
 	width: fit-content;
+	user-select: none;
 
 	&.selected {
-		outline: var(--fds-accent-default) solid;
-		outline-offset: 2px;
-		outline-width: 2px;
-		.inner-grid-item {
-			outline: var(--fds-control-solid-fill-default) solid 2px;
-		}
+		box-shadow: inset 0 0 0 2px var(--control-solid-fill-default),
+		0 0 0 3px var(--accent-default);
 	}
 
 	& > .item-checkbox {
 		position: absolute;
-		top: -4px;
-		right: 2px;
+		top: 0;
+		right: 6px;
 		overflow: hidden;
 		z-index: 1;
 	}
 
-	& > .inner-grid-item {
-		overflow: hidden;
-		display: flex;
-		position: relative;
-		border-radius: var(--fds-control-corner-radius);
-		outline: transparent solid 2px;
-		transition: outline var(--fds-control-fast-duration);
-		height: 100%;
-		width: 100%;
-	}
 }
