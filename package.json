@@ -1,6 +1,6 @@
 {
 	"name": "fluent-svelte-extra",
-	"version": "1.7.5",
+	"version": "1.7.6",
 	"description": "A faithful implementation of Microsoft's Fluent Design System in Svelte.",
 	"homepage": "https://github.com/OpenAnime/fluent-svelte-extra",
 	"license": "MIT",
@@ -65,8 +65,8 @@
 		"rehype-slug": "^5.0.1",
 		"remark-github": "^11.2.2",
 		"sass": "^1.50.0",
-		"svelte": "^3.47.0",
-		"svelte-check": "^2.6.0",
+		"svelte": "^3.58.0",
+		"svelte-check": "^3.6.9",
 		"svelte-codesandbox": "^1.0.0",
 		"svelte-preprocess": "^4.10.5",
 		"svelte2tsx": "^0.4.14",

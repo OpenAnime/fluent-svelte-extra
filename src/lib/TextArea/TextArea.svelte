@@ -96,7 +96,7 @@ textarea.
 			}
 		}}
 		{...inputProps}
-		bind:textContent={value}
+		bind:innerText={value}
 	/>
 	<slot />
 	<div

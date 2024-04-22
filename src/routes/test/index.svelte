@@ -119,6 +119,10 @@
 	let menuGroup = 0;
 
 	let test1 = false;
+
+	let textareaValue = "";
+
+	$: console.log(textareaValue);
 </script>
 
 <div style="height: 56px;" />
@@ -876,7 +880,7 @@
 	<h3>TextArea</h3>
 	<div class="showcase-group">
 		<TextArea
-			disabled
+			bind:value={textareaValue}
 			placeholder="test"
 			disableBottomBorder={true}
 			style="max-height:10rem; min-height:3rem; pointer-events:all;"
