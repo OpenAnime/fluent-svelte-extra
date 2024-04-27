@@ -12,6 +12,9 @@
 	/** Determines if the flyout can be closed using conventional user interaction. */
 	export let closable = true;
 
+	/** Determines if the flyout can be clicked. */
+	export let enableClick = true;
+
 	/** Direction that the flyout will be opened from. */
 	export let placement: "top" | "bottom" | "left" | "right" = "top";
 
@@ -87,7 +90,9 @@ Flyouts represent a control that displays lightweight UI that is either informat
 	aria-expanded={open}
 	aria-haspopup={open}
 	aria-controls={menuId}
-	on:click={() => (open = !open)}
+	on:click={() => {
+		enableClick && (open = !open);
+	}}
 	on:keydown={handleKeyDown}
 	bind:this={wrapperElement}
 >

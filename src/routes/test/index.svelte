@@ -893,7 +893,11 @@
 			<img src="/logo.svg" height="120" width="120" alt="" />
 		</GridViewItem>
 
-		<GridViewItem singleSelect selected>
+		<GridViewItem singleSelect group="deneme">
+			<img src="/logo.svg" height="120" width="120" alt="" />
+		</GridViewItem>
+
+		<GridViewItem singleSelect selected group="deneme">
 			<img src="/logo.svg" height="120" width="120" alt="" />
 		</GridViewItem>
 	</div>
