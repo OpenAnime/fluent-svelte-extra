@@ -15,6 +15,7 @@
 	 */
 	function setSelected(value: boolean) {
 		selected = value;
+		dispatch("change", { selected });
 	}
 </script>
 
@@ -23,12 +24,12 @@
 	class:selected
 	{...$$restProps}
 	on:click={() => singleSelect && setSelected(!selected)}
-	tabindex="0"
 	on:keydown={e => e.key === "Enter" && singleSelect && setSelected(!selected)}
 >
 	{#if !singleSelect}
 		<div class="item-checkbox">
 			<Checkbox
+	            tabindex="-1"
 				bind:checked={selected}
 				on:change={() => {
 					dispatch("change", { selected: !selected });

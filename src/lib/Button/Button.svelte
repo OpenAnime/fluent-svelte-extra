@@ -37,6 +37,7 @@ A button gives the user a way to trigger an immediate action. Some buttons are s
 	role={href && !disabled ? "button" : undefined}
 	href={href && !disabled ? href : undefined}
 	class="button style-{variant} {className}"
+	tabindex={!disabled ? 0 : -1}
 	class:disabled
 	{...$$restProps}
 >
