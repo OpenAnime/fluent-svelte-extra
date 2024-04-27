@@ -12,6 +12,16 @@ export { default as TooltipSurface } from "./Tooltip/TooltipSurface.svelte";
 export { default as MenuFlyoutSurface } from "./MenuFlyout/MenuFlyoutSurface.svelte";
 export { default as CalendarViewItem } from "./CalendarView/CalendarViewItem.svelte";
 
+const storage = {};
+
+export function setKey(key: string, value: any) {
+	storage[key] = value;
+}
+
+export function getKey(key: string) {
+	return storage[key];
+}
+
 // Svelte action for handling outer mouse
 interface ExternalMouseEventOptions {
 	type?: string;
