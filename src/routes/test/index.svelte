@@ -903,7 +903,10 @@
 	</div>
 	<h3>AcrylicSurface</h3>
 	<div style="width: 100%; height: 300px; position: relative">
-		<div id="content" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1">
+		<div
+			id="content"
+			style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1"
+		>
 			<p>Acrylic Surface</p>
 		</div>
 		<AcrylicSurface style="width: 100%; height: 100%;" />
