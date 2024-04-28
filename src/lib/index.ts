@@ -34,3 +34,4 @@ export { default as Flipper } from "./Flipper/Flipper.svelte";
 export { default as ExpandMenu } from "./ExpandMenu/ExpandMenu.svelte";
 export { default as TextArea } from "./TextArea/TextArea.svelte";
 export { default as GridViewItem } from "./GridView/GridViewItem.svelte";
+export { default as AcrylicSurface } from "./Acrylic/AcrylicSurface.svelte";

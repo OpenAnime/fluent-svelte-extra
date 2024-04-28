@@ -1,0 +1,6 @@
+.acrylic-surface {
+	background: var(--acrylic-background-default) var(--acrylic-noise-asset-alpha);
+	backdrop-filter: var(--acrylic-blur-factor);
+    -webkit-backdrop-filter: var(--acrylic-blur-factor);
+	mix-blend-mode: luminosity;
+}
