@@ -128,9 +128,6 @@
 
 <div style="height: 56px;" />
 
-<ContentDialog open closeButton>
-	test
-</ContentDialog>
 <PageSection>
 	<h2>fluent-svelte test page</h2>
 	<p>Made with <a href="https://kit.svelte.dev">SvelteKit</a></p>

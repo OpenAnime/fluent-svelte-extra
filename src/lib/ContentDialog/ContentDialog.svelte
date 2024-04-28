@@ -50,6 +50,7 @@
 	const forwardEvents = createEventForwarder(get_current_component(), [
 		"open",
 		"close",
+		"closeByButton",
 		"backdropclick",
 		"backdropmousedown"
 	]);
@@ -68,6 +69,13 @@
 
 	function close() {
 		open = false;
+	}
+
+	function closeByButton() {
+		if (closable) {
+			close();
+			dispatch("closeByButton");
+		}
 	}
 
 	function handleEscapeKey({ key }: KeyboardEvent) {
@@ -121,7 +129,13 @@
 				{/if}
 			</div>
 			{#if closeButton}
-				<button id="close-button" on:click={close} aria-label="Close dialog">
+				<button
+					id="close-button"
+					aria-label="Close dialog"
+					tabindex="0"
+					class:disabled={!closable}
+					on:click={closeByButton}
+				>
 					<svg
 						aria-hidden="true"
 						xmlns="http://www.w3.org/2000/svg"
