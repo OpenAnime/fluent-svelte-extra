@@ -128,6 +128,9 @@
 
 <div style="height: 56px;" />
 
+<ContentDialog open closeButton>
+	allah
+</ContentDialog>
 <PageSection>
 	<h2>fluent-svelte test page</h2>
 	<p>Made with <a href="https://kit.svelte.dev">SvelteKit</a></p>
@@ -372,7 +375,6 @@
 		</PersonPicture>
 		<PersonPicture alt="a a a a" size={96} />
 	</div>
-
 	<h3>Dialog</h3>
 	<div class="showcase-group">
 		<Button on:click={() => (dialogOpen = true)}>Open</Button>
