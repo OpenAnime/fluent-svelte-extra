@@ -129,7 +129,7 @@
 <div style="height: 56px;" />
 
 <ContentDialog open closeButton>
-	allah
+	test
 </ContentDialog>
 <PageSection>
 	<h2>fluent-svelte test page</h2>
