@@ -36,13 +36,12 @@
 
 	const forwardEvents = createEventForwarder(get_current_component());
 
-	const inputProps = {
-		class: "text-area",
-		disabled: disabled || undefined,
-		readonly: readonly || undefined,
-		placeholder: placeholder || undefined,
-		...$$restProps
-	};
+	$: {
+		if (disabled && containerElement && textAreaElement) {
+			containerElement.blur();
+			textAreaElement.blur();
+		}
+	}
 </script>
 
 <!--
@@ -63,39 +62,33 @@ textarea.
 	<div
 		role="textbox"
 		{spellcheck}
-		contenteditable="true"
+		contenteditable
 		tabindex={disabled ? -1 : 1}
 		bind:this={textAreaElement}
 		use:forwardEvents
-		use:conditionalEvent={{
-			condition: maxLength != undefined,
-			event: "keypress",
-			callback: function (e) {
-				if (this.innerText.length + 1 > maxLength) e.preventDefault();
-			}
+		on:keypress={e => {
+			if (maxLength != undefined && this.innerText.length + 1 > maxLength) e.preventDefault();
 		}}
-		use:conditionalEvent={{
-			condition: includeImages == false,
-			event: "paste",
-			callback: function (e) {
-				const pastedData = e.clipboardData.getData("text");
-				const regex = /^[a-zA-Z0-9@  `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]+$/;
+		on:paste={e => {
+			if (includeImages) return;
 
-				if (regex.test(pastedData) !== true) {
-					e.preventDefault();
-				}
+			const pastedData = e.clipboardData.getData("text");
+			const regex = /^[a-zA-Z0-9@  `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]+$/;
 
-				if (this.innerText.length + pastedData.length > maxLength) e.preventDefault();
+			if (regex.test(pastedData) !== true) {
+				e.preventDefault();
 			}
+
+			if (this.innerText.length + pastedData.length > maxLength) e.preventDefault();
 		}}
-		use:conditionalEvent={{
-			condition: disabled,
-			event: "focus",
-			callback: function (e) {
-				e.target.blur();
-			}
+		on:focus={e => {
+			if (disabled) e.target.blur();
 		}}
-		{...inputProps}
+		class="text-area"
+		{disabled}
+		{readonly}
+		{placeholder}
+		{...$$restProps}
 		bind:innerText={value}
 	/>
 	<slot />

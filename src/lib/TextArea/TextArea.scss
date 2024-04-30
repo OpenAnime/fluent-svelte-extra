@@ -16,7 +16,6 @@
 	min-block-size: 30px;
 	padding: 6px 12px;
 	border-radius: var(--control-corner-radius);
-	color: var(--text-primary);
 	background-color: transparent;
 	&:empty:before {
 		content: attr(placeholder);
@@ -53,7 +52,9 @@
 			background-color: var(--control-fill-secondary);
 		}
 		&.disabled {
-			cursor: default;
+			cursor: default !important;
+
+			color: var(--text-disabled) !important;
 			background-color: var(--control-fill-disabled);
 			.text-area-underline {
 				display: none;

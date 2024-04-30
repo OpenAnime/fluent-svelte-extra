@@ -92,6 +92,8 @@
 	let trgt = null;
 	let buffervl;
 
+	let disabled = false;
+
 	onMount(() => {
 		trgt = document.querySelector(".page-section");
 		setInterval(() => {
@@ -115,6 +117,10 @@
 			]);
 			autoSuggestComp.setMatches(["Apple", "Orange", "Grape", "Cherry"]);
 		}, 5000);
+
+		setInterval(() => {
+			disabled = !disabled;
+		}, 2000);
 	});
 
 	let menuGroup = 0;
@@ -882,6 +888,7 @@
 		<TextArea
 			bind:value={textareaValue}
 			placeholder="test"
+			{disabled}
 			disableBottomBorder={true}
 			style="max-height:10rem; min-height:3rem; pointer-events:all;"
 		/>
