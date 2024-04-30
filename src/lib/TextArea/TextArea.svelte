@@ -67,7 +67,8 @@ textarea.
 		bind:this={textAreaElement}
 		use:forwardEvents
 		on:keypress={e => {
-			if (maxLength != undefined && this.innerText.length + 1 > maxLength) e.preventDefault();
+			if (maxLength != undefined && textAreaElement.innerText.length + 1 > maxLength)
+				e.preventDefault();
 		}}
 		on:paste={e => {
 			if (includeImages) return;
@@ -79,7 +80,8 @@ textarea.
 				e.preventDefault();
 			}
 
-			if (this.innerText.length + pastedData.length > maxLength) e.preventDefault();
+			if (textAreaElement.innerText.length + pastedData.length > maxLength)
+				e.preventDefault();
 		}}
 		on:focus={e => {
 			if (disabled) e.target.blur();
