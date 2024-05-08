@@ -21,7 +21,8 @@
 		color: var(--text-secondary);
 		background-color: var(--subtle-fill-tertiary);
 	}
-	&:disabled {
+	&:disabled,
+	&.disabled {
 		background-color: var(--subtle-fill-disabled);
 		color: var(--text-disabled);
 	}
