@@ -8,7 +8,11 @@ Components that we develop won't be in docs. But you can view the detailed usage
 
 # Switching between themes
 
-Along with the new components, we have also added the ability to switch between dark and light themes. To switch between themes you should import `fluent-svelte-extra/switchable.css` in your layout.svelte file and add `fds-theme-dark` or `fds-theme-light` to your `<html>` tag in app.html file.
+Along with the new components, we have also added the ability to switch between dark and light themes. To switch between themes you should import `fluent-svelte-extra/switchable.css` in your layout.svelte file and add `fds-theme-dark` or `fds-theme-light` classes to your `<html>` tag in app.html file. `fluent-svelte-extra/switchable.css` does not contain anything that can be controlled by `prefers-color-scheme`
+
+If you use `fluent-svelte-extra/theme.css` it will use the system default until you add `fds-theme-dark` or `fds-theme-light` classes to your `<html>` tag.
+
+Based on your needs, you can select a file which will be the best fit for your project.
 
 # Note
 

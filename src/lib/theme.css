@@ -407,7 +407,8 @@
 }
 
 /* Class Light Theme Colors */
-:global(.fds-theme-light) {
+.fds-theme-light {
+	color-scheme: light !important;
 	/* Text */
 	--fds-text-primary: hsla(0, 0%, 0%, 89.56%);
 	--fds-text-secondary: hsla(0, 0%, 0%, 60.63%);
@@ -573,7 +574,8 @@
 
 /* Class Dark Theme Colors */
 
-:global(.fds-theme-dark) {
+.fds-theme-dark {
+	color-scheme: dark !important;
 	/* Text */
 	--fds-text-primary: hsla(0, 0%, 100%, 100%);
 	--fds-text-secondary: hsla(0, 0%, 100%, 78.6%);
