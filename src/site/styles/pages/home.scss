@@ -2,6 +2,14 @@
 @use "src/site/styles/mixins" as *;
 
 :global {
+	.fds-theme-light #hero-section {
+		background: url("/bloom-mica-light.png") center/170% no-repeat !important;
+	}
+
+	.fds-theme-dark #hero-section {
+		background-image: url("/bloom-mica-dark.png") !important;
+	}
+
 	#hero-section {
 		@include flex($direction: column, $justify: center, $align: center);
 		position: relative;
