@@ -25,6 +25,8 @@
 	/** Specifies if the item should be styled as selected by the user. */
 	export let selected = false;
 
+	export let cascadingDirection: "right" | "left" = "right";
+
 	/** Marks a radio or toggle variant item as checked. */
 	export let checked = false;
 
@@ -171,6 +173,8 @@
 					style={cascading && cascadingPlacement == "end"
 						? "bottom: 0px; inset-block-start:unset;"
 						: "	--fds-menu-flyout-transition-offset: -50%;"}
+					style:left={cascadingDirection == "left" ? "0" : undefined}
+					style:transform={cascadingDirection == "left" ? "translateX(-100%)" : undefined}
 					class="menu-flyout-submenu-anchor"
 				>
 					<MenuFlyoutSurface bind:element={subMenuElement} bind:this={menu}>
