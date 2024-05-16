@@ -97,7 +97,7 @@
 		bind:this={backdropElement}
 	>
 		<div
-			class="content-dialog-container"
+			class="content-dialog-container {className}"
 			transition:scale|local={{
 				duration: getCSSDuration("--fds-control-fast-duration"),
 				start: 1.05,
@@ -106,7 +106,7 @@
 		>
 			<div
 				use:forwardEvents
-				class="content-dialog size-{size} {className}"
+				class="content-dialog size-{size}"
 				role="dialog"
 				aria-modal="true"
 				aria-labelledby={title && titleId}
