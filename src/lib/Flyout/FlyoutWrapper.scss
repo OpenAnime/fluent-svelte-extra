@@ -30,6 +30,7 @@
 		animation: flyout-in var(--control-normal-duration) var(--control-fast-out-slow-in-easing);
 		transform: var(--flyout-transform);
 		&.placement- {
+			--flyout-transform: translateX(0%);
 			&top {
 				bottom: calc(100% + var(--flyout-offset));
 				--flyout-transition-offset: translateY(12px);
@@ -51,9 +52,11 @@
 				&.alignment- {
 					&start {
 						inset-inline-start: 0;
+						--flyout-transform: translateX(0%);
 					}
 					&end {
 						inset-inline-end: 0;
+						--flyout-transform: translateX(0%);
 					}
 					&center {
 						inset-inline-start: 50%;
@@ -66,9 +69,11 @@
 				&.alignment- {
 					&start {
 						inset-block-start: 0;
+						--flyout-transform: translateY(0%);
 					}
 					&end {
 						inset-block-end: 0;
+						--flyout-transform: translateY(0%);
 					}
 					&center {
 						inset-block-start: 50%;
