@@ -6,6 +6,8 @@
 	/** Obtains a bound DOM reference to the surface element. */
 	export let element: HTMLUListElement = null;
 
+	export let acrylic = true;
+
 	let animationComplete = false;
 </script>
 
@@ -16,10 +18,15 @@
 	<ul
 		on:animationend|once={() => (animationComplete = true)}
 		class="menu-flyout {className}"
+		class:acrylic
 		bind:this={element}
 		{...$$restProps}
 	>
-		<slot />
+		<div class="menu-flyout-background"></div>
+
+		<div class="menu-flyout-items">
+			<slot />
+		</div>
 	</ul>
 </div>
 

@@ -69,6 +69,8 @@
 
 	export let cascadingDelay = 500;
 
+	export let cascadingAcrylic = true;
+
 	const forwardEvents = createEventForwarder(get_current_component());
 	const dispatch = createEventDispatcher();
 	const closeFlyout = getContext<(event: Event) => void>("closeFlyout");
@@ -179,7 +181,11 @@
 					style:transform={cascadingDirection == "left" ? "translateX(-100%)" : undefined}
 					class="menu-flyout-submenu-anchor"
 				>
-					<MenuFlyoutSurface bind:element={subMenuElement} bind:this={menu}>
+					<MenuFlyoutSurface
+						bind:element={subMenuElement}
+						bind:this={menu}
+						acrylic={cascadingAcrylic}
+					>
 						<slot name="flyout" />
 					</MenuFlyoutSurface>
 				</div>
