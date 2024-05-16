@@ -67,6 +67,8 @@
 	/** Obtains a bound DOM reference to the inner submenumenu element, which is present if the item is cascading and the submenu is visible. */
 	export let subMenuElement: HTMLUListElement = null;
 
+	export let cascadingDelay = 500;
+
 	const forwardEvents = createEventForwarder(get_current_component());
 	const dispatch = createEventDispatcher();
 	const closeFlyout = getContext<(event: Event) => void>("closeFlyout");
@@ -105,7 +107,7 @@
 		subMenuQueue.open = true;
 		setTimeout(() => {
 			if (subMenuQueue.open) open = true;
-		}, 500);
+		}, cascadingDelay);
 	}
 
 	function handleMouseLeave(e) {
@@ -113,7 +115,7 @@
 		subMenuQueue.open = false;
 		setTimeout(() => {
 			if (subMenuQueue.close) open = false;
-		}, 500);
+		}, cascadingDelay);
 	}
 </script>
 
