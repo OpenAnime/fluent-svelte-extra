@@ -445,6 +445,8 @@
 		/>
 		<Slider value={50} max={9000000} step={20} on:userUpdate={e => console.log(e.detail)} />
 		<Slider bind:bufferValue={buffervl} value={100} min={1000} max={5000} />
+
+		<Slider min={0} max={100} value={50} loading bufferValue={20}></Slider>
 	</div>
 
 	<h4>Ticks</h4>

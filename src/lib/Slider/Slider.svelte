@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { createEventForwarder, TooltipSurface } from "$lib/internal";
+	import ProgressBar from "fluent-svelte/ProgressBar/ProgressBar.svelte";
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";
 
@@ -38,6 +39,8 @@
 
 	/** Determines the slider's orientation. */
 	export let orientation: "vertical" | "horizontal" = "horizontal";
+
+	export let loading = false;
 
 	/** Determines if the slider track will be in reverse direction. */
 	export let reverse = false;
@@ -132,8 +135,8 @@
 					? right
 					: left
 				: directionAwareReverse
-				? top
-				: bottom;
+					? top
+					: bottom;
 		const length = orientation === "horizontal" ? width : height;
 
 		let nextStep =
@@ -307,6 +310,12 @@ A slider is a control that lets the user select from a range of values by moving
 	<div class="slider-rail" bind:this={railElement}>
 		{#if track}
 			<div class="slider-track" bind:this={trackElement} />
+		{/if}
+
+		{#if loading}
+			<div class="slider-loading-track">
+				<ProgressBar></ProgressBar>
+			</div>
 		{/if}
 
 		{#if bufferValue > 0}

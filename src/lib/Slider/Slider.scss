@@ -50,6 +50,11 @@
 					block-size: 100%;
 				}
 
+				&loading-track {
+					width: 100%;
+					z-index: 1;
+				}
+
 				&thumb {
 					inset-inline-start: calc(var(--slider-percentage) + var(--slider-thumb-offset));
 					transform: translateX(-50%);
