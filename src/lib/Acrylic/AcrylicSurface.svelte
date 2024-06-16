@@ -4,7 +4,6 @@
 
 	/** @restProps */
 
-
 	/** Specifies a custom class name for the surface. */
 	let className = "";
 	export { className as class };

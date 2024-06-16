@@ -4,7 +4,6 @@
 	export { className as class };
 </script>
 
-
 <button class="flipper {className}" on:click {...$$restProps}>
 	{#if direction === "right"}
 		<svg
@@ -61,7 +60,7 @@
 	}
 
 	.flipper:hover {
-        color: var(--fds-text-primary);
+		color: var(--fds-text-primary);
 	}
 
 	.flipper:hover > svg {

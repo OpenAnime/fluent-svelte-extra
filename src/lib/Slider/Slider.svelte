@@ -102,20 +102,14 @@
 
 	const bufferValueToPercentage = v => (v * 100) / max;
 
-	/*
-	
-	5000   100
-						x
-	3000    ? = 60
----------------
-
-	(3000 * 100) / 5000
-
-	*/
-
 	function cancelMove() {
 		holding = false;
 		dragging = false;
+
+		if (sliderThumbHolding) {
+			sliderThumbHolding = false;
+			dispatch("userHoldEnd");
+		}
 	}
 
 	function handleMove() {
@@ -135,8 +129,8 @@
 					? right
 					: left
 				: directionAwareReverse
-					? top
-					: bottom;
+				? top
+				: bottom;
 		const length = orientation === "horizontal" ? width : height;
 
 		let nextStep =
@@ -279,21 +273,21 @@ A slider is a control that lets the user select from a range of values by moving
 		}}
 		on:mouseup|preventDefault={() => {
 			if (sliderThumbHolding) {
+				sliderThumbHolding = false;
 				dispatch("userHoldEnd");
 			}
-			sliderThumbHolding = false;
 		}}
 		on:touchend|preventDefault={() => {
 			if (sliderThumbHolding) {
+				sliderThumbHolding = false;
 				dispatch("userHoldEnd");
 			}
-			sliderThumbHolding = false;
 		}}
 		on:touchcancel|preventDefault={() => {
 			if (sliderThumbHolding) {
+				sliderThumbHolding = false;
 				dispatch("userHoldEnd");
 			}
-			sliderThumbHolding = false;
 		}}
 		on:touchstart={handleTouchStart}
 		on:keydown={handleArrowKeys}
@@ -314,7 +308,7 @@ A slider is a control that lets the user select from a range of values by moving
 
 		{#if loading}
 			<div class="slider-loading-track">
-				<ProgressBar></ProgressBar>
+				<ProgressBar />
 			</div>
 		{/if}
 

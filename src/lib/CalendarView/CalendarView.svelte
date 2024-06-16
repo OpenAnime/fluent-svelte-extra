@@ -500,8 +500,8 @@ A calendar view lets a user view and interact with a calendar that they can navi
 	<header class="calendar-view-header">
 		<div class="calendar-view-header-text" role="heading" aria-live="polite">
 			<button
-                on:click={() => updateView(view === "days" ? "months" : "years")}
-                type="button"
+				on:click={() => updateView(view === "days" ? "months" : "years")}
+				type="button"
 				disabled={view === "years"}>{header}</button
 			>
 		</div>

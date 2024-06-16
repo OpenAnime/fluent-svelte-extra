@@ -22,7 +22,7 @@
 		bind:this={element}
 		{...$$restProps}
 	>
-		<div class="menu-flyout-background"></div>
+		<div class="menu-flyout-background" />
 
 		<div class="menu-flyout-items">
 			<slot />
