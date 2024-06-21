@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { get_current_component } from "svelte/internal";
-	import { externalMouseEvents, createEventForwarder, conditionalEvent } from "$lib/internal";
+	import { externalMouseEvents, createEventForwarder } from "$lib/internal";
 
 	/** The input's current value. */
 	export let value: any = "";
@@ -76,8 +76,12 @@ textarea.
 			const pastedData = e.clipboardData.getData("text");
 			const regex = /^[a-zA-Z0-9@  `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]+$/;
 
-			if (regex.test(pastedData) !== true) {
-				e.preventDefault();
+			const emojiRegex = /\p{Emoji}/u;
+
+			if (emojiRegex.test(pastedData) !== true) {
+				if (regex.test(pastedData) !== true) {
+					e.preventDefault();
+				}
 			}
 
 			if (textAreaElement.innerText.length + pastedData.length > maxLength)
