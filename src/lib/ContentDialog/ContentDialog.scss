@@ -23,7 +23,7 @@
 	}
 
 	&-container {
-		@include flex($direction: row, $align: start);
+		@include flex($direction: row, $align: start, $justify: center);
 		#close-button {
 			@include flex($direction: column, $align: center, $justify: center);
 			color: var(--text-primary);
