@@ -146,21 +146,38 @@
 
 	<h3>TeachingTip</h3>
 	<div class="showcase-group">
-		<TeachingTip placement="right" bind:open={teachingRightOpen} closeOnBackdropClick>
+		<TeachingTip placement="right" bind:open={teachingRightOpen} title="Title">
 			<Button variant="accent">Right Flyout</Button>
 			<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
 		</TeachingTip>
-		<TeachingTip placement="left" bind:open={teachingLeftOpen}>
+		<TeachingTip placement="left" bind:open={teachingLeftOpen} title="Title">
 			<Button variant="accent">Left Flyout</Button>
 			<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
 		</TeachingTip>
-		<TeachingTip placement="top" bind:open={teachingTopOpen}>
+		<TeachingTip placement="top" bind:open={teachingTopOpen} title="Title" src="https://fluent-svelte.vercel.app/bloom-mica-light.png">
 			<Button variant="accent">Top Flyout</Button>
 			<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
 		</TeachingTip>
-		<TeachingTip placement="bottom" bind:open={teachingBottomOpen}>
+		<TeachingTip placement="bottom" bind:open={teachingBottomOpen} title="Title" src="https://fluent-svelte.vercel.app/bloom-mica-light.png">
 			<Button variant="accent">Bottom Flyout</Button>
 			<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
+			<svelte:fragment slot="footer">
+				<Button
+					variant="accent"
+					on:click={() => {
+						dialogOpen = false;
+						dialogResult = "Save";
+					}}
+					>Save
+				</Button>
+				<Button
+					on:click={() => {
+						dialogOpen = false;
+						dialogResult = "Cancel";
+					}}
+					>Cancel
+				</Button>
+			</svelte:fragment>
 		</TeachingTip>
 	</div>
 

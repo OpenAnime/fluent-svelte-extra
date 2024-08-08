@@ -1,3 +1,4 @@
+@use "../mixins" as *;
 
 .teaching-tip- {
 	&wrapper {
@@ -6,6 +7,7 @@
 		block-size: fit-content;
 		position: relative;
 	}
+
 	&backdrop {
 		position: fixed;
 		top: 0;
@@ -14,32 +16,127 @@
 		block-size: 100%;
 		z-index: 9999;
 	}
+
+	&content {
+		position: relative;
+		@include flex($direction: column, $justify: flex-start, $align: flex-start);
+		padding: 9px 12px 11px 12px;
+	}
+
+	&footer {
+		margin-block-start: 8px;
+		display: grid;
+		grid-auto-rows: 1fr;
+		grid-auto-flow: column;
+		grid-gap: 8px;
+		border-block-start: 1px solid var(--card-stroke-default);
+		white-space: nowrap;
+
+		> :global(.button:only-child) {
+			inline-size: 50%;
+			justify-self: end;
+		}
+	}
+
+	&image {
+		display: block;
+		max-inline-size: 100%;
+		max-block-size: 100%;
+		position: relative;
+		z-index: 10;
+
+		&.placement- {
+			&top {
+				margin-block-end: 4px;
+				border-radius: var(--overlay-corner-radius) var(--overlay-corner-radius) 0 0;
+			}
+
+			&bottom {
+				margin-block-start: 4px;
+				border-radius: 0 0 var(--overlay-corner-radius) var(--overlay-corner-radius);
+			}
+		}
+	}
+
+	&caret {
+		position: absolute;
+		z-index: 10000;
+		color: var(--solid-background-quarternary);
+
+		& .stroke {
+			color: var(--surface-stroke-default)
+		}
+	}
+
 	&anchor {
+		:global(.teaching-tip-close-button) {
+			position: absolute;
+			inset-block-start: 6px;
+			inset-inline-end: 6px;
+			color: var(--text-primary);
+			z-index: 5;
+
+			& :global(svg) {
+				inline-size: 12px;
+				block-size: 12px;
+			}
+		}
+
 		position: absolute;
 		z-index: 10000;
 		transform: var(--teaching-tip-transform);
+
 		&.placement- {
 			--teaching-tip-transform: translateX(0%);
+
 			&top {
-                transform-origin: bottom;
+				& .teaching-tip-caret {
+					bottom: -8px;
+					left: 50%;
+					transform: translate(-50%, 0%);
+				}
+
+				transform-origin: bottom;
 				bottom: calc(100% + var(--teaching-tip-offset));
 				--teaching-tip-transition-offset: translateY(12px);
 			}
+
 			&bottom {
-                transform-origin: top;
+				& .teaching-tip-caret {
+					top: -8px;
+					left: 50%;
+					transform: translate(-50%, 0%) rotate(180deg);
+				}
+
+				transform-origin: top;
 				top: calc(100% + var(--teaching-tip-offset));
 				--teaching-tip-transition-offset: translateY(-12px);
 			}
+
 			&left {
-                transform-origin: right;
+				& .teaching-tip-caret {
+					right: -11px;
+					top: 50%;
+					transform: translate(0%, -50%) rotate(270deg);
+				}
+
+				transform-origin: right;
 				right: calc(100% + var(--teaching-tip-offset));
 				--teaching-tip-transition-offset: translateX(12px);
 			}
+
 			&right {
-                transform-origin: left;
+				& .teaching-tip-caret {
+					left: -11px;
+					top: 50%;
+					transform: translate(0%, -50%) rotate(90deg);
+				}
+
+				transform-origin: left;
 				left: calc(100% + var(--teaching-tip-offset));
 				--teaching-tip-transition-offset: translateX(-12px);
 			}
+
 			&top,
 			&bottom {
 				&.alignment- {
@@ -47,16 +144,19 @@
 						inset-inline-start: 0;
 						--teaching-tip-transform: translateX(0%);
 					}
+
 					&end {
 						inset-inline-end: 0;
 						--teaching-tip-transform: translateX(0%);
 					}
+
 					&center {
 						inset-inline-start: 50%;
 						--teaching-tip-transform: translateX(-50%);
 					}
 				}
 			}
+
 			&left,
 			&right {
 				&.alignment- {
@@ -64,10 +164,12 @@
 						inset-block-start: 0;
 						--teaching-tip-transform: translateY(0%);
 					}
+
 					&end {
 						inset-block-end: 0;
 						--teaching-tip-transform: translateY(0%);
 					}
+
 					&center {
 						inset-block-start: 50%;
 						--teaching-tip-transform: translateY(-50%);

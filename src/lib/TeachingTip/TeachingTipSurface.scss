@@ -2,7 +2,7 @@
 
 .teaching-tip {
     @include typography-body;
-    padding: 16px;
+    @include flex($direction: column, $justify: flex-start, $align: flex-start);
     min-inline-size: 320px;
     box-sizing: border-box;
     color: var(--text-primary);
@@ -11,4 +11,5 @@
     background-color: var(--solid-background-quarternary);
     background-clip: padding-box;
     box-shadow: var(--flyout-shadow);
+
 }
