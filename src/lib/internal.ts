@@ -54,7 +54,10 @@ export function externalMouseEvents(
 
 // Basic wrapper action around focus-trap
 export function focusTrap(node: HTMLElement, options?: FocusTrapOptions) {
-	const trap = createFocusTrap(node, (options = { ...options, fallbackFocus: node }));
+	const trap = createFocusTrap(
+		node,
+		(options = { allowOutsideClick: true, ...options, fallbackFocus: node })
+	);
 	trap.activate();
 
 	return {

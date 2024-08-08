@@ -131,6 +131,11 @@
 	let textareaValue = "";
 
 	$: console.log(textareaValue);
+
+	let teachingRightOpen = false;
+	let teachingLeftOpen = false;
+	let teachingTopOpen = false;
+	let teachingBottomOpen = false;
 </script>
 
 <div style="height: 56px;" />
@@ -138,22 +143,22 @@
 <PageSection>
 	<h2>fluent-svelte test page</h2>
 	<p>Made with <a href="https://kit.svelte.dev">SvelteKit</a></p>
-    
+
 	<h3>TeachingTip</h3>
 	<div class="showcase-group">
-		<TeachingTip placement="right" bind:open={flyoutRightOpen}>
+		<TeachingTip placement="right" bind:open={teachingRightOpen} closeOnBackdropClick>
 			<Button variant="accent">Right Flyout</Button>
 			<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
 		</TeachingTip>
-		<TeachingTip placement="left" bind:open={flyoutLeftOpen}>
+		<TeachingTip placement="left" bind:open={teachingLeftOpen}>
 			<Button variant="accent">Left Flyout</Button>
 			<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
 		</TeachingTip>
-		<TeachingTip placement="top" bind:open={flyoutTopOpen}>
+		<TeachingTip placement="top" bind:open={teachingTopOpen}>
 			<Button variant="accent">Top Flyout</Button>
 			<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
 		</TeachingTip>
-		<TeachingTip placement="bottom" bind:open={flyoutBottomOpen}>
+		<TeachingTip placement="bottom" bind:open={teachingBottomOpen}>
 			<Button variant="accent">Bottom Flyout</Button>
 			<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
 		</TeachingTip>
@@ -535,9 +540,7 @@
 			Expander Up
 			<svelte:fragment slot="content">hihihihi</svelte:fragment>
 		</Expander>
-		<Expander expandable={false}>
-			 Not Expandable
-		</Expander>
+		<Expander expandable={false}>Not Expandable</Expander>
 	</div>
 
 	<h3>Text Block</h3>

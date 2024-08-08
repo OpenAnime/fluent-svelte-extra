@@ -12,8 +12,8 @@
 	/** Determines if the teaching-tip can be closed using conventional user interaction. */
 	export let closable = true;
 
-    /** Determines if the teaching-tip can be closed by clicking outside of it. */
-    export let closeOnBackdropClick = false;
+	/** Determines if the teaching-tip can be closed by clicking outside of it. */
+	export let closeOnBackdropClick = false;
 
 	/** Determines if the teaching-tip can be clicked. */
 	export let enableClick = true;
@@ -106,16 +106,16 @@ TeachingTips represent a control that displays lightweight UI that is either inf
 			class="teaching-tip-anchor placement-{placement} alignment-{alignment}"
 			style="--fds-teaching-tip-offset: {offset}px;"
 			use:_focusTrap
-            in:scale|local={{
-                duration: getCSSDuration("--fds-control-slow-duration"),
-                easing: expoOut,
-                opacity: 1
-            }}
-            out:scale|local={{
-                duration: getCSSDuration("--fds-control-slow-duration"),
-                easing: expoIn,
-                opacity: 1
-            }}
+			in:scale|local={{
+				duration: getCSSDuration("--fds-control-slow-duration"),
+				easing: expoOut,
+				opacity: 1
+			}}
+			out:scale|local={{
+				duration: getCSSDuration("--fds-control-slow-duration"),
+				easing: expoIn,
+				opacity: 1
+			}}
 			bind:this={anchorElement}
 			on:click={e => e.stopPropagation()}
 			{...$$restProps}
