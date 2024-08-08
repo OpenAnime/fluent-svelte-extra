@@ -93,7 +93,7 @@ Expanders are controls that display a header and a collapsable content area. The
 			aria-controls={contentId}
 			class="expander-header"
 			aria-expanded={expanded}
-			tabindex="0"
+			tabindex={expandable ? 0 : -1}
 			bind:this={headerElement}
 			on:keydown={handleKeydown}
 			on:click={() => {

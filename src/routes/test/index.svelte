@@ -11,6 +11,7 @@
 		ContextMenu,
 		Expander,
 		Flyout,
+		TeachingTip,
 		IconButton,
 		InfoBadge,
 		InfoBar,
@@ -137,6 +138,26 @@
 <PageSection>
 	<h2>fluent-svelte test page</h2>
 	<p>Made with <a href="https://kit.svelte.dev">SvelteKit</a></p>
+    
+	<h3>TeachingTip</h3>
+	<div class="showcase-group">
+		<TeachingTip placement="right" bind:open={flyoutRightOpen}>
+			<Button variant="accent">Right Flyout</Button>
+			<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
+		</TeachingTip>
+		<TeachingTip placement="left" bind:open={flyoutLeftOpen}>
+			<Button variant="accent">Left Flyout</Button>
+			<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
+		</TeachingTip>
+		<TeachingTip placement="top" bind:open={flyoutTopOpen}>
+			<Button variant="accent">Top Flyout</Button>
+			<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
+		</TeachingTip>
+		<TeachingTip placement="bottom" bind:open={flyoutBottomOpen}>
+			<Button variant="accent">Bottom Flyout</Button>
+			<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
+		</TeachingTip>
+	</div>
 
 	<h3>Buttons</h3>
 	<div class="showcase-group">
@@ -513,6 +534,9 @@
 		<Expander direction="up">
 			Expander Up
 			<svelte:fragment slot="content">hihihihi</svelte:fragment>
+		</Expander>
+		<Expander expandable={false}>
+			 Not Expandable
 		</Expander>
 	</div>
 

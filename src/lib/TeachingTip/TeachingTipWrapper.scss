@@ -1,0 +1,79 @@
+
+.teaching-tip- {
+	&wrapper {
+		display: inline-block;
+		inline-size: fit-content;
+		block-size: fit-content;
+		position: relative;
+	}
+	&backdrop {
+		position: fixed;
+		top: 0;
+		left: 0;
+		inline-size: 100%;
+		block-size: 100%;
+		z-index: 9999;
+	}
+	&anchor {
+		position: absolute;
+		z-index: 10000;
+		transform: var(--teaching-tip-transform);
+		&.placement- {
+			--teaching-tip-transform: translateX(0%);
+			&top {
+                transform-origin: bottom;
+				bottom: calc(100% + var(--teaching-tip-offset));
+				--teaching-tip-transition-offset: translateY(12px);
+			}
+			&bottom {
+                transform-origin: top;
+				top: calc(100% + var(--teaching-tip-offset));
+				--teaching-tip-transition-offset: translateY(-12px);
+			}
+			&left {
+                transform-origin: right;
+				right: calc(100% + var(--teaching-tip-offset));
+				--teaching-tip-transition-offset: translateX(12px);
+			}
+			&right {
+                transform-origin: left;
+				left: calc(100% + var(--teaching-tip-offset));
+				--teaching-tip-transition-offset: translateX(-12px);
+			}
+			&top,
+			&bottom {
+				&.alignment- {
+					&start {
+						inset-inline-start: 0;
+						--teaching-tip-transform: translateX(0%);
+					}
+					&end {
+						inset-inline-end: 0;
+						--teaching-tip-transform: translateX(0%);
+					}
+					&center {
+						inset-inline-start: 50%;
+						--teaching-tip-transform: translateX(-50%);
+					}
+				}
+			}
+			&left,
+			&right {
+				&.alignment- {
+					&start {
+						inset-block-start: 0;
+						--teaching-tip-transform: translateY(0%);
+					}
+					&end {
+						inset-block-end: 0;
+						--teaching-tip-transform: translateY(0%);
+					}
+					&center {
+						inset-block-start: 50%;
+						--teaching-tip-transform: translateY(-50%);
+					}
+				}
+			}
+		}
+	}
+}
