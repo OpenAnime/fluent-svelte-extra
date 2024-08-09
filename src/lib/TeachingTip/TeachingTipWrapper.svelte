@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { createEventDispatcher } from "svelte";
 	import { uid, focusTrap, getCSSDuration } from "$lib/internal";
-	import { IconButton, TextBlock } from "$lib";
+	import IconButton from "../IconButton/IconButton.svelte"
+	import TextBlock from "../TextBlock/TextBlock.svelte";
 	import { scale, type ScaleParams } from "svelte/transition";
 	import { expoIn, expoOut } from "svelte/easing";
 
