@@ -1,15 +1,14 @@
 @use "../mixins" as *;
 
 .teaching-tip {
-    @include typography-body;
-    @include flex($direction: column, $justify: flex-start, $align: flex-start);
-    min-inline-size: 320px;
-    box-sizing: border-box;
-    color: var(--text-primary);
-    border-radius: var(--overlay-corner-radius);
-    border: 1px solid var(--surface-stroke-default);
-    background-color: var(--solid-background-quarternary);
-    background-clip: padding-box;
-    box-shadow: var(--flyout-shadow);
-
+	@include typography-body;
+	@include flex($direction: column, $justify: flex-start, $align: flex-start);
+	min-inline-size: 320px;
+	box-sizing: border-box;
+	color: var(--text-primary);
+	border-radius: var(--overlay-corner-radius);
+	border: 1px solid var(--surface-stroke-default);
+	background-color: var(--solid-background-quarternary);
+	background-clip: padding-box;
+	box-shadow: var(--flyout-shadow);
 }

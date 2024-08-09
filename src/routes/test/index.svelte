@@ -154,11 +154,21 @@
 			<Button variant="accent">Left Flyout</Button>
 			<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
 		</TeachingTip>
-		<TeachingTip placement="top" bind:open={teachingTopOpen} title="Title" src="https://fluent-svelte.vercel.app/bloom-mica-light.png">
+		<TeachingTip
+			placement="top"
+			bind:open={teachingTopOpen}
+			title="Title"
+			src="https://fluent-svelte.vercel.app/bloom-mica-light.png"
+		>
 			<Button variant="accent">Top Flyout</Button>
 			<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
 		</TeachingTip>
-		<TeachingTip placement="bottom" bind:open={teachingBottomOpen} title="Title" src="https://fluent-svelte.vercel.app/bloom-mica-light.png">
+		<TeachingTip
+			placement="bottom"
+			bind:open={teachingBottomOpen}
+			title="Title"
+			src="https://fluent-svelte.vercel.app/bloom-mica-light.png"
+		>
 			<Button variant="accent">Bottom Flyout</Button>
 			<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
 			<svelte:fragment slot="footer">
