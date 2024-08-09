@@ -19,7 +19,7 @@
 
 	&content {
 		position: relative;
-		@include flex($direction: column, $justify: flex-start, $align: flex-start);
+		@include flex($direction: column, $justify: start, $align: start);
 		padding: 9px 12px 11px 12px;
 	}
 
