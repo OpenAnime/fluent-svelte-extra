@@ -2,7 +2,7 @@
 	import { createEventDispatcher } from "svelte";
 	import { uid, focusTrap, getCSSDuration } from "$lib/internal";
 	import { IconButton, TextBlock } from "$lib";
-	import { fade, scale } from "svelte/transition";
+	import { scale, type ScaleParams } from "svelte/transition";
 	import { expoIn, expoOut } from "svelte/easing";
 
 	import TeachingTipSurface from "./TeachingTipSurface.svelte";
@@ -27,6 +27,8 @@
 
 	/** Direction that the teaching-tip will be opened from. */
 	export let placement: "top" | "bottom" | "left" | "right" = "top";
+
+	const initialPlacement: typeof placement = placement;
 
 	/** Determines the direction of the image element. */
 	export let imagePlacement: "top" | "bottom" = placement === "top" ? "bottom" : "top";
@@ -66,6 +68,7 @@
 	const menuId = uid("fds-teaching-tip-anchor-");
 
 	$: _focusTrap = trapFocus ? focusTrap : () => {};
+
 	$: if (open) {
 		dispatch("open");
 	} else {
@@ -73,12 +76,13 @@
 	}
 
 	function handleEscapeKey({ key }: KeyboardEvent) {
-		if (key === "Escape" && closable) open = false;
+		if (key === "Escape") closeTeachingTip();
 	}
 
 	function closeTeachingTip() {
 		if (closable) open = false;
 	}
+
 	function backdropClick() {
 		if (closeOnBackdropClick) closeTeachingTip();
 	}
@@ -86,9 +90,50 @@
 	function handleKeyDown(event: KeyboardEvent) {
 		if (event.key === " " || event.key === "Enter") {
 			event.preventDefault();
-			open = !open;
+
+			open = !(open && closable);
 		}
 	}
+
+	let anchorElementWidth: number;
+	let anchorElementHeight: number;
+
+	async function handleResize() {
+		if (!anchorElement) return;
+
+		const { x, y, width, height } = anchorElement.getBoundingClientRect();
+
+		const screenWidth = window.innerWidth;
+		const screenHeight = window.innerHeight;
+
+		if (placement === "top" && y < 0) {
+			placement = "bottom";
+		} else if (placement === "bottom" && y + height > screenHeight) {
+			placement = "top";
+		} else if (placement === "left" && x < 0) {
+			placement = "right";
+		} else if (placement === "right" && x + width > screenWidth) {
+			placement = "left";
+		}
+	}
+
+	let imageHeight: number = 0;
+
+	function customScale(node: HTMLElement, params: ScaleParams & { intro?: boolean }) {
+		if (params?.intro) {
+			handleResize();
+		}
+
+		return scale(node, params);
+	}
+
+	$: {
+		if (anchorElementWidth || anchorElementHeight || anchorElement || open || imageHeight) {
+			handleResize();
+		}
+	}
+
+	let resizeTimeout: NodeJS.Timeout;
 </script>
 
 <!--
@@ -105,7 +150,14 @@ TeachingTips represent a control that displays lightweight UI that is either inf
     ```
 -->
 
-<svelte:window on:keydown={handleEscapeKey} />
+<svelte:window
+	on:keydown={handleEscapeKey}
+	on:resize={() => {
+		clearTimeout(resizeTimeout);
+
+		resizeTimeout = setTimeout(handleResize, 100);
+	}}
+/>
 
 <div
 	class="teaching-tip-wrapper {className}"
@@ -119,30 +171,38 @@ TeachingTips represent a control that displays lightweight UI that is either inf
 	bind:this={wrapperElement}
 >
 	<slot />
+
 	{#if open}
 		<div
 			id={menuId}
 			class="teaching-tip-anchor placement-{placement} alignment-{alignment}"
 			style="--fds-teaching-tip-offset: {offset}px;"
 			use:_focusTrap
-			in:scale|local={{
+			in:customScale|local={{
 				duration: getCSSDuration("--fds-control-slow-duration"),
 				easing: expoOut,
-				opacity: 1
+				opacity: 1,
+				start: 0.1,
+				intro: true
 			}}
-			out:scale|local={{
+			out:customScale|local={{
 				duration: getCSSDuration("--fds-control-slow-duration"),
 				easing: expoIn,
-				opacity: 1
+				opacity: 1,
+				start: 0.1
 			}}
 			bind:this={anchorElement}
+			bind:clientHeight={anchorElementHeight}
+			bind:clientWidth={anchorElementWidth}
 			on:click={e => e.stopPropagation()}
 			{...$$restProps}
 		>
 			<slot name="override">
 				<TeachingTipSurface bind:element={menuElement}>
 					{#if src && imagePlacement === "top"}
-						<img class="teaching-tip-image placement-top" {src} alt={title} />
+						<div bind:clientHeight={imageHeight}>
+							<img class="teaching-tip-image placement-top" {src} alt={title} />
+						</div>
 					{/if}
 					<div class="teaching-tip-content">
 						{#if closeButton}
@@ -201,6 +261,7 @@ TeachingTips represent a control that displays lightweight UI that is either inf
 			</svg>
 		</div>
 		{#if closeOnBackdropClick}
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<div
 				class="teaching-tip-backdrop"
 				bind:this={backdropElement}
