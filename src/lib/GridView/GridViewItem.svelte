@@ -51,13 +51,21 @@
 	}
 </script>
 
+<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 <div
 	class="grid-view-item"
 	class:selected
 	{...$$restProps}
 	tabindex="0"
-	on:click={() => singleSelect && setSelected(!selected, false)}
-	on:keydown={e => e.key === "Enter" && singleSelect && setSelected(!selected, false)}
+	on:click={() => {
+		setSelected(!selected, false);
+		dispatch("change", { selected: selected });
+	}}
+	on:keydown={e => {
+		if (e.key !== "Enter") return;
+		setSelected(!selected, false);
+		dispatch("change", { selected: selected });
+	}}
 >
 	{#if !singleSelect}
 		<div class="item-checkbox">
