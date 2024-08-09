@@ -144,53 +144,6 @@
 	<h2>fluent-svelte test page</h2>
 	<p>Made with <a href="https://kit.svelte.dev">SvelteKit</a></p>
 
-	<h3>TeachingTip</h3>
-	<div class="showcase-group">
-		<TeachingTip placement="right" bind:open={teachingRightOpen} title="Title">
-			<Button variant="accent">Right Flyout</Button>
-			<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
-		</TeachingTip>
-		<TeachingTip placement="left" bind:open={teachingLeftOpen} title="Title">
-			<Button variant="accent">Left Flyout</Button>
-			<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
-		</TeachingTip>
-		<TeachingTip
-			placement="top"
-			bind:open={teachingTopOpen}
-			title="Title"
-			src="https://fluent-svelte.vercel.app/bloom-mica-light.png"
-		>
-			<Button variant="accent">Top Flyout</Button>
-			<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
-		</TeachingTip>
-		<TeachingTip
-			placement="bottom"
-			bind:open={teachingBottomOpen}
-			title="Title"
-			src="https://fluent-svelte.vercel.app/bloom-mica-light.png"
-		>
-			<Button variant="accent">Bottom Flyout</Button>
-			<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
-			<svelte:fragment slot="footer">
-				<Button
-					variant="accent"
-					on:click={() => {
-						dialogOpen = false;
-						dialogResult = "Save";
-					}}
-					>Save
-				</Button>
-				<Button
-					on:click={() => {
-						dialogOpen = false;
-						dialogResult = "Cancel";
-					}}
-					>Cancel
-				</Button>
-			</svelte:fragment>
-		</TeachingTip>
-	</div>
-
 	<h3>Buttons</h3>
 	<div class="showcase-group">
 		<Button>Button</Button>
@@ -318,7 +271,69 @@
 		<ProgressBar value={50} />
 		<ProgressBar />
 	</div>
-
+	<h3>TeachingTip</h3>
+	<div class="showcase-group" style="display: flex; justify-content: center;">
+		<TeachingTip
+			placement="right"
+			open={teachingRightOpen}
+			title="Title"
+			on:close={() => (teachingRightOpen = false)}
+		>
+			<Button variant="accent" on:click={() => (teachingRightOpen = !teachingRightOpen)}
+				>Right Flyout
+			</Button>
+			<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
+		</TeachingTip>
+		<TeachingTip placement="left" open={teachingLeftOpen} title="Title">
+			<Button variant="accent " on:click={() => (teachingLeftOpen = !teachingLeftOpen)}
+				>Left Flyout</Button>
+			<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
+			<Button slot="footer" variant="accent" on:click={() => (teachingLeftOpen = false)}
+				>Close
+			</Button>
+		</TeachingTip>
+		<TeachingTip
+			placement="top"
+			open={teachingTopOpen}
+			title="Title"
+			src="https://fluent-svelte.vercel.app/bloom-mica-light.png"
+			on:close={() => (teachingTopOpen = false)}
+		>
+			<Button variant="accent" on:click={() => (teachingTopOpen = !teachingTopOpen)}
+				>Top Flyout</Button
+			>
+			<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
+		</TeachingTip>
+		<TeachingTip
+			placement="bottom"
+			open={teachingBottomOpen}
+			title="Title"
+			src="https://fluent-svelte.vercel.app/bloom-mica-light.png"
+			on:close={() => (teachingBottomOpen = false)}
+		>
+			<Button variant="accent" on:click={() => (teachingBottomOpen = !teachingBottomOpen)}
+				>Bottom Flyout</Button
+			>
+			<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
+			<svelte:fragment slot="footer">
+				<Button
+					variant="accent"
+					on:click={() => {
+						teachingBottomOpen = false;
+						dialogResult = "Save";
+					}}
+					>Save
+				</Button>
+				<Button
+					on:click={() => {
+						teachingBottomOpen = false;
+						dialogResult = "Cancel";
+					}}
+					>Cancel
+				</Button>
+			</svelte:fragment>
+		</TeachingTip>
+	</div>
 	<h3>Flyout</h3>
 	<div class="showcase-group" style="display: flex; justify-content: center;">
 		<Flyout closable={false} bind:open={nonClosableFlyoutOpen}>
