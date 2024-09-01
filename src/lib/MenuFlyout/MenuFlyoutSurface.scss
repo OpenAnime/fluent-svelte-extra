@@ -48,9 +48,7 @@
 	}
 	.acrylic &-background {
 		background-color: unset !important;
-		background-blend-mode: luminosity;
-		background: linear-gradient(0deg, rgb(44, 44, 44, 15%), rgb(44, 44, 44, 15%)),
-			rgba(44, 44, 44, 80%);
+		background: var(--fds-acrylic-fallback-background-base);
 	}
 	&-items {
 		z-index: 1;

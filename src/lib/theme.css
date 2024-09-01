@@ -170,9 +170,7 @@
 
 		/* Layer on Acrylic */
 		--fds-layer-on-acrylic-background-default: hsla(0, 0%, 100%, 25%);
-		--fds-layer-on-accent-acrylic-background-default: var(
-			--fds-layer-on-acrylic-background-default
-		);
+		--fds-layer-on-accent-acrylic-background-default: var(--fds-layer-on-acrylic-background-default);
 
 		/* Solid Background */
 		--fds-solid-background-base: hsl(0, 0%, 95%);
@@ -186,6 +184,8 @@
 		/* Acrylic Background */
 		--fds-acrylic-background-default: transparent, rgba(252, 252, 252, 85%);
 		--fds-acrylic-background-base: transparent, rgba(243, 243, 243, 90%);
+		--fds-acrylic-fallback-background-base: linear-gradient(0deg, rgb(255, 255, 255, 50%), rgb(255, 255, 255, 10%)),
+			rgba(255, 255, 255, 10%);
 
 		/* Accent Acrylic Background */
 		/* --fds-accent-acrylic-background-base: url("NoiseAsset_256.png"), linear-gradient(0deg, rgba(153, 235, 255, 80%), rgba(153, 235, 255, 80%)), rgba(153, 235, 255, 90%); */
@@ -212,9 +212,7 @@
 		--fds-system-background-solid-neutral: hsl(0, 0%, 95%);
 
 		/* Borders */
-		--fds-control-border-default: var(--fds-control-stroke-default)
-			var(--fds-control-stroke-default) var(--fds-control-stroke-secondary)
-			var(--fds-control-stroke-default);
+		--fds-control-border-default: var(--fds-control-stroke-default) var(--fds-control-stroke-default) var(--fds-control-stroke-secondary) var(--fds-control-stroke-default);
 
 		/* Shadows */
 		--fds-card-shadow: 0px 2px 4px hsla(0, 0%, 0%, 4%);
@@ -350,18 +348,16 @@
 		/* --fds-mica-background-base: linear-gradient(0deg, rgb(32, 32, 32, 0.8), rgb(32, 32, 32, 0.8)), #202020; */
 
 		/* Acrylic Background */
-		--fds-acrylic-background-default: linear-gradient(
-				0deg,
+		--fds-acrylic-background-default: linear-gradient(0deg,
 				rgb(44, 44, 44, 15%),
-				rgb(44, 44, 44, 15%)
-			),
+				rgb(44, 44, 44, 15%)),
 			rgba(44, 44, 44, 96%);
-		--fds-acrylic-background-base: linear-gradient(
-				0deg,
+		--fds-acrylic-background-base: linear-gradient(0deg,
 				rgb(32, 32, 32, 50%),
-				rgb(32, 32, 32, 50%)
-			),
+				rgb(32, 32, 32, 50%)),
 			rgba(32, 32, 32, 96%);
+		--fds-acrylic-fallback-background-base: linear-gradient(0deg, rgb(44, 44, 44, 15%), rgb(44, 44, 44, 15%)),
+			rgba(44, 44, 44, 80%);
 
 		/* Accent Acrylic Background */
 		/* --fds-accent-acrylic-background-default: url("NoiseAsset_256.png"), linear-gradient(0deg, rgb(0, 120, 212, 80%), rgb(0, 120, 212, 80%)), rgb(0, 120, 212, 80%); */
@@ -388,9 +384,7 @@
 		--fds-system-background-solid-neutral: hsl(0, 0%, 62%);
 
 		/* Borders */
-		--fds-control-border-default: var(--fds-control-stroke-secondary)
-			var(--fds-control-stroke-default) var(--fds-control-stroke-default)
-			var(--fds-control-stroke-default);
+		--fds-control-border-default: var(--fds-control-stroke-secondary) var(--fds-control-stroke-default) var(--fds-control-stroke-default) var(--fds-control-stroke-default);
 
 		/* Shadows */
 		--fds-card-shadow: 0px 2px 4px hsla(0, 0%, 0%, 0.13);
@@ -513,9 +507,7 @@
 
 	/* Layer on Acrylic */
 	--fds-layer-on-acrylic-background-default: hsla(0, 0%, 100%, 25%);
-	--fds-layer-on-accent-acrylic-background-default: var(
-		--fds-layer-on-acrylic-background-default
-	);
+	--fds-layer-on-accent-acrylic-background-default: var(--fds-layer-on-acrylic-background-default);
 
 	/* Solid Background */
 	--fds-solid-background-base: hsl(0, 0%, 95%);
@@ -529,7 +521,8 @@
 	/* Acrylic Background */
 	--fds-acrylic-background-default: transparent, rgba(252, 252, 252, 85%);
 	--fds-acrylic-background-base: transparent, rgba(243, 243, 243, 90%);
-
+	--fds-acrylic-fallback-background-base: linear-gradient(0deg, rgb(255, 255, 255, 50%), rgb(255, 255, 255, 10%)),
+		rgba(255, 255, 255, 10%);
 	/* Accent Acrylic Background */
 	/* --fds-accent-acrylic-background-base: url("NoiseAsset_256.png"), linear-gradient(0deg, rgba(153, 235, 255, 80%), rgba(153, 235, 255, 80%)), rgba(153, 235, 255, 90%); */
 	/* --fds-accent-acrylic-background-default: url("NoiseAsset_256.png"), linear-gradient(0deg, rgba(153, 235, 255, 80%), rgba(153, 235, 255, 80%)), rgba(153, 235, 255, 90%); */
@@ -555,9 +548,7 @@
 	--fds-system-background-solid-neutral: hsl(0, 0%, 95%);
 
 	/* Borders */
-	--fds-control-border-default: var(--fds-control-stroke-default)
-		var(--fds-control-stroke-default) var(--fds-control-stroke-secondary)
-		var(--fds-control-stroke-default);
+	--fds-control-border-default: var(--fds-control-stroke-default) var(--fds-control-stroke-default) var(--fds-control-stroke-secondary) var(--fds-control-stroke-default);
 
 	/* Shadows */
 	--fds-card-shadow: 0px 2px 4px hsla(0, 0%, 0%, 4%);
@@ -692,14 +683,15 @@
 	/* --fds-mica-background-base: linear-gradient(0deg, rgb(32, 32, 32, 0.8), rgb(32, 32, 32, 0.8)), #202020; */
 
 	/* Acrylic Background */
-	--fds-acrylic-background-default: linear-gradient(
-			0deg,
+	--fds-acrylic-background-default: linear-gradient(0deg,
 			rgb(44, 44, 44, 15%),
-			rgb(44, 44, 44, 15%)
-		),
+			rgb(44, 44, 44, 15%)),
 		rgba(44, 44, 44, 96%);
 	--fds-acrylic-background-base: linear-gradient(0deg, rgb(32, 32, 32, 50%), rgb(32, 32, 32, 50%)),
 		rgba(32, 32, 32, 96%);
+
+	--fds-acrylic-fallback-background-base: linear-gradient(0deg, rgb(44, 44, 44, 15%), rgb(44, 44, 44, 15%)),
+		rgba(44, 44, 44, 80%);
 
 	/* Accent Acrylic Background */
 	/* --fds-accent-acrylic-background-default: url("NoiseAsset_256.png"), linear-gradient(0deg, rgb(0, 120, 212, 80%), rgb(0, 120, 212, 80%)), rgb(0, 120, 212, 80%); */
@@ -726,9 +718,7 @@
 	--fds-system-background-solid-neutral: hsl(0, 0%, 62%);
 
 	/* Borders */
-	--fds-control-border-default: var(--fds-control-stroke-secondary)
-		var(--fds-control-stroke-default) var(--fds-control-stroke-default)
-		var(--fds-control-stroke-default);
+	--fds-control-border-default: var(--fds-control-stroke-secondary) var(--fds-control-stroke-default) var(--fds-control-stroke-default) var(--fds-control-stroke-default);
 
 	/* Shadows */
 	--fds-card-shadow: 0px 2px 4px hsla(0, 0%, 0%, 0.13);
