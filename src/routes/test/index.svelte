@@ -35,7 +35,9 @@
 		Flipper,
 		TextArea,
 		GridViewItem,
-		AcrylicSurface
+		AcrylicSurface,
+		SegmentedControl,
+		SegmentedControlButton
 	} from "$lib";
 
 	import { PageSection } from "$site/lib";
@@ -988,6 +990,14 @@
 			<p>Acrylic Surface</p>
 		</div>
 		<AcrylicSurface style="width: 100%; height: 100%;" />
+	</div>
+	<h3>SegmentedControl</h3>
+	<div class="showcase-group">
+		<SegmentedControl value="chocolate">
+			<SegmentedControlButton value="chocolate" selected>Chocolate</SegmentedControlButton>
+			<SegmentedControlButton value="vanilla">Vanilla</SegmentedControlButton>
+			<SegmentedControlButton value="strawberry">Strawberry</SegmentedControlButton>
+		</SegmentedControl>
 	</div>
 </PageSection>
 

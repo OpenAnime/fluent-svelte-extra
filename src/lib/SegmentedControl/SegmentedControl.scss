@@ -1,0 +1,17 @@
+@use "../mixins" as *;
+
+.segmented-control {
+	@include flex($inline: true, $align: center, $direction: row);
+	@include typography-body;
+    background-color: var(--control-alt-fill-secondary);
+    border: 1px solid;
+    border-color: var(--control-border-default);
+    background-clip: padding-box;
+	position: relative;
+	box-sizing: border-box;
+	text-decoration: none;
+	outline: none;
+	cursor: default;
+    overflow: hidden;
+	border-radius: var(--control-corner-radius);
+}
