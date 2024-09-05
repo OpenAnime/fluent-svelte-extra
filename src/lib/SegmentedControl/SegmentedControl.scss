@@ -1,17 +1,59 @@
 @use "../mixins" as *;
 
+$segmented-control-caret-color: var(--accent-default);
+
 .segmented-control {
 	@include flex($inline: true, $align: center, $direction: row);
 	@include typography-body;
-    background-color: var(--control-alt-fill-secondary);
-    border: 1px solid;
-    border-color: var(--control-border-default);
-    background-clip: padding-box;
+	background-color: var(--control-alt-fill-secondary);
+	border: 1px solid;
+	border-color: var(--control-border-default);
+	background-clip: padding-box;
 	position: relative;
 	box-sizing: border-box;
 	text-decoration: none;
 	outline: none;
 	cursor: default;
-    overflow: hidden;
+	overflow: hidden;
 	border-radius: var(--control-corner-radius);
+
+	&-highlight {
+		position: absolute;
+		height: 100%;
+		pointer-events: none;
+		background-color: var(--control-fill-default);
+		border-radius: var(--control-corner-radius);
+		border: 1px solid;
+		border-color: var(--control-border-default);
+		background-clip: padding-box;
+
+		&::after {
+			background-color: $segmented-control-caret-color;
+			block-size: 3px;
+			border-radius: 3px;
+			content: "";
+			inline-size: 16px;
+			inset-block-end: 0;
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+
+		&.disabled {
+			background-color: var(--control-fill-disabled);
+
+			&::after {
+				background-color: var(--accent-disabled);
+			}
+		}
+	}
+
+	&.disabled {
+		background-color: var(--control-fill-disabled);
+		pointer-events: none;
+
+		& :global(button) {
+			color: var(--text-disabled);
+		}
+	}
 }

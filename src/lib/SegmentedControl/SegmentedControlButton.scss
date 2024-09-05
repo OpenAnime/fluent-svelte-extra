@@ -1,40 +1,76 @@
 @use "../mixins" as *;
 
 .segmented-control-button {
-	@include flex($inline: true, $align: center, $justify: center);
-	@include typography-body;
-	position: relative;
-	box-sizing: border-box;
+    @include flex($inline: true, $align: center, $justify: center);
+    @include typography-body;
+    position: relative;
+    box-sizing: border-box;
     border: 1px solid;
     border-color: transparent;
     padding-block: 4px 6px;
     padding-inline: 11px;
-	text-decoration: none;
-	outline: none;
+    text-decoration: none;
+    outline: none;
     background-clip: padding-box;
-	cursor: default;
+    cursor: default;
     background-color: transparent;
-	border-radius: var(--control-corner-radius);
+    border-radius: var(--control-corner-radius);
+    transition: color var(--control-faster-duration);
 
-    &.selected {
-        background-color: var(--control-fill-default);
-        border-color: var(--fds-control-border-default);
-        &::after {
-            transform: scaleX(100%);
-            opacity: 1;
+    & .icon {
+        @include flex($inline: true, $align: center, $justify: center);
+        margin-inline-end: 4px;
+
+        & svg {
+            width: 16px;
+            height: 16px;
         }
     }
-    &::after {
-        background-color: var(--fds-accent-default);
-        block-size: 3px;
-        border-radius: 3px;
-        content: "";
-        inline-size: 16px;
-        inset-block-end: 0;
-        transform: scaleX(0%);
-        opacity: 0;
-        position: absolute;
-        transition: transform var(--fds-control-fast-duration) var(--fds-control-fast-out-slow-in-easing);
+
+    &:hover {
+        color: var(--text-secondary);
     }
-    
+
+    &:active {
+        color: var(--text-tertiary);
+    }
+
+    &.disabled {
+        pointer-events: none;
+        color: var(--text-disabled);
+    }
+
+    &:global(.no-animation) {
+        &.selected {
+            background-color: var(--control-fill-default);
+            border-color: var(--control-border-default);
+        }
+
+        &.selected {
+            &::after {
+                transform: scaleX(100%);
+                opacity: 1;
+            }
+        }
+
+        &::after {
+            background-color: var(--accent-default);
+            block-size: 3px;
+            border-radius: 3px;
+            content: "";
+            inline-size: 16px;
+            inset-block-end: 0;
+            transform: scaleX(0%);
+            opacity: 0;
+            position: absolute;
+            transition: transform var(--control-fast-duration) var(--control-fast-out-slow-in-easing);
+        }
+
+        &.disabled {
+            &::after {
+                background-color: var(--accent-disabled) !important;
+            }
+        }
+    }
+
 }

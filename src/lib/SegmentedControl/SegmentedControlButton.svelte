@@ -1,20 +1,22 @@
 <script lang="ts">
-	import { deleteKey, getKey, setKey, uid } from "$lib/internal";
+	import { deleteKey, getKey, setKey, uid, createEventForwarder } from "$lib/internal";
 	import { onDestroy, onMount } from "svelte";
+	import { get_current_component } from "svelte/internal";
 
 	/** Sets the input element's native `value` attribute for usage in forms. */
 	export let value: any = undefined;
 
-	/** Controls whether the radio is intended for user interaction, and styles it accordingly. */
+	/** Controls whether the element is intended for user interaction, and styles it accordingly. */
 	export let disabled = false;
+
+	/** Specifies whether the element is selected or not. */
+	export let selected = false;
 
 	/** Specifies a custom class name for the radio. */
 	let className = "";
 	export { className as class };
 
 	let root: HTMLButtonElement;
-
-	export let selected = false;
 
 	function handleClick() {
 		if (root) {
@@ -32,7 +34,7 @@
 		}
 	}
 
-	const segmentButtonId = uid("segment-button-");
+	const segmentButtonId = uid("segmented-button-");
 
 	setKey(`${segmentButtonId}-setSelected`, isSelected => {
 		selected = isSelected;
@@ -47,17 +49,27 @@
 	onDestroy(() => {
 		deleteKey(`${segmentButtonId}-setSelected`);
 	});
+
+	const forwardEvents = createEventForwarder(get_current_component());
 </script>
 
 <button
 	class="segmented-control-button"
 	class:selected
+	class:disabled
 	on:click={handleClick}
 	{disabled}
 	bind:this={root}
-	data-segment-button-id={segmentButtonId}
-	data-segment-button-value={value}
+	data-segmented-button-id={segmentButtonId}
+	data-segmented-button-value={value}
+	use:forwardEvents
+	{...$$restProps}
 >
+	{#if $$slots.icon}
+		<div class="icon">
+			<slot name="icon" />
+		</div>
+	{/if}
 	<slot></slot>
 </button>
 
