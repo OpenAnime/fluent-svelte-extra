@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { get_current_component } from "svelte/internal";
-	import { createEventForwarder } from "$lib/internal";
+	import { deleteKey, getKey, setKey, uid } from "$lib/internal";
+	import { onDestroy, onMount } from "svelte";
 
 	/** Sets the input element's native `value` attribute for usage in forms. */
 	export let value: any = undefined;
@@ -15,11 +15,44 @@
 	/** Obtains a bound DOM reference to the checkbox's outer container element. */
 	export let containerElement: HTMLDivElement;
 
-	const forwardEvents = createEventForwarder(get_current_component());
+	const segmentId = uid("segment-");
+
+	setKey(`${segmentId}-setValue`, target => {
+		value = target;
+	});
+
+	let mounted = false;
+
+	$: {
+		if (mounted && value) {
+			const buttons = Array.from(
+				containerElement.querySelectorAll("[data-segment-button-id]")
+			);
+
+			buttons.forEach(button => {
+				const buttonId = button.getAttribute("data-segment-button-id");
+				const buttonValue = button.getAttribute("data-segment-button-value");
+
+				const setSelected = getKey(`${buttonId}-setSelected`) as Function;
+
+				if (setSelected) {
+					setSelected(value === buttonValue);
+				}
+			});
+		}
+	}
+
+	onMount(() => {
+		mounted = true;
+	});
+
+	onDestroy(() => {
+		deleteKey(`${segmentId}-setValue`);
+	});
 </script>
 
-<div class="segmented-control {className}" bind:this={containerElement}>
-	<slot {value}></slot>
+<div class="segmented-control {className}" data-segment-id={segmentId} bind:this={containerElement}>
+	<slot></slot>
 </div>
 
 <style lang="scss">

@@ -22,6 +22,10 @@ export function getKey(key: string) {
 	return storage[key];
 }
 
+export function deleteKey(key: string) {
+	delete storage[key];
+}
+
 // Svelte action for handling outer mouse
 interface ExternalMouseEventOptions {
 	type?: string;

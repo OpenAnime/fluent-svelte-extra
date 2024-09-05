@@ -138,6 +138,10 @@
 	let teachingLeftOpen = false;
 	let teachingTopOpen = false;
 	let teachingBottomOpen = false;
+
+	let segmentedControlValue = "chocolate";
+
+	$: console.log(segmentedControlValue);
 </script>
 
 <div style="height: 56px;" />
@@ -288,7 +292,8 @@
 		</TeachingTip>
 		<TeachingTip placement="left" open={teachingLeftOpen} title="Title">
 			<Button variant="accent " on:click={() => (teachingLeftOpen = !teachingLeftOpen)}
-				>Left Flyout</Button>
+				>Left Flyout</Button
+			>
 			<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
 			<Button slot="footer" variant="accent" on:click={() => (teachingLeftOpen = false)}
 				>Close
@@ -993,8 +998,8 @@
 	</div>
 	<h3>SegmentedControl</h3>
 	<div class="showcase-group">
-		<SegmentedControl value="chocolate">
-			<SegmentedControlButton value="chocolate" selected>Chocolate</SegmentedControlButton>
+		<SegmentedControl bind:value={segmentedControlValue}>
+			<SegmentedControlButton value="chocolate">Chocolate</SegmentedControlButton>
 			<SegmentedControlButton value="vanilla">Vanilla</SegmentedControlButton>
 			<SegmentedControlButton value="strawberry">Strawberry</SegmentedControlButton>
 		</SegmentedControl>
