@@ -4,7 +4,7 @@
 	import { createEventDispatcher } from "svelte";
 	import { get_current_component } from "svelte/internal";
 	import { slide } from "svelte/transition";
-	import { createEventForwarder, uid } from "$lib/internal";
+	import { createEventForwarder, getCSSDuration, uid } from "$lib/internal";
 	import { expoOut } from "svelte/easing";
 
 	/** Determines whether the expander is expanded (open) or not. */
@@ -144,7 +144,10 @@ Expanders are controls that display a header and a collapsable content area. The
 	{#if expanded}
 		<div
 			class="expander-content-anchor"
-			transition:fadeSlide={{ duration: 500, easing: expoOut }}
+			transition:fadeSlide={{
+				duration: getCSSDuration("--fds-control-normal-duration") * 2,
+				easing: expoOut
+			}}
 		>
 			<div class="expander-content" bind:this={contentElement}>
 				<slot name="content" />
