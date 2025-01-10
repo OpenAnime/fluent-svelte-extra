@@ -74,7 +74,7 @@ textarea.
 			if (includeImages) return;
 
 			const pastedData = e.clipboardData.getData("text");
-			const regex = /^[a-zA-Z0-9@  `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]+$/;
+			const regex = /^[a-zA-Z0-9çÇşŞğĞüÜöÖıİəƏ@ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]+$/;
 
 			const emojiRegex = /\p{Emoji}/u;
 
