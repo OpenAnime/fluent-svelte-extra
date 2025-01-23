@@ -20,6 +20,12 @@
 	background-clip: padding-box;
 	box-shadow: var(--flyout-shadow);
 	max-block-size: 472px;
+	&.acrylic {
+		background-color: var(--acrylic-fallback-background-base);
+		background-image: var(--acrylic-noise-asset-alpha);
+		backdrop-filter: var(--acrylic-fallback-filter);
+		background-clip: border-box;
+	}
 }
 
 .auto-suggest-item-wrapper {

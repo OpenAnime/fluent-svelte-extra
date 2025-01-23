@@ -19,6 +19,9 @@
 	/** The current visibility state of the suggestion flyout. */
 	export let open = false;
 
+	/** Whether to use acryllic styling for the flyout. */
+	export let acrylic = true;
+
 	/** Disables or enables AutoSuggest mode */
 	export let autoSuggest = true;
 
@@ -194,7 +197,7 @@
 	{...$$restProps}
 >
 	{#if open && matches.length > 0}
-		<ul id={flyoutId} role="listbox" class="auto-suggest-box-flyout" bind:this={flyoutElement}>
+		<ul id={flyoutId} role="listbox" class="auto-suggest-box-flyout" bind:this={flyoutElement} class:acrylic>
 			{#each matches as item, index (item)}
 				<div class="auto-suggest-item-wrapper">
 					<slot

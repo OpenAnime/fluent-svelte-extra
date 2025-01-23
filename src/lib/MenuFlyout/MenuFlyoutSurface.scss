@@ -35,12 +35,14 @@
 	border-radius: var(--overlay-corner-radius);
 	border: 1px solid var(--surface-stroke-flyout);
 	background-color: var(--solid-background-quarternary);
-	background-clip: border-box;
+	background-clip: padding-box;
 	&-surface-container {
 		overflow: hidden;
 	}
 	&.acrylic {
 		background-color: var(--acrylic-fallback-background-base);
-		backdrop-filter: var(--acrylic-fallback-filter); 
+		background-image: var(--acrylic-noise-asset-alpha);
+		backdrop-filter: var(--acrylic-fallback-filter);
+		background-clip: border-box;
 	}
 }

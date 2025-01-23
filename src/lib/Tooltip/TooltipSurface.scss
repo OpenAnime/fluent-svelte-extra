@@ -13,4 +13,10 @@
 	border: 1px solid var(--surface-stroke-flyout);
 	border-radius: var(--control-corner-radius);
 	box-shadow: var(--tooltip-shadow);
+	&.acrylic {
+		background-color: var(--acrylic-fallback-background-base);
+		background-image: var(--acrylic-noise-asset-alpha);
+		backdrop-filter: var(--acrylic-fallback-filter);
+		background-clip: border-box;
+	}
 }

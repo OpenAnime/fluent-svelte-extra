@@ -131,6 +131,12 @@
 		inset-block-start: var(--menu-offset, 0);
 		inset-inline-start: 0;
 
+		&.acrylic {
+			background-color: var(--acrylic-fallback-background-base);
+			background-image: var(--acrylic-noise-asset-alpha);
+			backdrop-filter: var(--acrylic-fallback-filter);
+			background-clip: border-box;
+		}
 		@supports (overflow: overlay) {
 			overflow: overlay;
 		}

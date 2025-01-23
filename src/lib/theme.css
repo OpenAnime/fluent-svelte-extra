@@ -520,8 +520,7 @@
 	/* Acrylic Background */
 	--fds-acrylic-background-default: transparent, rgba(252, 252, 252, 85%);
 	--fds-acrylic-background-base: transparent, rgba(243, 243, 243, 90%);
-	--fds-acrylic-fallback-background-base: linear-gradient(0deg, rgb(255, 255, 255, 50%), rgb(255, 255, 255, 10%)),
-		rgba(255, 255, 255, 10%);
+	--fds-acrylic-fallback-background-base: hsla(0, 0%, 100%, 80%);
 	/* Accent Acrylic Background */
 	/* --fds-accent-acrylic-background-base: url("NoiseAsset_256.png"), linear-gradient(0deg, rgba(153, 235, 255, 80%), rgba(153, 235, 255, 80%)), rgba(153, 235, 255, 90%); */
 	/* --fds-accent-acrylic-background-default: url("NoiseAsset_256.png"), linear-gradient(0deg, rgba(153, 235, 255, 80%), rgba(153, 235, 255, 80%)), rgba(153, 235, 255, 90%); */
@@ -689,8 +688,7 @@
 	--fds-acrylic-background-base: linear-gradient(0deg, rgb(32, 32, 32, 50%), rgb(32, 32, 32, 50%)),
 		rgba(32, 32, 32, 96%);
 
-	--fds-acrylic-fallback-background-base: linear-gradient(0deg, rgb(44, 44, 44, 15%), rgb(44, 44, 44, 15%)),
-		rgba(44, 44, 44, 80%);
+	--fds-acrylic-fallback-background-base: hsla(0, 0%, 15%, 80%);
 
 	/* Accent Acrylic Background */
 	/* --fds-accent-acrylic-background-default: url("NoiseAsset_256.png"), linear-gradient(0deg, rgb(0, 120, 212, 80%), rgb(0, 120, 212, 80%)), rgb(0, 120, 212, 80%); */

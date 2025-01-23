@@ -49,7 +49,10 @@
 		padding: 0;
 		border-radius: var(--fds-control-corner-radius);
 		border: 1px solid var(--fds-control-border-default);
-		background-color: var(--fds-control-fill-default);
+		background-color: var(--acrylic-fallback-background-base);
+		background-image: var(--acrylic-noise-asset-alpha);
+		backdrop-filter: var(--acrylic-fallback-filter);
+		background-clip: border-box;
 		backdrop-filter: var(--fds-acrylic-blur-factor);
 		fill: currentColor;
 		box-shadow: var(--fds-flyout-shadow);

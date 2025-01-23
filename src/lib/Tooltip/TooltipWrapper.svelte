@@ -11,6 +11,9 @@
 	/** Distance of the tooltip from the alignment axis in pixels. */
 	export let offset = 24;
 
+	/** Whether to use acryllic styling for the tooltip. */
+	export let acrylic = true;
+
 	/** Direction that the tooltip will appear from. */
 	export let placement: "top" | "bottom" | "left" | "right" | "auto" = "auto";
 
@@ -104,7 +107,7 @@
 				   left: ${currentPosition.x}px;`
 				: ''} --fds-tooltip-offset: {offset}px"
 		>
-			<TooltipSurface bind:element={tooltipElement} {...$$restProps}>
+			<TooltipSurface bind:element={tooltipElement} {...$$restProps} {acrylic}>
 				{text}
 				<slot name="tooltip" />
 			</TooltipSurface>

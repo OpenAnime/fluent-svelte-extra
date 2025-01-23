@@ -43,6 +43,9 @@
 	/** Distance of the teaching-tip from the control button in pixels. */
 	export let offset = 8;
 
+	/** Whether the use acrylic background styling for the teaching-tip. */
+	export let acrylic = true;
+
 	/** Determines if keyboard focus should be locked to the teaching-tip's contents. */
 	export let trapFocus = true;
 
@@ -196,7 +199,7 @@ TeachingTips represent a control that displays lightweight UI that is either inf
 			{...$$restProps}
 		>
 				<slot name="override">
-					<TeachingTipSurface bind:element={menuElement}>
+					<TeachingTipSurface bind:element={menuElement} {acrylic}>
 						{#if src && imagePlacement === "top"}
 							<div bind:clientHeight={imageHeight}>
 								<img class="teaching-tip-image placement-top" {src} alt={title} />

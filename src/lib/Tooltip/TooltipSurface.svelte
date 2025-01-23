@@ -6,6 +6,9 @@
 	let className = "";
 	export { className as class };
 
+	/** Whether to use acryllic styling for the surface. */
+	export let acrylic = true;
+
 	/** Obtains a bound DOM reference to the surface element. */
 	export let element: HTMLDivElement = null;
 
@@ -18,6 +21,7 @@
 	use:forwardEvents
 	bind:this={element}
 	{...$$restProps}
+	class:acrylic
 >
 	<slot />
 </div>

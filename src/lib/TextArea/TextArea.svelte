@@ -63,7 +63,7 @@ textarea.
 		role="textbox"
 		{spellcheck}
 		contenteditable
-		tabindex={disabled ? -1 : 1}
+		tabindex={disabled ? -1 : 0}
 		bind:this={textAreaElement}
 		use:forwardEvents
 		on:keypress={e => {

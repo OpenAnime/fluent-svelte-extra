@@ -221,7 +221,42 @@
 				value: 2,
 				disabled: true
 			},
-			{ name: "Item 3", value: 3 }
+			{ name: "Item 3", value: 3 },
+			{ name: "Item 4", value: 4 },
+			{ name: "Item 5", value: 5 },
+			{ name: "Item 6", value: 6 },
+			{ name: "Item 7", value: 7 },
+			{ name: "Item 8", value: 8 },
+			{ name: "Item 9", value: 9 },
+			{ name: "Item 10", value: 10 },
+			{ name: "Item 11", value: 11 },
+			{ name: "Item 12", value: 12 },
+			{ name: "Item 13", value: 13 },
+			{ name: "Item 14", value: 14 },
+			{ name: "Item 15", value: 15 },
+			{ name: "Item 16", value: 16 },
+			{ name: "Item 17", value: 17 },
+			{ name: "Item 18", value: 18 },
+			{ name: "Item 19", value: 19 },
+			{ name: "Item 20", value: 20 },
+			{ name: "Item 21", value: 21 },
+			{ name: "Item 22", value: 22 },
+			{ name: "Item 23", value: 23 },
+			{ name: "Item 24", value: 24 },
+			{ name: "Item 25", value: 25 },
+			{ name: "Item 26", value: 26 },
+			{ name: "Item 27", value: 27 },
+			{ name: "Item 28", value: 28 },
+			{ name: "Item 29", value: 29 },
+			{ name: "Item 30", value: 30 },
+			{ name: "Item 31", value: 31 },
+			{ name: "Item 32", value: 32 },
+			{ name: "Item 33", value: 33 },
+			{ name: "Item 34", value: 34 },
+			{ name: "Item 35", value: 35 },
+			{ name: "Item 36", value: 36 },
+			{ name: "Item 37", value: 37 },
+			{ name: "Item 38", value: 38 },
 		]}
 	/>
 
@@ -966,7 +1001,6 @@
 		<TextArea
 			bind:value={textareaValue}
 			placeholder="test"
-			{disabled}
 			disableBottomBorder={true}
 			style="max-height:10rem; min-height:3rem; pointer-events:all;"
 		/>

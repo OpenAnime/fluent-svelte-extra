@@ -11,4 +11,10 @@
 	background-color: var(--solid-background-quarternary);
 	background-clip: padding-box;
 	box-shadow: var(--flyout-shadow);
+	&.acrylic {
+		background-color: var(--acrylic-fallback-background-base);
+		background-image: var(--acrylic-noise-asset-alpha);
+		background-clip: border-box;
+		backdrop-filter: var(--acrylic-fallback-filter);
+	}
 }

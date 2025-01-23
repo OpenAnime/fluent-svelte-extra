@@ -6,13 +6,16 @@
 	let className = "";
 	export { className as class };
 
+	/** Whether to use acryllic styling for the surface. */
+	export let acrylic = true;
+
 	/** Obtains a bound DOM reference to the surface element. */
 	export let element: HTMLDivElement = null;
 
 	const forwardEvents = createEventForwarder(get_current_component());
 </script>
 
-<div class="flyout {className}" use:forwardEvents bind:this={element} {...$$restProps}>
+<div class="flyout {className}" use:forwardEvents bind:this={element} {...$$restProps} class:acrylic>
 	<slot />
 </div>
 

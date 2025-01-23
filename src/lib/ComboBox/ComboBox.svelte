@@ -36,6 +36,9 @@
 	/** The current visibility state of the dropdown menu. */
 	export let open = false;
 
+	/** Wheter to use acrylic styling for the dropdown menu. */
+	export let acrylic = true;
+
 	/** Specifies a custom class name for the outer combobox container. */
 	let className = "";
 	export { className as class };
@@ -89,8 +92,8 @@
 		!selection || items[items.indexOf(selection)] === items[Math.floor(items.length / 2)]
 			? "center"
 			: items.indexOf(selection) < items.indexOf(items[Math.floor(items.length / 2)])
-			? "top"
-			: "bottom";
+				? "top"
+				: "bottom";
 
 	let inputFocused = false;
 	let itemHeight = 36;
@@ -322,8 +325,9 @@ When the combo box is closed, it either displays the current selection or is emp
 					? undefined
 					: `${dropdownId}-item-${items.indexOf(selection)}`}
 				role="listbox"
+				class:acrylic
 				class="combo-box-dropdown direction-{!editable
-					? menuGrowDirection ?? 'center'
+					? (menuGrowDirection ?? 'center')
 					: 'top'}"
 				style="--fds-menu-offset: {menuOffset}px;"
 			>

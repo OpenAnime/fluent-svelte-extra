@@ -24,6 +24,9 @@
 	/** Distance of the flyout from the control button in pixels. */
 	export let offset = 4;
 
+	/** Whether the use acrylic background styling for the flyout. */
+	export let acrylic = true;
+
 	/** Determines if keyboard focus should be locked to the flyout's contents. */
 	export let trapFocus = true;
 
@@ -112,7 +115,7 @@ Flyouts represent a control that displays lightweight UI that is either informat
 			{...$$restProps}
 		>
 			<slot name="override">
-				<FlyoutSurface bind:element={menuElement}>
+				<FlyoutSurface bind:element={menuElement} {acrylic}>
 					<slot name="flyout" />
 				</FlyoutSurface>
 			</slot>
