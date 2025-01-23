@@ -14,8 +14,8 @@
 	/** Determines if the flyout can be closed using conventional user interaction. */
 	export let closable = true;
 
-	/** Controls if the flyout will be closed when clicking a standard variant item. Only applies if `closable` is set to `false`. */
-	export let closeOnSelect = false;
+	/** Controls if the flyout will be closed when clicking a standard variant item. Only applies if `closable` is set to `true`. */
+	export let closeOnSelect = true;
 
 	/** Direction that the flyout will be opened from. */
 	export let placement: "top" | "bottom" | "left" | "right" = "top";
@@ -25,6 +25,9 @@
 
 	/** Distance of the flyout from the control button in pixels. */
 	export let offset = 4;
+
+	/** Whether the use acrylic background styling for the flyout. */
+	export let acrylic = true;
 
 	/** Specifies a custom class name for the flyout. */
 	let className = "";
@@ -96,7 +99,7 @@
 			use:arrowNavigation={{ preventTab: true }}
 			on:click={e => e.stopPropagation()}
 		>
-			<MenuFlyoutSurface bind:element={menuElement} bind:this={menu} {...$$restProps}>
+			<MenuFlyoutSurface bind:element={menuElement} bind:this={menu} {...$$restProps} {acrylic}>
 				<slot name="flyout" />
 			</MenuFlyoutSurface>
 		</div>
