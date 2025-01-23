@@ -38,3 +38,4 @@ export { default as GridViewItem } from "./GridView/GridViewItem.svelte";
 export { default as AcrylicSurface } from "./Acrylic/AcrylicSurface.svelte";
 export { default as SegmentedControl } from "./SegmentedControl/SegmentedControl.svelte";
 export { default as SegmentedControlButton } from "./SegmentedControl/SegmentedControlButton.svelte";
+export { default as SplitButton } from "./SplitButton/SplitButton.svelte";
