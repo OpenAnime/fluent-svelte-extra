@@ -185,6 +185,29 @@
 				<MenuFlyoutItem>Item 2</MenuFlyoutItem>
 			</svelte:fragment>
 		</SplitButton>
+
+		<SplitButton disabled>
+			Button
+			<svelte:fragment slot="flyout">
+				<MenuFlyoutItem>Item 1</MenuFlyoutItem>
+				<MenuFlyoutItem>Item 2</MenuFlyoutItem>
+			</svelte:fragment>
+		</SplitButton>
+		<SplitButton disabled variant="accent">
+			Button
+			<svelte:fragment slot="flyout">
+				<MenuFlyoutItem>Item 1</MenuFlyoutItem>
+				<MenuFlyoutItem>Item 2</MenuFlyoutItem>
+			</svelte:fragment>
+		</SplitButton>
+		<SplitButton disabled variant="hyperlink">
+			Button
+			<svelte:fragment slot="flyout">
+				<MenuFlyoutItem>Item 1</MenuFlyoutItem>
+				<MenuFlyoutItem>Item 2</MenuFlyoutItem>
+			</svelte:fragment>
+		</SplitButton>
+		
 		
 	</div>
 
