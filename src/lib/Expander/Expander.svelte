@@ -13,6 +13,9 @@
 	/** Determines whether the expander is expandable or not. */
 	export let expandable = true;
 
+	/** Determines to use slide animation for the component. */
+	export let animate = true;
+
 	/** Determines the direction that the expander will extend to. */
 	export let direction: "down" | "up" = "down";
 
@@ -145,7 +148,7 @@ Expanders are controls that display a header and a collapsable content area. The
 		<div
 			class="expander-content-anchor"
 			transition:fadeSlide={{
-				duration: getCSSDuration("--fds-control-normal-duration") * 2,
+				duration: animate ? getCSSDuration("--fds-control-normal-duration") * 2 : 0,
 				easing: expoOut
 			}}
 		>

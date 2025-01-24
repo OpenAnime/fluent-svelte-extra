@@ -2,7 +2,6 @@
 	import { Navbar } from "$site/lib";
 	import { IconButton, Tooltip } from "$lib";
 
-	import { dev } from "$app/env";
 
 	import "$lib/theme.css";
 
@@ -14,17 +13,14 @@
 			name: "Docs",
 			href: "/docs",
 			icon: News
+		},
+		{
+			name: "Test",
+			href: "/test",
+			icon: Wrench
 		}
 	];
 
-	if (dev) {
-		items.push({
-			name: "test",
-			href: "/test",
-			icon: Wrench
-		});
-		items = items;
-	}
 </script>
 
 <Navbar {items}>

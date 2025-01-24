@@ -15,8 +15,8 @@
 	/** Controls whether the button is intended for user interaction, and styles it accordingly. */
 	export let disabled = false;
 
-	/** Controls the menu's disability state. */
-	export let menuDisabled = disabled;
+	/** Controls the menu's disability state. The default value is value of `disabled`. */
+	export let menuDisabled: boolean = disabled;
 
     /** Whether to trap focus for flyout*/
     export let trapFocus = true;
@@ -66,11 +66,19 @@
 </script>
 
 <!--
+<!--
 @component
 A button gives the user a way to trigger an immediate action. Some buttons are specialized for particular tasks, such as navigation, repeated actions, or presenting menus. [Docs](https://fluent-svelte.vercel.app/docs/components/button)
 - Usage:
     ```tsx
-    <SplitButton>Click me!</SplitButton>
+    <SplitButton>
+		Click me!
+        <svelte:fragment slot="flyout">
+			<MenuFlyoutItem>Item 1</MenuFlyoutItem>
+			<MenuFlyoutItem>Item 2</MenuFlyoutItem>
+			<MenuFlyoutItem>Item 3</MenuFlyoutItem>
+		</svelte:fragment>
+	</SplitButton>
     ```
 -->
 <div class="split-button-container" bind:this={containerElement}>
@@ -89,7 +97,7 @@ A button gives the user a way to trigger an immediate action. Some buttons are s
 	>
 		<slot />
 	</svelte:element>
-	{#if hideChevron}
+	{#if !hideChevron}
 		{#if !menuDisabled}
 			<MenuFlyoutWrapper
 				bind:this={menu}

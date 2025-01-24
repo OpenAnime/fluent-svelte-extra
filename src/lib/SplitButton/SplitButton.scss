@@ -4,6 +4,7 @@
     padding-block: 4px 6px;
     padding-inline: 11px;
     border-radius: var(--control-corner-radius) 0 0 var(--control-corner-radius);
+    flex: 1;
 
     &-container {
         @include flex($inline: true);
