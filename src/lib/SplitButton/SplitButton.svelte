@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { get_current_component } from "svelte/internal";
 	import MenuFlyoutWrapper from "../MenuFlyout/MenuFlyoutWrapper.svelte";
-	import { createEventForwarder } from "$lib/internal";
-
+	import { createEventForwarder, focusTrap } from "$lib/internal";
 	/** @restProps {button | a} */
 	/** Specifies the visual styling of the button. */
 	export let variant: "standard" | "accent" | "hyperlink" = "standard";
@@ -19,8 +18,11 @@
 	/** Controls the menu's disability state. */
 	export let menuDisabled = disabled;
 
+    /** Whether to trap focus for flyout*/
+    export let trapFocus = true;
+
 	/** Controls the visibility of chevron menu button */
-	export let showChevron = true;
+	export let hideChevron = false;
 
 	/** Specifies the direction of the menu. */
 	export let direction: "down" | "up" = "down";
@@ -58,6 +60,8 @@
 
 	let menu;
 
+    $: _focusTrap = trapFocus ? focusTrap : () => {};
+
 	const forwardEvents = createEventForwarder(get_current_component());
 </script>
 
@@ -79,12 +83,13 @@ A button gives the user a way to trigger an immediate action. Some buttons are s
 		class="split-button style-{variant} {className}"
 		tabindex={!disabled ? 0 : -1}
 		class:disabled
+        class:hide-chevron={hideChevron}
 		{disabled}
 		{...$$restProps}
 	>
 		<slot />
 	</svelte:element>
-	{#if showChevron}
+	{#if hideChevron}
 		{#if !menuDisabled}
 			<MenuFlyoutWrapper
 				bind:this={menu}
@@ -100,9 +105,11 @@ A button gives the user a way to trigger an immediate action. Some buttons are s
 				<button
 					class={`split-button-chevron style-${variant}`}
 					class:disabled={menuDisabled}
-					aria-hidden="true"
 					bind:this={chevronElement}
 					disabled={menuDisabled}
+					aria-label="Open menu"
+					aria-haspopup="menu"
+					aria-expanded={open}
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
