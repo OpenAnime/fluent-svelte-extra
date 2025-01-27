@@ -15,7 +15,7 @@
 	export let closable = true;
 
 	/** Controls if the flyout will be closed when clicking a standard variant item. Only applies if `closable` is set to `true`. */
-	export let closeOnSelect = true;
+	export let closeOnSelect = false;
 
 	/** Direction that the flyout will be opened from. */
 	export let placement: "top" | "bottom" | "left" | "right" = "top";
@@ -99,7 +99,12 @@
 			use:arrowNavigation={{ preventTab: true }}
 			on:click={e => e.stopPropagation()}
 		>
-			<MenuFlyoutSurface bind:element={menuElement} bind:this={menu} {...$$restProps} {acrylic}>
+			<MenuFlyoutSurface
+				bind:element={menuElement}
+				bind:this={menu}
+				{...$$restProps}
+				{acrylic}
+			>
 				<slot name="flyout" />
 			</MenuFlyoutSurface>
 		</div>
