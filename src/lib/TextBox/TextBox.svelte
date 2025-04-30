@@ -109,7 +109,7 @@
 		window.addEventListener("touchcancel", hidePassword);
 	}
 
-	const inputProps = {
+	$: inputProps = {
 		class: "text-box",
 		readonly: readonly || undefined,
 		placeholder: placeholder || undefined,

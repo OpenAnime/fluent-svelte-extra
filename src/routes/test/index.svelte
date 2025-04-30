@@ -98,7 +98,13 @@
 
 	let disabled = false;
 
+	let change = 0;
+
 	onMount(() => {
+		setInterval(() => {
+			change++;
+		}, 2000);
+
 		trgt = document.querySelector(".page-section");
 		setInterval(() => {
 			try {
@@ -207,8 +213,6 @@
 				<MenuFlyoutItem>Item 2</MenuFlyoutItem>
 			</svelte:fragment>
 		</SplitButton>
-		
-		
 	</div>
 
 	<h3>Checkboxes</h3>
@@ -485,7 +489,7 @@
 		<TextBox bind:value placeholder="TextBox" disableBottomBorder={true} />
 		<TextBox disabled placeholder="TextBox" />
 		<TextBox type="password" placeholder="TextBox" />
-		<TextBox type="search" placeholder="TextBox" />
+		<TextBox type="search" placeholder={change} />
 		<TextBox disabled value="hi" type="password" placeholder="TextBox" />
 		<TextBox disabled value="hi" type="search" placeholder="TextBox" />
 	</div>
