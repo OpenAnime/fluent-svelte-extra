@@ -56,8 +56,10 @@
 	$: if (menu && tabbable(menuElement).length > 0) tabbable(menuElement)[0].focus();
 
 	function handleEscapeKey({ key }: KeyboardEvent) {
-		if (key === "Escape" && closable) open = false;
-		(<HTMLElement>previousFocus)?.focus();
+		if (key === "Escape" && closable) {
+			open = false;
+			(<HTMLElement>previousFocus)?.focus();
+		}
 	}
 
 	function toggleFlyout() {
@@ -66,7 +68,10 @@
 	}
 
 	function closeFlyout() {
-		if (closable) open = false;
+		if (closable) {
+			open = false;
+			previousFocus = null;
+		}
 	}
 
 	setContext("closeFlyout", event => {
@@ -74,6 +79,8 @@
 		if (closeOnSelect && closable) {
 			event.stopPropagation();
 			open = false;
+
+			previousFocus = null;
 		}
 	});
 </script>
