@@ -5,9 +5,6 @@
 	/** The input's current value. */
 	export let value: any = "";
 
-	/** Specifies whether the user can paste an image into TextArea */
-	export let includeImages = false;
-
 	/** Determines the maximum length of the TextArea */
 	export let maxLength: number = undefined;
 
@@ -62,7 +59,7 @@ textarea.
 	<div
 		role="textbox"
 		{spellcheck}
-		contenteditable
+		contenteditable="plaintext-only"
 		tabindex={disabled ? -1 : 0}
 		bind:this={textAreaElement}
 		use:forwardEvents
@@ -71,18 +68,7 @@ textarea.
 				e.preventDefault();
 		}}
 		on:paste={e => {
-			if (includeImages) return;
-
 			const pastedData = e.clipboardData.getData("text");
-			const regex = /^[a-zA-Z0-9çÇşŞğĞüÜöÖıİəƏ@ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]+$/;
-
-			const emojiRegex = /\p{Emoji}/u;
-
-			if (emojiRegex.test(pastedData) !== true) {
-				if (regex.test(pastedData) !== true) {
-					e.preventDefault();
-				}
-			}
 
 			if (textAreaElement.innerText.length + pastedData.length > maxLength)
 				e.preventDefault();
