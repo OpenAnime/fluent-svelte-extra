@@ -436,6 +436,16 @@
 			<svelte:fragment slot="flyout">You can't close me >:)</svelte:fragment>
 		</Flyout>
 	</div>
+
+	<div class="showcase-group" style="display: flex; justify-content: center;">
+		<Flyout closable={false}>
+			<Button variant="accent">Non-closasble Flyout with a TextBox inside it</Button>
+			<svelte:fragment slot="flyout">
+				<TextBox placeholder="TextBox" />
+			</svelte:fragment>
+		</Flyout>
+	</div>
+
 	<div
 		class="showcase-group"
 		style="display: flex; justify-content: center; align-items: center;"

@@ -65,9 +65,12 @@
 	}
 
 	function handleKeyDown(event: KeyboardEvent) {
-		if (event.key === " " || event.key === "Enter") {
-			event.preventDefault();
-			open = !open;
+		const targetTagName = (event.target as HTMLElement).tagName;
+		if (targetTagName !== "INPUT" && targetTagName !== "TEXTAREA") {
+			if (event.key === " " || event.key === "Enter") {
+				event.preventDefault();
+				open = !open;
+			}
 		}
 	}
 </script>
