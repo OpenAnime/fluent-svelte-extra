@@ -97,7 +97,7 @@
 >
 	<slot />
 
-	{#if visible}
+	{#if visible && text?.length}
 		<div
 			bind:this={anchorElement}
 			in:fade|local={{ duration: getCSSDuration("--fds-control-fast-duration") }}
