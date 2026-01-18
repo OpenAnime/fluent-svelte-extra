@@ -11,22 +11,71 @@
 	color: var(--text-primary);
 	border-radius: var(--control-corner-radius);
 	background-color: var(--subtle-fill-transparent);
+
 	&:focus-visible {
 		box-shadow: var(--focus-stroke);
 	}
-	&:hover {
+
+	&:not(.animated):not(:disabled):not(.disabled):hover {
 		background-color: var(--subtle-fill-secondary);
 	}
+
 	&:active {
 		color: var(--text-secondary);
 		background-color: var(--subtle-fill-tertiary);
 	}
+
 	&:disabled,
 	&.disabled {
 		background-color: var(--subtle-fill-disabled);
 		color: var(--text-disabled);
+
+		&::before {
+			display: none;
+		}
 	}
+
 	:global(svg) {
 		@include icon($size: 16px);
+	}
+
+	&.animated {
+		position: relative;
+		background-color: transparent;
+		isolation: isolate;
+
+		&:active {
+			background-color: transparent;
+		}
+
+		&::before {
+			position: absolute;
+			content: "";
+			inset: 0;
+			z-index: -1;
+			border-radius: var(--control-corner-radius);
+			border: 1px solid transparent;
+			transform: scale(0.99);
+			background-clip: padding-box;
+			transition: transform var(--control-fast-duration),
+				background-color var(--control-fast-duration), border-color 0ms;
+		}
+
+		&:hover {
+			background-color: transparent;
+
+			&::before {
+				background-color: var(--control-fill-default);
+				border-color: var(--control-border-default);
+				transform: scale(1);
+			}
+		}
+
+		&:active::before {
+			background-color: var(--subtle-fill-tertiary);
+			border-color: transparent;
+			transform: scale(1);
+			background-clip: border-box;
+		}
 	}
 }

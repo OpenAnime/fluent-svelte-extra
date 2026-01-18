@@ -9,6 +9,8 @@
 	/** Controls whether the button is intended for user interaction, and styles it accordingly. */
 	export let disabled = false;
 
+	export let animated = false;
+
 	/** Specifies a custom class name for the button. */
 	let className = "";
 	export { className as class };
@@ -38,6 +40,7 @@ An Icon Button is a clickable control that triggers an immediate action. Unlike 
 	role={href && !disabled ? "button" : undefined}
 	href={href && !disabled ? href : undefined}
 	class="icon-button {className}"
+	class:animated
 	class:disabled
 	{...$$restProps}
 >
