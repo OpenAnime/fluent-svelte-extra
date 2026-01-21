@@ -76,7 +76,10 @@
 	let dragging = false;
 	let holding = false;
 	let directionAwareReverse = false;
+
+	// also adding client height will enable users to create distinct shapes for the thumb
 	let thumbClientWidth = 20;
+	let thumbClientHeight = 20;
 
 	$: if (containerElement) {
 		directionAwareReverse =
@@ -118,34 +121,46 @@
 
 	function calculateValue(event) {
 		if (disabled || !railElement) return;
+
 		const { top, bottom, left, right, width, height } = railElement.getBoundingClientRect();
 		const percentageX = event.touches ? event.touches[0].clientX : event.clientX;
 		const percentageY = event.touches ? event.touches[0].clientY : event.clientY;
 
-		const position = orientation === "horizontal" ? percentageX : percentageY;
-		const startingPos =
-			orientation === "horizontal"
-				? directionAwareReverse
-					? right
-					: left
-				: directionAwareReverse
-				? top
-				: bottom;
-		const length = orientation === "horizontal" ? width : height;
+		const thumbSize = orientation === "horizontal" ? thumbClientWidth : thumbClientHeight;
+		const totalLength = orientation === "horizontal" ? width : height;
 
-		let nextStep =
-			min +
-			Math.round(
-				((max - min) *
-					((position - startingPos) / length) *
-					(directionAwareReverse ? -1 : 1) *
-					(orientation === "vertical" ? -1 : 1)) /
-					step
-			) *
-				step;
+		const effectiveLength = totalLength - thumbSize;
+
+		if (effectiveLength <= 0) return;
+
+		let distanceFromMin = 0;
+
+		if (orientation === "horizontal") {
+			if (directionAwareReverse) {
+				distanceFromMin = right - percentageX;
+			} else {
+				distanceFromMin = percentageX - left;
+			}
+		} else {
+			if (directionAwareReverse) {
+				distanceFromMin = percentageY - top;
+			} else {
+				distanceFromMin = bottom - percentageY;
+			}
+		}
+
+		const relativePos = distanceFromMin - thumbSize / 2;
+
+		let percent = relativePos / effectiveLength;
+
+		if (percent < 0) percent = 0;
+		if (percent > 1) percent = 1;
+
+		let nextStep = min + Math.round(((max - min) * percent) / step) * step;
 
 		if (nextStep <= min) nextStep = min;
 		else if (nextStep >= max) nextStep = max;
+
 		dispatch("userChange", [value, nextStep]);
 		value = nextStep;
 	}
@@ -267,6 +282,7 @@ A slider is a control that lets the user select from a range of values by moving
 		aria-valuenow={value}
 		bind:this={thumbElement}
 		bind:clientWidth={thumbClientWidth}
+		bind:clientHeight={thumbClientHeight}
 		on:mousedown|preventDefault={() => {
 			sliderThumbHolding = true;
 			dispatch("userHoldStart");
