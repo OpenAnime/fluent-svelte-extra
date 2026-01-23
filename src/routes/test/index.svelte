@@ -247,6 +247,11 @@
 	</div>
 
 	<h3>ComboBox</h3>
+
+	<div style="display:flex; justify-content: space-between;">
+		<div style="display: flex; gap: 0.5rem"></div>
+	</div>
+
 	<ComboBox
 		placeholder="ComboBox"
 		items={[
@@ -377,6 +382,40 @@
 			}
 		]}
 	/>
+
+	<div style="position: absolute; right: 0.5rem;">
+		<ComboBox
+			autoWidth
+			value={1}
+			items={[
+				{
+					name: "Season 1 Part 1",
+					value: 1
+				},
+				{
+					name: "Season 1 Part 2",
+					value: 2
+				},
+				{
+					name: "Season 2 Part 1",
+					value: 3
+				},
+				{
+					name: "Season 2 Part 2",
+					value: 4
+				},
+
+				{
+					name: "Season 3",
+					value: 5
+				},
+				{
+					name: "OVA",
+					value: 6
+				}
+			]}
+		/>
+	</div>
 
 	<h3>Progress Ring</h3>
 	<div class="showcase-group">

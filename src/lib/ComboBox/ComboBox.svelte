@@ -85,6 +85,8 @@
 	const buttonId = uid("fds-combo-box-button-");
 	const dropdownId = uid("fds-combo-box-dropdown-");
 
+	let isRightAligned = false;
+
 	$: selectableItems = items.filter(item => !item.disabled);
 	$: selection = items.find(i => i.value === value);
 	$: if (menuElement && menuElement.children.length > 0 && !editable) {
@@ -145,8 +147,11 @@
 	}
 
 	async function openMenu() {
+		isRightAligned = false;
+
 		open = !open;
 		await tick();
+
 		if (editable && searchInputElement) searchInputElement.focus();
 
 		if (direction === "auto" && menuElement && selection) {
@@ -157,6 +162,15 @@
 				menuOffset = containerElement.offsetHeight - visibleItems * itemHeight;
 			} else if (direction === "bottom") {
 				menuOffset = 0;
+			}
+		}
+
+		if (open && menuElement && autoWidth) {
+			const rect = menuElement.getBoundingClientRect();
+			const viewportWidth = window.innerWidth;
+
+			if (rect.right > viewportWidth) {
+				isRightAligned = true;
 			}
 		}
 	}
@@ -359,7 +373,12 @@ When the combo box is closed, it either displays the current selection or is emp
 				class="combo-box-dropdown direction-{!editable
 					? (menuGrowDirection ?? 'center')
 					: 'top'}"
-				style="--fds-menu-offset: {menuOffset}px;"
+				style="
+                --fds-menu-offset: {menuOffset}px;
+                {isRightAligned
+					? 'inset-inline-start: auto; inset-inline-end: 0; margin-inline-start: 0; margin-inline-end: -5px;'
+					: ''}
+            "
 			>
 				{#each items as item, i}
 					<ComboBoxItem
