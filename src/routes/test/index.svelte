@@ -262,6 +262,52 @@
 	/>
 
 	<ComboBox
+		direction="top"
+		placeholder="ComboBox"
+		items={[
+			{ name: "Item 0", value: 0 },
+			{ name: "Item 1", value: 1 },
+			{
+				name: "Item 2",
+				value: 2,
+				disabled: true
+			},
+			{ name: "Item 3", value: 3 }
+		]}
+	/>
+
+	<ComboBox
+		direction="bottom"
+		placeholder="ComboBox"
+		items={[
+			{ name: "Item 0", value: 0 },
+			{ name: "Item 1", value: 1 },
+			{
+				name: "Item 2",
+				value: 2,
+				disabled: true
+			},
+			{ name: "Item 3", value: 3 }
+		]}
+	/>
+
+	<ComboBox
+		autoWidth
+		direction="bottom"
+		placeholder="ComboBox"
+		items={[
+			{ name: "Item 0", value: 0 },
+			{ name: "Item 1dsadasdasds", value: 1 },
+			{
+				name: "Item 2",
+				value: 2,
+				disabled: true
+			},
+			{ name: "Item 3", value: 3 }
+		]}
+	/>
+
+	<ComboBox
 		value={1}
 		editable
 		searchValue="asdasd"

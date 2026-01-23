@@ -131,6 +131,11 @@
 		inset-block-start: var(--menu-offset, 0);
 		inset-inline-start: 0;
 
+		&.auto-width {
+			inline-size: max-content;
+			min-inline-size: calc(100% + 8px);
+		}
+
 		&.acrylic {
 			background-color: var(--acrylic-fallback-background-base);
 			background-image: var(--acrylic-noise-asset-alpha);

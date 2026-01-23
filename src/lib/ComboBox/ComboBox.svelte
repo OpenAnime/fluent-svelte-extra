@@ -39,6 +39,20 @@
 	/** Wheter to use acrylic styling for the dropdown menu. */
 	export let acrylic = true;
 
+	/**
+	 * Specifies the direction the menu should open.
+	 * 'auto' (default): Centers the selected item.
+	 * 'top': Forces menu to open upwards (overlaying the button).
+	 * 'bottom': Forces menu to open downwards (overlaying the button).
+	 */
+	export let direction: "auto" | "top" | "bottom" = "auto";
+
+	/**
+	 * If true, the dropdown menu will expand horizontally to fit the widest item
+	 * instead of being constrained to the width of the trigger button.
+	 */
+	export let autoWidth = false;
+
 	/** Specifies a custom class name for the outer combobox container. */
 	let className = "";
 	export { className as class };
@@ -88,16 +102,22 @@
 		}
 	}
 	$: dispatch("select", selection);
+
 	$: menuGrowDirection =
-		!selection || items[items.indexOf(selection)] === items[Math.floor(items.length / 2)]
-			? "center"
-			: items.indexOf(selection) < items.indexOf(items[Math.floor(items.length / 2)])
-				? "top"
-				: "bottom";
+		direction !== "auto"
+			? direction === "top"
+				? "bottom"
+				: "top"
+			: !selection || items[items.indexOf(selection)] === items[Math.floor(items.length / 2)]
+				? "center"
+				: items.indexOf(selection) < items.indexOf(items[Math.floor(items.length / 2)])
+					? "top"
+					: "bottom";
 
 	let inputFocused = false;
 	let itemHeight = 36;
 	const maxItems = 14; // 504 (`max-block-size` in ComboBox.scss) / 36 (itemHeight)
+
 	let menuOffset =
 		itemHeight *
 		-(selection
@@ -128,8 +148,17 @@
 		open = !open;
 		await tick();
 		if (editable && searchInputElement) searchInputElement.focus();
-		if (menuElement && selection)
+
+		if (direction === "auto" && menuElement && selection) {
 			updateOffset(<HTMLElement>menuElement.children[items.indexOf(selection)]);
+		} else if (containerElement) {
+			if (direction === "top") {
+				const visibleItems = items.length > maxItems ? maxItems : items.length;
+				menuOffset = containerElement.offsetHeight - visibleItems * itemHeight;
+			} else if (direction === "bottom") {
+				menuOffset = 0;
+			}
+		}
 	}
 
 	async function handleKeyboardNavigation(event: KeyboardEvent | CustomEvent) {
@@ -326,6 +355,7 @@ When the combo box is closed, it either displays the current selection or is emp
 					: `${dropdownId}-item-${items.indexOf(selection)}`}
 				role="listbox"
 				class:acrylic
+				class:auto-width={autoWidth}
 				class="combo-box-dropdown direction-{!editable
 					? (menuGrowDirection ?? 'center')
 					: 'top'}"
