@@ -103,7 +103,16 @@
 			dispatch("close");
 		}
 	}
-	$: dispatch("select", selection);
+
+	let previousSelectedValue: any = Symbol("init");
+
+	$: {
+		const currentSelectedValue = selection ? selection.value : undefined;
+		if (currentSelectedValue !== previousSelectedValue) {
+			previousSelectedValue = currentSelectedValue;
+			dispatch("select", selection);
+		}
+	}
 
 	$: menuGrowDirection =
 		direction !== "auto"

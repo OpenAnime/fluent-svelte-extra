@@ -387,6 +387,9 @@
 		<ComboBox
 			autoWidth
 			value={1}
+			on:select={e => {
+				console.log(e.detail);
+			}}
 			items={[
 				{
 					name: "Season 1 Part 1",
