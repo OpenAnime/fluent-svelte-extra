@@ -7,7 +7,6 @@
 	import { arrowNavigation, uid } from "$lib/internal";
 
 	import MenuFlyoutSurface from "./MenuFlyoutSurface.svelte";
-	import Portal from "../Portal/Portal.svelte";
 
 	/** Determines the flyout's visibility. */
 	export let open = false;
@@ -45,9 +44,6 @@
 
 	/** Obtains a bound DOM reference to the menu backdrop, which is present while the menu is `open`. */
 	export let backdropElement: HTMLDivElement = null;
-
-	/** Specifies a selector string indicating where the backdrop should be teleported to. Defaults to `""`, which does not teleport the backdrop. */
-	export let teleportBackdropTo: string = "";
 
 	const dispatch = createEventDispatcher();
 	const menuId = uid("fds-menu-flyout-anchor-");
@@ -119,23 +115,12 @@
 				<slot name="flyout" />
 			</MenuFlyoutSurface>
 		</div>
-		{#if teleportBackdropTo?.length}
-			<Portal query={teleportBackdropTo}>
-				<div
-					class="menu-flyout-backdrop"
-					bind:this={backdropElement}
-					on:click={e => e.stopPropagation()}
-					on:mousedown={closeFlyout}
-				/>
-			</Portal>
-		{:else}
-			<div
-				class="menu-flyout-backdrop"
-				bind:this={backdropElement}
-				on:click={e => e.stopPropagation()}
-				on:mousedown={closeFlyout}
-			/>
-		{/if}
+		<div
+			class="menu-flyout-backdrop"
+			bind:this={backdropElement}
+			on:click={e => e.stopPropagation()}
+			on:mousedown={closeFlyout}
+		/>
 	{/if}
 </div>
 

@@ -1188,6 +1188,16 @@
 		<GridViewItem singleSelect selected group="deneme">
 			<img src="/logo.svg" height="120" width="120" alt="" />
 		</GridViewItem>
+
+		<p>toggle</p>
+
+		<GridViewItem singleSelect disableUnselectionIfGrouped group="toggle-deneme">
+			<img src="/logo.svg" height="120" width="120" alt="" />
+		</GridViewItem>
+
+		<GridViewItem singleSelect disableUnselectionIfGrouped selected group="toggle-deneme">
+			<img src="/logo.svg" height="120" width="120" alt="" />
+		</GridViewItem>
 	</div>
 	<h3>AcrylicSurface</h3>
 	<div style="width: 100%; height: 300px; position: relative">

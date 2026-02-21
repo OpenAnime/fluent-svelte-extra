@@ -12,6 +12,8 @@
 
 	export let singleSelect = false;
 
+	export let disableUnselectionIfGrouped = false;
+
 	const id = Math.random();
 
 	type GroupItem = {
@@ -39,6 +41,15 @@
 		selected = value;
 	}
 
+	function handleInteraction() {
+		if (disableUnselectionIfGrouped && group.length > 0 && selected) {
+			return;
+		}
+
+		setSelected(!selected, false);
+		dispatch("change", { selected: selected });
+	}
+
 	if (group.length) {
 		const getAvailableGroupItems = (getKey(`group:${group}`) as GroupItem[]) ?? [];
 
@@ -57,14 +68,10 @@
 	class:selected
 	{...$$restProps}
 	tabindex="0"
-	on:click={() => {
-		setSelected(!selected, false);
-		dispatch("change", { selected: selected });
-	}}
+	on:click={handleInteraction}
 	on:keydown={e => {
 		if (e.key !== "Enter") return;
-		setSelected(!selected, false);
-		dispatch("change", { selected: selected });
+		handleInteraction();
 	}}
 >
 	{#if !singleSelect}
@@ -73,6 +80,10 @@
 				tabindex="-1"
 				bind:checked={selected}
 				on:change={() => {
+					if (disableUnselectionIfGrouped && group.length > 0 && !selected) {
+						selected = true;
+						return;
+					}
 					dispatch("change", { selected: !selected });
 				}}
 			/>
