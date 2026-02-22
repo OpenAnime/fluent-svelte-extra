@@ -96,6 +96,9 @@
 			--caret-translate-x: -50%;
 			--caret-translate-y: -50%;
 
+			--transform-origin-x: 50%;
+			--transform-origin-y: 50%;
+
 			&top {
 				& .teaching-tip-caret {
 					bottom: -8px;
@@ -104,7 +107,7 @@
 					transform: translate(var(--caret-translate-x), 0%) rotate(0deg);
 				}
 
-				transform-origin: bottom;
+				transform-origin: var(--transform-origin-x) bottom;
 				bottom: calc(100% + var(--fds-teaching-tip-offset));
 				--teaching-tip-transition-offset: translateY(12px);
 			}
@@ -117,7 +120,7 @@
 					transform: translate(var(--caret-translate-x), 0%) rotate(180deg);
 				}
 
-				transform-origin: top;
+				transform-origin: var(--transform-origin-x) top;
 				top: calc(100% + var(--fds-teaching-tip-offset));
 				--teaching-tip-transition-offset: translateY(-12px);
 			}
@@ -130,7 +133,7 @@
 					transform: translate(0%, var(--caret-translate-y)) rotate(270deg);
 				}
 
-				transform-origin: right;
+				transform-origin: right var(--transform-origin-y);
 				right: calc(100% + var(--fds-teaching-tip-offset));
 				--teaching-tip-transition-offset: translateX(12px);
 			}
@@ -143,7 +146,7 @@
 					transform: translate(0%, var(--caret-translate-y)) rotate(90deg);
 				}
 
-				transform-origin: left;
+				transform-origin: left var(--transform-origin-y);
 				left: calc(100% + var(--fds-teaching-tip-offset));
 				--teaching-tip-transition-offset: translateX(-12px);
 			}
@@ -157,6 +160,8 @@
 						--caret-left: calc(var(--fds-trigger-width, 32px) / 2);
 						--caret-right: auto;
 						--caret-translate-x: -50%;
+
+						--transform-origin-x: calc(var(--fds-trigger-width, 32px) / 2);
 					}
 
 					&end {
@@ -165,6 +170,8 @@
 						--caret-left: auto;
 						--caret-right: calc(var(--fds-trigger-width, 32px) / 2);
 						--caret-translate-x: 50%;
+
+						--transform-origin-x: calc(100% - (var(--fds-trigger-width, 32px) / 2));
 					}
 
 					&center {
@@ -173,6 +180,8 @@
 						--caret-left: 50%;
 						--caret-right: auto;
 						--caret-translate-x: -50%;
+
+						--transform-origin-x: 50%;
 					}
 				}
 			}
@@ -186,6 +195,8 @@
 						--caret-top: calc(var(--fds-trigger-height, 32px) / 2);
 						--caret-bottom: auto;
 						--caret-translate-y: -50%;
+
+						--transform-origin-y: calc(var(--fds-trigger-height, 32px) / 2);
 					}
 
 					&end {
@@ -194,6 +205,8 @@
 						--caret-top: auto;
 						--caret-bottom: calc(var(--fds-trigger-height, 32px) / 2);
 						--caret-translate-y: 50%;
+
+						--transform-origin-y: calc(100% - (var(--fds-trigger-height, 32px) / 2));
 					}
 
 					&center {
@@ -202,6 +215,8 @@
 						--caret-top: 50%;
 						--caret-bottom: auto;
 						--caret-translate-y: -50%;
+
+						--transform-origin-y: 50%;
 					}
 				}
 			}
