@@ -69,6 +69,10 @@
 	}
 
 	&anchor {
+		position: absolute;
+		z-index: 10000;
+		transform: var(--teaching-tip-transform);
+
 		:global(.teaching-tip-close-button) {
 			position: absolute;
 			inset-block-start: 6px;
@@ -82,58 +86,65 @@
 			}
 		}
 
-		position: absolute;
-		z-index: 10000;
-		transform: var(--teaching-tip-transform);
-
 		&.placement- {
 			--teaching-tip-transform: translateX(0%);
+
+			--caret-left: 50%;
+			--caret-right: auto;
+			--caret-top: 50%;
+			--caret-bottom: auto;
+			--caret-translate-x: -50%;
+			--caret-translate-y: -50%;
 
 			&top {
 				& .teaching-tip-caret {
 					bottom: -8px;
-					left: 50%;
-					transform: translate(-50%, 0%);
+					left: var(--caret-left);
+					right: var(--caret-right);
+					transform: translate(var(--caret-translate-x), 0%) rotate(0deg);
 				}
 
 				transform-origin: bottom;
-				bottom: calc(100% + var(--teaching-tip-offset));
+				bottom: calc(100% + var(--fds-teaching-tip-offset));
 				--teaching-tip-transition-offset: translateY(12px);
 			}
 
 			&bottom {
 				& .teaching-tip-caret {
 					top: -8px;
-					left: 50%;
-					transform: translate(-50%, 0%) rotate(180deg);
+					left: var(--caret-left);
+					right: var(--caret-right);
+					transform: translate(var(--caret-translate-x), 0%) rotate(180deg);
 				}
 
 				transform-origin: top;
-				top: calc(100% + var(--teaching-tip-offset));
+				top: calc(100% + var(--fds-teaching-tip-offset));
 				--teaching-tip-transition-offset: translateY(-12px);
 			}
 
 			&left {
 				& .teaching-tip-caret {
 					right: -11px;
-					top: 50%;
-					transform: translate(0%, -50%) rotate(270deg);
+					top: var(--caret-top);
+					bottom: var(--caret-bottom);
+					transform: translate(0%, var(--caret-translate-y)) rotate(270deg);
 				}
 
 				transform-origin: right;
-				right: calc(100% + var(--teaching-tip-offset));
+				right: calc(100% + var(--fds-teaching-tip-offset));
 				--teaching-tip-transition-offset: translateX(12px);
 			}
 
 			&right {
 				& .teaching-tip-caret {
 					left: -11px;
-					top: 50%;
-					transform: translate(0%, -50%) rotate(90deg);
+					top: var(--caret-top);
+					bottom: var(--caret-bottom);
+					transform: translate(0%, var(--caret-translate-y)) rotate(90deg);
 				}
 
 				transform-origin: left;
-				left: calc(100% + var(--teaching-tip-offset));
+				left: calc(100% + var(--fds-teaching-tip-offset));
 				--teaching-tip-transition-offset: translateX(-12px);
 			}
 
@@ -143,16 +154,25 @@
 					&start {
 						inset-inline-start: 0;
 						--teaching-tip-transform: translateX(0%);
+						--caret-left: calc(var(--fds-trigger-width, 32px) / 2);
+						--caret-right: auto;
+						--caret-translate-x: -50%;
 					}
 
 					&end {
 						inset-inline-end: 0;
 						--teaching-tip-transform: translateX(0%);
+						--caret-left: auto;
+						--caret-right: calc(var(--fds-trigger-width, 32px) / 2);
+						--caret-translate-x: 50%;
 					}
 
 					&center {
 						inset-inline-start: 50%;
 						--teaching-tip-transform: translateX(-50%);
+						--caret-left: 50%;
+						--caret-right: auto;
+						--caret-translate-x: -50%;
 					}
 				}
 			}
@@ -163,16 +183,25 @@
 					&start {
 						inset-block-start: 0;
 						--teaching-tip-transform: translateY(0%);
+						--caret-top: calc(var(--fds-trigger-height, 32px) / 2);
+						--caret-bottom: auto;
+						--caret-translate-y: -50%;
 					}
 
 					&end {
 						inset-block-end: 0;
 						--teaching-tip-transform: translateY(0%);
+						--caret-top: auto;
+						--caret-bottom: calc(var(--fds-trigger-height, 32px) / 2);
+						--caret-translate-y: 50%;
 					}
 
 					&center {
 						inset-block-start: 50%;
 						--teaching-tip-transform: translateY(-50%);
+						--caret-top: 50%;
+						--caret-bottom: auto;
+						--caret-translate-y: -50%;
 					}
 				}
 			}

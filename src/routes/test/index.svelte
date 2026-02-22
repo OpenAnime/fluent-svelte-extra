@@ -146,6 +146,8 @@
 	let teachingTopOpen = false;
 	let teachingBottomOpen = false;
 
+	let teachingBottomOpen2 = false;
+
 	let segmentedControlValue = "strawberry";
 
 	$: console.log(segmentedControlValue);
@@ -510,6 +512,38 @@
 				<Button
 					on:click={() => {
 						teachingBottomOpen = false;
+						dialogResult = "Cancel";
+					}}
+					>Cancel
+				</Button>
+			</svelte:fragment>
+		</TeachingTip>
+
+		<TeachingTip
+			class="teaching-tip-demo-test"
+			placement="bottom"
+			open={teachingBottomOpen2}
+			alignment="end"
+			title="Title"
+			src="https://fluent-svelte.vercel.app/bloom-mica-light.png"
+			on:close={() => (teachingBottomOpen2 = false)}
+		>
+			<Button variant="accent" on:click={() => (teachingBottomOpen2 = !teachingBottomOpen2)}
+				>Bottom Flyout</Button
+			>
+			<svelte:fragment slot="flyout">Flyout Content</svelte:fragment>
+			<svelte:fragment slot="footer">
+				<Button
+					variant="accent"
+					on:click={() => {
+						teachingBottomOpen2 = false;
+						dialogResult = "Save";
+					}}
+					>Save
+				</Button>
+				<Button
+					on:click={() => {
+						teachingBottomOpen2 = false;
 						dialogResult = "Cancel";
 					}}
 					>Cancel
@@ -1249,5 +1283,10 @@
 	.showcase-group {
 		@include flex($gap: 12px);
 		margin-block-end: 12px;
+	}
+
+	:global(.teaching-tip-demo-test) {
+		position: absolute !important;
+		right: 0;
 	}
 </style>
