@@ -1,5 +1,12 @@
 <script lang="ts">
-	import { deleteKey, getKey, setKey, uid, getCSSDuration, createEventForwarder } from "$lib/internal";
+	import {
+		deleteKey,
+		getKey,
+		setKey,
+		uid,
+		getCSSDuration,
+		createEventForwarder
+	} from "$lib/internal";
 	import { onDestroy, onMount } from "svelte";
 	import { tweened } from "svelte/motion";
 	import { get_current_component } from "svelte/internal";
@@ -33,7 +40,7 @@
 		},
 		{
 			easing: expoOut,
-			duration: 333
+			duration: getCSSDuration("--fds-control-slow-duration")
 		}
 	);
 
@@ -61,10 +68,15 @@
 				if (setSelected) {
 					setSelected(value === buttonValue);
 					if (value === buttonValue) {
-						const { width, left } = button.getBoundingClientRect();
+						const htmlButton = button as HTMLElement;
+
+						const width = htmlButton.offsetWidth;
+
+						const left = htmlButton.offsetLeft - 1;
+
 						highlight.set({
 							width,
-							left: left - containerElement.getBoundingClientRect().left - 1
+							left
 						});
 
 						isSelectedDisabled = button.classList.contains("disabled");
