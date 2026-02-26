@@ -33,14 +33,15 @@ Along with the new components, we've overhauled how themes are handled. Dependin
 If you want explicit control over the theme, regardless of the user's system preferences:
  * Import `fluent-svelte-extra/switchable.css` into your `+layout.svelte` file.
  * Add either the `fds-theme-dark` or `fds-theme-light class` to the `<html>` tag in your `app.html` file.
+
    > Note: `switchable.css` does not utilize `prefers-color-scheme` media queries.
 
 
 ### Option 2: System Default with Manual Override
 
 If you want to respect the user's system theme by default, but still allow manual toggling:
- * Import fluent-svelte-extra/theme.css.
- * The UI will use the system default until you explicitly add the fds-theme-dark or fds-theme-light class to your <html> tag.
+ * Import `fluent-svelte-extra/theme.css`.
+ * The UI will use the system default until you explicitly add the `fds-theme-dark` or `fds-theme-light` class to your `<html>` tag.
 
 
 ## 📚 Documentation & Usage
