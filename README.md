@@ -54,4 +54,5 @@ But we are completely open to Pull Requests! If you'd like to help optimize the 
 
 
 ## 🙏 Acknowledgements
-A massive thank you to Tropix126, the creator of the original fluent-svelte library, for building such an awesome foundation!
+
+A massive thank you to [Tropix126](https://github.com/Tropix126), the creator of the original [fluent-svelte](https://github.com/tropix126/fluent-svelte) library, for building such an awesome foundation!
