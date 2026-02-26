@@ -14,6 +14,7 @@ We've expanded the library to include several heavily requested components and q
  * ✅ RangeSlider
  * ✅ SegmentedControl
  * ✅ TextArea
+ * ✅ ContentDialog w/ Close Button
  * ⚠️ NavigationView
  * ⚠️ SplitButton (Work in progress: RTL support is currently unavailable)
  * ⚠️ AcrylicSurface (Note: Partially unusable due to known Chromium compositor limitations)
