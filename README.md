@@ -47,7 +47,7 @@ If you want to respect the user's system theme by default, but still allow manua
 
 
 ## 📚 Documentation & Usage
-Official documentation for our custom components is still a work in progress. For now, you can view detailed usage examples in our test routes [here](https://github.com/openanime/fluent-svelte-extra/blob/src/routes/test/index.svelte).
+Official documentation for our custom components is still a work in progress. For now, you can view detailed usage examples in our test routes [here](https://github.com/OpenAnime/fluent-svelte-extra/blob/main/src/routes/test/index.svelte).
 
 
 ## 🤝 Contributing & Codebase Notes
