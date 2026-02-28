@@ -2,7 +2,7 @@
   Fluent Svelte Extra
 </h1>
 
-<p align="center">An actively developed fork of the original [fluent-svelte](https://github.com/tropicaaal/fluent-svelte) library, designed to introduce new components, enhance existing ones, and provide seamless theme management.</p>
+An actively developed fork of the original [fluent-svelte](https://github.com/tropicaaal/fluent-svelte) library, designed to introduce new components, enhance existing ones, and provide seamless theme management.
 
 
 ## ✨ What's New?
