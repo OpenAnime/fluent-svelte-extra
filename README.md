@@ -1,4 +1,6 @@
 <h1 align="center">
+  <img src="https://raw.githubusercontent.com/OpenAnime/fluent-svelte-extra/refs/heads/main/static/logo.svg" width="72" height="128" />
+  <br />
   Fluent Svelte Extra
 </h1>
 
