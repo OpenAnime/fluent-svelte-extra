@@ -1,6 +1,8 @@
-# fluent-svelte-extra
+<h1 align="center">
+  Fluent Svelte Extra
+</h1>
 
-An actively developed fork of the original fluent-svelte library, designed to introduce new components, enhance existing ones, and provide seamless theme management.
+<p align="center">An actively developed fork of the original [fluent-svelte](https://github.com/tropicaaal/fluent-svelte) library, designed to introduce new components, enhance existing ones, and provide seamless theme management.</p>
 
 
 ## ✨ What's New?
@@ -45,7 +47,7 @@ If you want to respect the user's system theme by default, but still allow manua
 
 
 ## 📚 Documentation & Usage
-Official documentation for our custom components is still a work in progress. For now, you can view detailed usage examples in our test routes here.
+Official documentation for our custom components is still a work in progress. For now, you can view detailed usage examples in our test routes [here](https://github.com/openanime/fluent-svelte-extra/blob/src/routes/test/index.svelte).
 
 
 ## 🤝 Contributing & Codebase Notes
@@ -55,4 +57,4 @@ But we are completely open to Pull Requests! If you'd like to help optimize the 
 
 ## 🙏 Acknowledgements
 
-A massive thank you to [Tropicaal](https://github.com/tropicaaal), the creator of the original [fluent-svelte](https://github.com/tropix126/fluent-svelte) library, for building such an awesome foundation!
+A massive thank you to [Tropicaal](https://github.com/tropicaaal), the creator of the original [fluent-svelte](https://github.com/tropicaaal/fluent-svelte) library, for building such an awesome foundation!
