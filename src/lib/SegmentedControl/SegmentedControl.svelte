@@ -72,7 +72,7 @@
 
 						const width = htmlButton.offsetWidth;
 
-						const left = htmlButton.offsetLeft - 1;
+						const left = htmlButton.offsetLeft;
 
 						highlight.set({
 							width,
