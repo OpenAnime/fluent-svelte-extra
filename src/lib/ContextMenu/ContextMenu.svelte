@@ -43,6 +43,8 @@
 		y: 0
 	};
 
+	let justClosed = false;
+
 	$: dispatch(open ? "open" : "close");
 	$: if (menu && tabbable(menuElement).length > 0) tabbable(menuElement)[0].focus();
 	$: if (anchorElement) {
@@ -58,6 +60,8 @@
 	}
 
 	async function handleContextMenu({ clientX, clientY }: MouseEvent) {
+		if (justClosed) return;
+
 		open = true;
 
 		mousePosition = {
@@ -75,6 +79,24 @@
 		return {
 			destroy: () => node.remove()
 		};
+	}
+
+	function handleOuterMousedown() {
+		open = false;
+		justClosed = true;
+
+		const handleMouseUp = () => {
+			setTimeout(() => {
+				justClosed = false;
+			});
+		};
+
+		window.addEventListener("mouseup", handleMouseUp, { once: true, capture: true });
+
+		setTimeout(() => {
+			window.removeEventListener("mouseup", handleMouseUp, { capture: true });
+			justClosed = false;
+		}, 1000);
 	}
 
 	if (closeOnSelect) {
@@ -95,7 +117,6 @@
 	on:click|preventDefault|stopPropagation={openBy.includes("leftClick")
 		? handleContextMenu
 		: undefined}
-	on:contextmenu={openBy.includes("rightClick") ? handleContextMenu : undefined}
 	bind:this={wrapperElement}
 >
 	<slot />
@@ -106,7 +127,7 @@
 			use:externalMouseEvents={{ type: "mousedown" }}
 			on:contextmenu|stopPropagation={e => e.preventDefault()}
 			bind:this={anchorElement}
-			on:outermousedown={() => (open = false)}
+			on:outermousedown={handleOuterMousedown}
 			class="context-menu-anchor"
 			style="top: {menuPosition.y}px; left: {menuPosition.x}px;"
 		>
