@@ -76,6 +76,12 @@
 	let dragging = false;
 	let holding = false;
 	let directionAwareReverse = false;
+	let activePointerEvent: MouseEvent | TouchEvent | null = null;
+
+	let hoveringRail = false;
+	let hoverPreviewValue = min;
+	let hoverValuePercentage = 0;
+	let hoverPositionPercentage = 0;
 
 	// also adding client height will enable users to create distinct shapes for the thumb
 	let thumbClientWidth = 20;
@@ -98,16 +104,26 @@
 		"beforeinput"
 	]);
 
+	const clamp = (v: number, minValue: number, maxValue: number) =>
+		Math.min(maxValue, Math.max(minValue, v));
+
 	// Divides the current value minus the minimum value
 	// by the difference between the max and min values,
 	// and multiplies by 100 to get a percentage.
-	const valueToPercentage = v => ((v - min) / (max - min)) * 100;
+	const valueToPercentage = (v: number) => {
+		if (max === min) return 0;
+		return ((v - min) / (max - min)) * 100;
+	};
 
-	const bufferValueToPercentage = v => (v * 100) / max;
+	const bufferValueToPercentage = (v: number) => {
+		if (max === 0) return 0;
+		return (v * 100) / max;
+	};
 
 	function cancelMove() {
 		holding = false;
 		dragging = false;
+		activePointerEvent = null;
 
 		if (sliderThumbHolding) {
 			sliderThumbHolding = false;
@@ -115,57 +131,121 @@
 		}
 	}
 
-	function handleMove() {
+	function handleMove(event: MouseEvent | TouchEvent) {
+		activePointerEvent = event;
+
 		if (holding) dragging = true;
+		if (hoveringRail) updateHoverPreview(event);
 	}
 
-	function calculateValue(event) {
-		if (disabled || !railElement) return;
+	function getClientPoint(event: MouseEvent | TouchEvent) {
+		if ("touches" in event) {
+			const touch = event.touches[0] ?? event.changedTouches[0];
+			if (!touch) return null;
 
-		const { top, bottom, left, right, width, height } = railElement.getBoundingClientRect();
-		const percentageX = event.touches ? event.touches[0].clientX : event.clientX;
-		const percentageY = event.touches ? event.touches[0].clientY : event.clientY;
-
-		const thumbSize = orientation === "horizontal" ? thumbClientWidth : thumbClientHeight;
-		const totalLength = orientation === "horizontal" ? width : height;
-
-		const effectiveLength = totalLength - thumbSize;
-
-		if (effectiveLength <= 0) return;
-
-		let distanceFromMin = 0;
-
-		if (orientation === "horizontal") {
-			if (directionAwareReverse) {
-				distanceFromMin = right - percentageX;
-			} else {
-				distanceFromMin = percentageX - left;
-			}
-		} else {
-			if (directionAwareReverse) {
-				distanceFromMin = percentageY - top;
-			} else {
-				distanceFromMin = bottom - percentageY;
-			}
+			return {
+				x: touch.clientX,
+				y: touch.clientY
+			};
 		}
 
-		const relativePos = distanceFromMin - thumbSize / 2;
+		return {
+			x: event.clientX,
+			y: event.clientY
+		};
+	}
 
-		let percent = relativePos / effectiveLength;
+	function percentToStepValue(percent: number) {
+		const safeStep = step > 0 ? step : 1;
 
-		if (percent < 0) percent = 0;
-		if (percent > 1) percent = 1;
-
-		let nextStep = min + Math.round(((max - min) * percent) / step) * step;
+		let nextStep = min + Math.round(((max - min) * percent) / safeStep) * safeStep;
 
 		if (nextStep <= min) nextStep = min;
 		else if (nextStep >= max) nextStep = max;
 
-		dispatch("userChange", [value, nextStep]);
-		value = nextStep;
+		return nextStep;
 	}
 
-	function handleArrowKeys(event) {
+	function getPointerData(event: MouseEvent | TouchEvent) {
+		if (disabled || !railElement) return null;
+
+		const point = getClientPoint(event);
+		if (!point) return null;
+
+		const rect = railElement.getBoundingClientRect();
+		const thumbSize = orientation === "horizontal" ? thumbClientWidth : thumbClientHeight;
+		const totalLength = orientation === "horizontal" ? rect.width : rect.height;
+		const effectiveLength = totalLength - thumbSize;
+
+		if (totalLength <= 0 || effectiveLength <= 0) return null;
+
+		let distanceFromMin = 0;
+		let visualPercent = 0;
+
+		if (orientation === "horizontal") {
+			const visualDistance = clamp(point.x - rect.left, 0, rect.width);
+			visualPercent = visualDistance / rect.width;
+
+			if (directionAwareReverse) {
+				distanceFromMin = rect.right - point.x;
+			} else {
+				distanceFromMin = point.x - rect.left;
+			}
+		} else {
+			const visualDistance = clamp(rect.bottom - point.y, 0, rect.height);
+			visualPercent = visualDistance / rect.height;
+
+			if (directionAwareReverse) {
+				distanceFromMin = point.y - rect.top;
+			} else {
+				distanceFromMin = rect.bottom - point.y;
+			}
+		}
+
+		const relativePos = distanceFromMin - thumbSize / 2;
+		const logicalPercent = clamp(relativePos / effectiveLength, 0, 1);
+
+		return {
+			value: percentToStepValue(logicalPercent),
+			valuePercentage: logicalPercent * 100,
+			positionPercentage: visualPercent * 100
+		};
+	}
+
+	function calculateValue(event: MouseEvent | TouchEvent) {
+		const pointerData = getPointerData(event);
+		if (!pointerData) return;
+
+		dispatch("userChange", [value, pointerData.value]);
+		value = pointerData.value;
+	}
+
+	function updateHoverPreview(event: MouseEvent | TouchEvent) {
+		const pointerData = getPointerData(event);
+		if (!pointerData) return;
+
+		hoveringRail = true;
+		hoverPreviewValue = pointerData.value;
+		hoverValuePercentage = pointerData.valuePercentage;
+		hoverPositionPercentage = pointerData.positionPercentage;
+
+		dispatch("hoverChange", {
+			value: hoverPreviewValue,
+			percentage: hoverValuePercentage,
+			positionPercentage: hoverPositionPercentage
+		});
+	}
+
+	function clearHoverPreview() {
+		hoveringRail = false;
+	}
+
+	function handleHoverMove(event: MouseEvent | TouchEvent) {
+		activePointerEvent = event;
+		updateHoverPreview(event);
+	}
+
+	function handleArrowKeys(event: KeyboardEvent) {
 		const { key } = event;
 
 		if (key === "ArrowDown" || key === "ArrowUp") event.preventDefault();
@@ -184,9 +264,12 @@
 		}
 	}
 
-	function handleTouchStart(event) {
+	function handleTouchStart(event: TouchEvent) {
 		if (event.cancelable) event.preventDefault();
+
 		holding = true;
+		activePointerEvent = event;
+		updateHoverPreview(event);
 	}
 
 	function linearScale(input: readonly [number, number], output: readonly [number, number]) {
@@ -213,14 +296,16 @@
 		dispatch("change", value);
 		if (value === max) dispatch("end", value);
 	}
+
 	$: percentage = valueToPercentage(value);
 	$: bufferPercentage = bufferValueToPercentage(bufferValue);
+
 	$: {
 		if (value <= min) value = min;
 		else if (value >= max) value = max;
 
-		if (dragging) {
-			calculateValue(event);
+		if (dragging && activePointerEvent) {
+			calculateValue(activePointerEvent);
 			dragging = false;
 		}
 	}
@@ -246,17 +331,24 @@ A slider is a control that lets the user select from a range of values by moving
 -->
 <div
 	use:forwardEvents
-	on:mousedown|preventDefault={() => {
+	on:mousedown|preventDefault={event => {
 		holding = true;
 		dragging = true;
+		activePointerEvent = event;
+		updateHoverPreview(event);
 	}}
+	on:mousemove={handleHoverMove}
+	on:mouseleave={clearHoverPreview}
 	on:mouseup|preventDefault={() => {
 		dispatch("userUpdate", value);
 	}}
+	on:touchmove={handleHoverMove}
 	on:touchend|preventDefault={() => {
+		clearHoverPreview();
 		dispatch("userUpdate", value);
 	}}
 	on:touchcancel|preventDefault={() => {
+		clearHoverPreview();
 		dispatch("userUpdate", value);
 	}}
 	on:touchstart={handleTouchStart}
@@ -332,6 +424,20 @@ A slider is a control that lets the user select from a range of values by moving
 			<div class="slider-buffer-track" bind:this={bufferElement} />
 		{/if}
 	</div>
+
+	{#if hoveringRail && $$slots["hover-preview"] && !disabled}
+		<div
+			class="slider-hover-preview"
+			style="--fds-slider-hover-position: {hoverPositionPercentage}%"
+		>
+			<slot
+				name="hover-preview"
+				value={hoverPreviewValue}
+				percentage={hoverValuePercentage}
+				positionPercentage={hoverPositionPercentage}
+			/>
+		</div>
+	{/if}
 
 	{#if ticks}
 		<div class="slider-tick-bar placement-{tickPlacement}" bind:this={tickBarElement}>

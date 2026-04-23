@@ -765,6 +765,12 @@
 		<Slider bind:bufferValue={buffervl} value={100} min={1000} max={5000} />
 
 		<Slider min={0} max={100} value={50} loading bufferValue={20} />
+
+		<Slider bind:value min={0} max={100} step={1}>
+			<div slot="hover-preview" let:value class="video-preview">
+				<div>{value}</div>
+			</div>
+		</Slider>
 	</div>
 
 	<h4>Ticks</h4>

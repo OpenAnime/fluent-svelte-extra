@@ -60,6 +60,12 @@
 					transform: translateX(-50%);
 				}
 
+				&hover-preview {
+					inset-inline-start: var(--slider-hover-position);
+					inset-block-end: calc(100% + 8px);
+					transform: translateX(-50%);
+				}
+
 				&tick {
 					flex-direction: column;
 					height: 100%;
@@ -115,6 +121,12 @@
 
 				&thumb {
 					inset-block-end: calc(var(--slider-percentage) + var(--slider-thumb-offset));
+					transform: translateY(50%);
+				}
+
+				&hover-preview {
+					inset-block-end: var(--slider-hover-position);
+					inset-inline-start: calc(100% + 8px);
 					transform: translateY(50%);
 				}
 
@@ -192,6 +204,12 @@
 
 	&-buffer-track {
 		background-color: var(--control-strong-stroke-default);
+	}
+
+	&-hover-preview {
+		position: absolute;
+		z-index: 30;
+		pointer-events: none;
 	}
 
 	&-tick-bar {
