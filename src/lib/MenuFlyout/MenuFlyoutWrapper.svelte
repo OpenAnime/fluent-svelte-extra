@@ -11,6 +11,8 @@
 	/** Determines the flyout's visibility. */
 	export let open = false;
 
+	export let disabled = false;
+
 	/** Determines if the flyout can be closed using conventional user interaction. */
 	export let closable = true;
 
@@ -34,26 +36,26 @@
 	export { className as class };
 
 	/** Obtains a bound DOM reference to the content wrapper element. */
-	export let wrapperElement: HTMLDivElement = null;
+	export let wrapperElement: HTMLDivElement | null = null;
 
 	/** Obtains a bound DOM reference to the menu's positioning anchor element. */
-	export let anchorElement: HTMLDivElement = null;
+	export let anchorElement: HTMLDivElement | null = null;
 
 	/** Obtains a bound DOM reference to the inner menu element. */
 	export let menuElement: HTMLUListElement = null;
 
 	/** Obtains a bound DOM reference to the menu backdrop, which is present while the menu is `open`. */
-	export let backdropElement: HTMLDivElement = null;
+	export let backdropElement: HTMLDivElement | null = null;
 
 	const dispatch = createEventDispatcher();
 	const menuId = uid("fds-menu-flyout-anchor-");
 
-	let menu: SvelteComponentTyped = null;
-	let previousFocus: Element = null;
+	let menu: SvelteComponentTyped | null = null;
+	let previousFocus: Element | null = null;
 
 	$: dispatch(open ? "open" : "close");
 
-	$: if (menu && tabbable(menuElement).length > 0) tabbable(menuElement)[0].focus();
+	$: if (menu && tabbable(menuElement!).length > 0) tabbable(menuElement!)[0].focus();
 
 	function handleEscapeKey({ key }: KeyboardEvent) {
 		if (key === "Escape" && closable) {
@@ -63,6 +65,8 @@
 	}
 
 	function toggleFlyout() {
+		if (!open && disabled) return;
+
 		previousFocus = document.activeElement;
 		open = !open;
 	}
@@ -74,10 +78,10 @@
 		}
 	}
 
-	setContext("closeFlyout", event => {
+	setContext("closeFlyout", (e: any) => {
 		dispatch("select");
 		if (closeOnSelect && closable) {
-			event.stopPropagation();
+			e.stopPropagation();
 			open = false;
 
 			previousFocus = null;
@@ -87,6 +91,7 @@
 
 <svelte:window on:keydown={handleEscapeKey} />
 
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
 	class="menu-flyout-wrapper {className}"
 	aria-expanded={open}
@@ -97,6 +102,7 @@
 >
 	<slot />
 	{#if open}
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<div
 			id={menuId}
 			class="menu-flyout-anchor placement-{placement} alignment-{alignment}"
@@ -115,6 +121,7 @@
 				<slot name="flyout" />
 			</MenuFlyoutSurface>
 		</div>
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<div
 			class="menu-flyout-backdrop"
 			bind:this={backdropElement}
