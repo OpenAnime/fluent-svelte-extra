@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="https://raw.githubusercontent.com/OpenAnime/fluent-svelte-extra/refs/heads/main/static/logo.svg" width="72" height="128" />
+  <img src="https://cdn.jsdelivr.net/gh/OpenAnime/fluent-svelte-extra@main/static/logo.svg" width="128" height="128" />
   <br />
   Fluent Svelte Extra
 </h1>
